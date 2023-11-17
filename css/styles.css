@@ -1,0 +1,93 @@
+body {
+  background-image: url("/public/background-image.jpeg");
+  background-size: cover;
+  font-family: Arial, sans-serif;
+}
+form {
+  max-width: 500px;
+  max-height: 860px;
+  height: 860px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px 50px 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+input {
+  border: none;
+  border-bottom: 1px solid #aaa;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input:focus {
+  border-bottom: 1px solid #007bff; /* Set the color of the underline when focused */
+}
+
+select {
+  border: none;
+  border-bottom: 1px solid #aaa;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="text"],
+select {
+  width: 97%;
+  padding: 8px;
+
+  /*border: 1px solid #ccc;*/
+  margin-bottom: 20px;
+}
+input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 36px;
+  font-weight: bold;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #ddd;
+  border-radius: 10px;
+  color: black;
+}
+.topnav a.active {
+  background-color: #4caf50;
+  border-radius: 10px;
+  color: white;
+}
+.topnav .icon {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
