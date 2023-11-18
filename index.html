@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>EDU Form</title>
+    <title>Trip Form</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -9,43 +9,61 @@
   <body>
     <div class="topnav" id="myTopnav">
       <a href="#" class="active">Home</a>
-      <a href="categories.html">Categories</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="/navbar-html/categories.html">Categories</a>
+      <a href="/navbar-html/about.html">About</a>
+      <a href="/navbar-html/contact.html">Contact</a>
       <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
     <form id="myForm" action="submit-page.html" onsubmit="return validateForm()">
-      <h3 type="header">EDUCATION APPOINTMENT FORM</h3>
-      <label for="name">Title:</label>
-      <input type="text" placeholder="Title" id="title" name="title" required />
-      <label for="name">Name:</label>
+      <h3 type="header">TRIP REGISTRATION FORM</h3>
       <input type="text" placeholder="Name" id="name" name="name" required />
-      <label for="email">Email:</label>
       <input type="text" placeholder="Email" id="email" name="email" required />
-      <label for="phone">Phone:</label>
       <input type="text" placeholder="Phone Number" id="phone" name="phone" required />
-      <label for="city">City:</label>
-      <select id="city" name="city" required>
-        <option value="" disabled selected>Select a city</option>
+      <input type="text" placeholder="Address" id="address" name="address" required />
+      <select id="deparaturePoint" name="deparaturePoint" required>
+        <option value="" disabled selected>Select Departure Point</option>
       </select>
-      <label for="courseType">Course Type:</label>
-      <select id="courseType" name="courseType" required>
-        <option value="" disabled selected>Select a course type</option>
+
+      <select id="destinationPoint" name="destinationPoint" required>
+        <option value="" disabled selected>Select Destination Point</option>
       </select>
-      <h4 style="font-weight: bold; margin-top: 10px; margin-bottom: 20px">How would you like to be located ?</h4>
-      <select id="device" name="device" required>
-        <option value="" disabled selected>Select a platform</option>
+      <h4 style="font-weight: bold; margin-top: 10px; margin-bottom: 20px">
+        Which vehicle would you like to travel by ?
+      </h4>
+      <select id="vehicle" name="vehicle" required>
+        <option value="" disabled selected>Select a Vehicle</option>
       </select>
-      <select id="timeSlot" name="timeSlot" required>
-        <option value="" disabled selected>Select a timeline</option>
-      </select>
+      <h4 style="font-weight: bold; margin-top: 10px; margin-bottom: 20px">What is your preferred travel date ?</h4>
+      <div style="margin-top: 24px; margin-bottom: 8px">
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+          "
+        >
+          <label class="checkIn" for="date">Check-in Date:</label>
+          <input type="date" id="date" name="date" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
+        </div>
+        <div style="display: flex; justify-content: space-between; flex-direction: row">
+          <label class="checkOut" for="date">Check-out Date:</label>
+          <input type="date" id="date" name="date" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
+        </div>
+      </div>
+
       <label>
         <input type="checkbox" name="agree" required />
-        I agree to the terms and conditions
+        I agree to the <span class="terms">Terms and Conditions</span>
       </label>
-      <input type="submit" value="Request An Appointment" />
+      <div style="display: flex; justify-content: space-between">
+        <input type="submit" value="Request An Appointment" />
+        <input type="reset" value="Reset" />
+      </div>
     </form>
     <script src="script.js"></script>
     <script>
@@ -53,45 +71,37 @@
       fetch("https://run.mocky.io/v3/21a8145c-6b78-4edf-80e6-6c63b6c7abd2")
         .then((response) => response.json())
         .then((data) => {
-          const cityDropdown = document.getElementById("city");
-          const courseTypeDropdown = document.getElementById("courseType");
+          const deparaturePoint = document.getElementById("deparaturePoint");
+          const destinationPoint = document.getElementById("destinationPoint");
 
-          // Populate City dropdown
           data.cities.forEach((city) => {
             const option = document.createElement("option");
             option.value = city;
             option.text = city;
-            cityDropdown.appendChild(option);
+            deparaturePoint.appendChild(option);
           });
 
           // Populate Course Type dropdown
-          data.courseTypes.forEach((courseType) => {
+          data.cities.forEach((courseType) => {
             const option = document.createElement("option");
             option.value = courseType;
             option.text = courseType;
-            courseTypeDropdown.appendChild(option);
+            destinationPoint.appendChild(option);
           });
         })
+
         .catch((error) => console.error("Error fetching data:", error));
 
-      fetch("https://run.mocky.io/v3/12dde335-6d50-4afc-b77a-e34adbe9ab98")
+      fetch("https://run.mocky.io/v3/61ab30de-9f57-453b-bb4a-cd07b81ad634")
         .then((response) => response.json())
         .then((data) => {
-          const deviceDropdown = document.getElementById("device");
-          const timeSlotDropdown = document.getElementById("timeSlot");
+          const vehicleType = document.getElementById("vehicle");
 
-          data.devices.forEach((device) => {
+          data.vehicleTypes.forEach((device) => {
             const option = document.createElement("option");
             option.value = device;
             option.text = device;
-            deviceDropdown.appendChild(option);
-          });
-
-          data.timeSlots.forEach((timeSlot) => {
-            const option = document.createElement("option");
-            option.value = timeSlot;
-            option.text = timeSlot;
-            timeSlotDropdown.appendChild(option);
+            vehicleType.appendChild(option);
           });
         })
         .catch((error) => console.error("Error fetching data:", error));
