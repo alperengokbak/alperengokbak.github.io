@@ -18,8 +18,9 @@
     </div>
     <form id="myForm" action="submit-page.html" onsubmit="return validateForm()">
       <h3 type="header">TRIP REGISTRATION FORM</h3>
+      <div id="errorContainer" style="color: red; margin-top: 10px"></div>
       <input type="text" placeholder="Name" id="name" name="name" required />
-      <input type="text" placeholder="Email" id="email" name="email" required />
+      <input type="email" placeholder="Email" id="email" name="email" required />
       <input type="text" placeholder="Phone Number" id="phone" name="phone" required />
       <input type="text" placeholder="Address" id="address" name="address" required />
       <select id="deparaturePoint" name="deparaturePoint" required>
@@ -48,11 +49,11 @@
           "
         >
           <label class="checkIn" for="date">Check-in Date:</label>
-          <input type="date" id="date" name="date" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
+          <input type="date" id="checkIn" name="checkIn" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
         </div>
         <div style="display: flex; justify-content: space-between; flex-direction: row">
           <label class="checkOut" for="date">Check-out Date:</label>
-          <input type="date" id="date" name="date" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
+          <input type="date" id="checkOut" name="checkOut" required pattern="\d{1,2}/\d{1,2}/\d{2}" />
         </div>
       </div>
 
@@ -61,7 +62,7 @@
         I agree to the <span class="terms">Terms and Conditions</span>
       </label>
       <div style="display: flex; justify-content: space-between">
-        <input type="submit" value="Request An Appointment" />
+        <input type="submit" value="Register" />
         <input type="reset" value="Reset" />
       </div>
     </form>
