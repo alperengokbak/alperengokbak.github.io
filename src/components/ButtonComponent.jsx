@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ButtonComponent() {
   return (
-    <div className="flex flex-row justify-center items-center w-full mt-8 gap-6">
+    <div className="flex flex-row justify-center items-center w-full mt-8 gap-6 sm:flex-col md:flex-row sm:gap-4 md:gap-6">
       <a
         href="
               "

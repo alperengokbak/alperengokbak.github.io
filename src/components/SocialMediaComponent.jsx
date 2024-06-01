@@ -8,7 +8,7 @@ import Medium from "../assets/Logo/02_White/Symbol/PNG/RGB/Medium-Symbol-White-R
 
 export default function SocialMediaLinks() {
   return (
-    <div className="flex flex-row justify-center items-center w-full mt-12 gap-24">
+    <div className="flex flex-row justify-center items-center w-full mt-12 sm:gap-12 md:gap-12 lg:gap-24">
       <a href="https://github.com/alperengokbak" target="_blank" rel="noopener noreferrer">
         <img src={Github} alt="GitHub" className="size-12" />
       </a>
