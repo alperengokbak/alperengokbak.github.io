@@ -2,11 +2,11 @@ import React from "react";
 
 export default function ButtonComponent() {
   return (
-    <div className="flex flex-row justify-center items-center w-full mt-8 gap-6 sm:flex-col md:flex-row sm:gap-4 md:gap-6">
+    <div className="card-hyperlink-container">
       <a
         href="
               "
-        className="flex flex-row gap-3 px-8 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black"
+        className="card-hyperlink"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
           <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -18,7 +18,7 @@ export default function ButtonComponent() {
       <a
         href="
               "
-        className="flex flex-row gap-3 px-8 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black"
+        className="card-hyperlink"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
           <path
@@ -32,7 +32,7 @@ export default function ButtonComponent() {
       <a
         href="
               "
-        className="flex flex-row gap-3 px-8 py-4 text-xl font-medium text-black bg-orange-500 border rounded-lg items-center hover:bg-orange-400"
+        className="card-hyperlink-orange"
       >
         Buy Me a Coffee
       </a>
