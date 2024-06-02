@@ -27,6 +27,9 @@ function App() {
       </div>
       <WhoIs photo={photo} />
       <Blogs photo={DockerMedium} />
+      <div className="footer">
+        <p className="footer-text">© 2024 Alperen Gökbak</p>
+      </div>
     </div>
   );
 }
