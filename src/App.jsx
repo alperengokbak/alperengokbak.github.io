@@ -1,13 +1,15 @@
 import React from "react";
 
-// Background Image
+// Background Image And Photos
 import sweden from "./assets/sweden.jpeg";
 import photo from "./assets/photo.jpg";
+import DockerMedium from "./assets/DockerMedium.webp";
 
 // Components
 import ButtonComponent from "./components/ButtonComponent.jsx";
 import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
 import WhoIs from "./components/WhoIs.jsx";
+import Blogs from "./components/Blogs.jsx";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         </div>
       </div>
       <WhoIs photo={photo} />
+      <Blogs photo={DockerMedium} />
     </div>
   );
 }

@@ -57,3 +57,39 @@
 .about-me-text {
   @apply font-medium font-sans text-neutral-400 mb-2;
 }
+
+.blogs-header {
+  @apply text-6xl text-center my-12 text-neutral-300;
+}
+
+.blogs-containers {
+  @apply flex flex-col items-center justify-center gap-8;
+}
+
+.blogs-container {
+  @apply container flex flex-col items-center justify-center text-neutral-300 gap-5 border-2 border-neutral-700 p-8 rounded-lg;
+}
+
+.blog-image {
+  @apply w-4/5 h-2/5 rounded-xl xs:w-11/12;
+}
+
+.blog-title {
+  @apply text-3xl font-serif font-bold text-neutral-100 max-w-xl xs:text-2xl;
+}
+
+.blog-date {
+  @apply text-neutral-200 text-xl xs:text-base;
+}
+
+.blog-tags {
+  @apply grid grid-cols-4 xs:grid-cols-2 gap-3 max-w-2xl;
+}
+
+.tag {
+  @apply text-sm text-neutral-300 border border-neutral-400 px-2 py-1.5 rounded-lg;
+}
+
+.blog-text {
+  @apply text-lg text-neutral-400 max-w-xl;
+}
