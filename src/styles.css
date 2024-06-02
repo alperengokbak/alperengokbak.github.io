@@ -31,11 +31,11 @@
 }
 
 .card-hyperlink {
-  @apply flex flex-row gap-3 px-8 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black;
+  @apply flex flex-row gap-3 px-6 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black;
 }
 
 .card-hyperlink-orange {
-  @apply flex flex-row gap-3 px-8 py-4 text-xl font-medium text-black bg-orange-500 border rounded-lg items-center hover:bg-orange-400;
+  @apply px-6 py-4 text-xl font-semibold text-black bg-orange-500 border rounded-lg items-center hover:bg-orange-400;
 }
 
 .my-photo {
@@ -43,7 +43,7 @@
 }
 
 .who-is {
-  @apply font-semibold font-serif text-neutral-200 mb-1 text-6xl;
+  @apply font-semibold font-serif text-neutral-200 mb-1 md:text-6xl xs:text-5xl;
 }
 
 .who-is-container {
@@ -75,7 +75,7 @@
 }
 
 .blog-title {
-  @apply text-xl font-serif font-bold text-neutral-100 max-w-xl xs:text-2xl xl:text-3xl xl:max-w-6xl;
+  @apply text-xl font-serif font-bold text-neutral-100 max-w-xl xs:text-2xl xl:text-3xl xl:max-w-6xl md:max-w-2xl;
 }
 
 .blog-date {
@@ -83,7 +83,7 @@
 }
 
 .blog-tags {
-  @apply grid xs:grid-cols-2 xl:grid-cols-4 gap-3 max-w-6xl xl:max-w-7xl;
+  @apply grid xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 max-w-6xl xl:max-w-7xl;
 }
 
 .tag {

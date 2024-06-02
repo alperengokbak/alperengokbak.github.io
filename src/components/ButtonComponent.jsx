@@ -29,11 +29,7 @@ export default function ButtonComponent() {
         </svg>
         Portfolio
       </a>
-      <a
-        href="
-              "
-        className="card-hyperlink-orange"
-      >
+      <a href="https://www.buymeacoffee.com/alperenSE" className="card-hyperlink-orange">
         Buy Me a Coffee
       </a>
     </div>
