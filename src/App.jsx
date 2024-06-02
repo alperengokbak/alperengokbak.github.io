@@ -5,6 +5,9 @@ import sweden from "./assets/sweden.jpeg";
 import photo from "./assets/photo.jpeg";
 import DockerMedium from "./assets/DockerMedium.webp";
 
+// Typewriter
+import Typewriter from "typewriter-effect";
+
 // Components
 import ButtonComponent from "./components/ButtonComponent.jsx";
 import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
@@ -20,7 +23,16 @@ function App() {
         <div className="card-container">
           <div className="card-elements">
             <h1 className="text-7xl card-text">Alperen Gökbak</h1>
-            <h2 className="text-3xl card-text">Full Stack Developer</h2>
+            <h2 className="text-3xl card-text">
+              <Typewriter
+                options={{
+                  strings: ["Full Stack Developer", "Cloud Engineer", "DevOps Engineer", "Software Engineer"],
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 50,
+                }}
+              />
+            </h2>
             <ButtonComponent />
             <SocialMediaLinks />
           </div>

@@ -60,6 +60,32 @@
   @apply font-semibold font-serif text-neutral-200 mb-1 md:text-6xl xs:text-5xl;
 }
 
+@keyframes vibrate {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.vibrate {
+  display: inline-block;
+  animation: vibrate 0.2s linear infinite;
+}
+
 .who-is-container {
   @apply flex flex-row xs:flex-col sm:flex-row justify-center items-center px-4 py-8 mx-4 my-8 gap-8;
 }

@@ -5,7 +5,9 @@ export default function WhoIs({ photo }) {
     <div className="who-is-container">
       <img src={photo} className="my-photo" />
       <div className="about-me-text-con">
-        <h1 className="who-is">Who.is ?</h1>
+        <h1 className="who-is">
+          Who.is <span className="vibrate">?</span>
+        </h1>
         <h2 className="text-3xl mb-4 text-neutral-300">Alperen Gökbak</h2>
         <p className="about-me-text">
           I am Alperen Gökbak, a Software Engineer, currently pursuing a Bachelor's degree in Software Engineering at
