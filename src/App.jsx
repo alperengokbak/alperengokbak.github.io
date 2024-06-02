@@ -2,7 +2,7 @@ import React from "react";
 
 // Background Image And Photos
 import sweden from "./assets/sweden.jpeg";
-import photo from "./assets/photo.jpg";
+import photo from "./assets/photo.jpeg";
 import DockerMedium from "./assets/DockerMedium.webp";
 
 // Components
