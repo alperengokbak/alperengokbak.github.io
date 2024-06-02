@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Blogs({ photo }) {
   return (
-    <div>
+    <>
       <h1 className="blogs-header">Blogs</h1>
       <div className="blogs-containers">
         <div className="blogs-container">
@@ -24,6 +24,6 @@ export default function Blogs({ photo }) {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }

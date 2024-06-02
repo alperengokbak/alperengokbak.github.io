@@ -58,7 +58,15 @@
   @apply font-medium font-sans text-neutral-400 mb-2;
 }
 
-.blogs-header {
+.projects-containers {
+  @apply grid md:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 gap-8 mb-12 justify-center xl:max-w-7xl lg:max-w-5xl md:max-w-3xl xs:max-w-sm;
+}
+
+.projects-container {
+  @apply flex flex-col items-center justify-center text-neutral-300 gap-5 mt-4 xl:gap-8;
+}
+
+.projects-header {
   @apply text-6xl text-center my-12 text-neutral-300;
 }
 
@@ -68,6 +76,10 @@
 
 .blogs-container {
   @apply container flex flex-col items-center justify-center text-neutral-300 gap-5 border-2 border-neutral-700 p-8 rounded-lg xl:gap-8;
+}
+
+.blogs-header {
+  @apply text-6xl text-center my-12 text-neutral-300;
 }
 
 .blog-image {

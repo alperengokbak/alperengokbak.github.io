@@ -10,6 +10,7 @@ import ButtonComponent from "./components/ButtonComponent.jsx";
 import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
 import WhoIs from "./components/WhoIs.jsx";
 import Blogs from "./components/Blogs.jsx";
+import Project from "./components/Project.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         </div>
       </div>
       <WhoIs photo={photo} />
+      <Project />
       <Blogs photo={DockerMedium} />
       <div className="footer">
         <p className="footer-text">© 2024 Alperen Gökbak</p>
