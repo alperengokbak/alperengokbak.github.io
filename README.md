@@ -79,6 +79,7 @@ This project is licensed under the MIT License.
 
 You can reach me at:
 
-- [LinkedIn](#)
-- [Twitter](#)
+- [LinkedIn](https://www.linkedin.com/in/alperen-gokbak-68988a225/)
+- [Medium](https://medium.com/@swalperen3008)
+- [Instagram](https://www.instagram.com/alperengokbak/)
 - [Buy Me a Coffee](https://www.buymeacoffee.com/alperenSE)
