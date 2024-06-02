@@ -10,6 +10,12 @@
   @apply bg-local bg-contain bg-no-repeat min-h-dvh max-h-dvh min-w-full;
 }
 
+.social-media-btn {
+  &:hover {
+    @apply border-neutral-500 transform scale-110;
+  }
+}
+
 .card-container {
   @apply flex items-center justify-center w-full h-full;
 }
@@ -31,11 +37,19 @@
 }
 
 .card-hyperlink {
-  @apply flex flex-row gap-3 px-6 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black;
+  @apply flex flex-row gap-3 px-6 py-4 text-xl font-medium text-white bg-transparent border rounded-lg items-center hover:bg-white hover:text-black transition-transform duration-300 ease-in-out;
+
+  &:hover {
+    @apply transform translate-y-[-5px];
+  }
 }
 
 .card-hyperlink-orange {
-  @apply px-6 py-4 text-xl font-semibold text-black bg-orange-500 border rounded-lg items-center hover:bg-orange-400;
+  @apply px-6 py-4 text-xl font-semibold text-black bg-orange-500 border rounded-lg items-center hover:bg-orange-400 transition-transform duration-300 ease-in-out;
+
+  &:hover {
+    @apply transform translate-y-[-5px];
+  }
 }
 
 .my-photo {
@@ -75,7 +89,11 @@
 }
 
 .blogs-container {
-  @apply container flex flex-col items-center justify-center text-neutral-300 gap-5 border-2 border-neutral-700 p-8 rounded-lg xl:gap-8;
+  @apply container flex flex-col items-center justify-center text-neutral-300 gap-5 border-2 border-neutral-700 p-8 rounded-lg xl:gap-8 cursor-pointer transition-transform duration-300 ease-in-out;
+
+  &:hover {
+    @apply border-neutral-500 transform translate-y-[-10px];
+  }
 }
 
 .blogs-header {
