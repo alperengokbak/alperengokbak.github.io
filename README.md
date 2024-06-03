@@ -30,8 +30,8 @@ You can view the live demo of the portfolio [here](https://alperengokbak.github.
 To get started with the project, clone the repository and install the dependencies.
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/alperengokbak/alperengokbak.github.io.git
+cd alperengokbak.github.io
 npm install
 ```
 
