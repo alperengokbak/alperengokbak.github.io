@@ -4,6 +4,9 @@ import React from "react";
 import sweden from "./assets/sweden.jpeg";
 import photo from "./assets/photo.jpeg";
 import DockerMedium from "./assets/DockerMedium.webp";
+import BookingHotelSs from "./assets/BookingHotelSs.jpeg";
+import PrescriptionManagement from "./assets/PrescriptionManagement.png";
+import SwaggerUi from "./assets/Swagger_ui.png";
 
 // Typewriter
 import Typewriter from "typewriter-effect";
@@ -39,8 +42,8 @@ function App() {
         </div>
       </div>
       <WhoIs photo={photo} />
-      <Project />
-      <Blogs photo={DockerMedium} />
+      <Project SwaggerUi={SwaggerUi} BookingHotelSs={BookingHotelSs} PrescriptionManagement={PrescriptionManagement} />
+      <Blogs DockerMedium={DockerMedium} />
       <div className="footer">
         <p className="footer-text">© 2024 Alperen Gökbak</p>
       </div>
