@@ -40,7 +40,7 @@ npm install
 To run the project locally, use the following command:
 
 ```bash
-npm start
+npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
