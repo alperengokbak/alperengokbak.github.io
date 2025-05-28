@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageModal from "./ImageModal";
 
-export default function Project({ BookingHotelSs, PrescriptionManagement, SwaggerUi }) {
+export default function Project({ twitter_frontend, BookingHotelSs, PrescriptionManagement, SwaggerUi }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -25,7 +25,7 @@ export default function Project({ BookingHotelSs, PrescriptionManagement, Swagge
               title: "Booking Hotel",
               imgSrc: BookingHotelSs,
               description:
-                "I can't really show the site because the free version of the database link is over, but there was a video I shot earlier.",
+                "The live site is currently unavailable because the free database hosting plan has expired. However, I recorded a demo video earlier to showcase its features.",
               videoLink: "https://www.youtube.com/watch?v=SRnzqtjv-tE",
               link: "https://booking-hotel-sntf.onrender.com/",
             },
@@ -33,7 +33,7 @@ export default function Project({ BookingHotelSs, PrescriptionManagement, Swagge
               title: "Prescription Management",
               imgSrc: PrescriptionManagement,
               description:
-                "I can't really show the site because the free version of the database link is over, but there was a video I shot earlier.",
+                "The application is currently offline due to the free database hosting plan being over. A demo video I recorded earlier is available to highlight its functionality.",
               videoLink: "https://www.youtube.com/watch?v=ZMvQaYzIY6w",
               link: "https://prescription-frontend.onrender.com/",
             },
@@ -41,22 +41,18 @@ export default function Project({ BookingHotelSs, PrescriptionManagement, Swagge
               title: "Airline Management System",
               imgSrc: SwaggerUi,
               description:
-                "The project appears to be a web application built using Node.js and Express, with a focus on handling flight-related operations such as ticket booking, cancellation, and flight information retrieval. The application includes user authentication to manage passenger accounts.",
+                "This web application, built with Node.js and Express, manages airline operations such as booking, cancellations, and flight information. It includes user authentication to handle passenger accounts securely.",
               link: "https://github.com/alperengokbak/Airline-Management-System",
             },
             {
-              title: "Twitter Clone Frontend",
-              imgSrc: "https://via.placeholder.com/150",
+              title: "Twitter Clone",
+              imgSrc: twitter_frontend,
               description:
-                "I've created a Twitter clone using React, Node.js, Express, and PostgreSQL. It was a fun project to work on and I learned a lot from it. I've created it while I'm at intern at a company.",
-              link: "https://github.com/alperengokbak/TwitterFrontend",
-            },
-            {
-              title: "Twitter Clone Backend",
-              imgSrc: "https://via.placeholder.com/150",
-              description:
-                "I've created a Twitter clone using React, Node.js, Express, and PostgreSQL. It was a fun project to work on and I learned a lot from it. I've created it while I'm at intern at a company.",
-              link: "https://github.com/alperengokbak/TwitterBackend",
+                "I developed a Twitter clone using React, Node.js, Express, and PostgreSQL. It was a valuable learning experience and part of a project I worked on during my internship.",
+              link: [
+                "https://github.com/alperengokbak/TwitterFrontend",
+                "https://github.com/alperengokbak/TwitterBackend",
+              ],
             },
           ].map((project, index) => (
             <div key={index} className="projects-container">

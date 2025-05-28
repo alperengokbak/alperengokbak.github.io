@@ -1,5 +1,3 @@
-import React from "react";
-
 // Github And LinkedIn Icons
 import Github from "../assets/github-mark/github-mark-white.png";
 import LinkedIn from "../assets/LinkedIn-Logos/LI-In-Bug.png";
@@ -13,7 +11,7 @@ export default function SocialMediaLinks() {
         <img src={Github} alt="GitHub" className="md:size-12 xs:size-10" />
       </a>
       <a
-        href="https://medium.com/@swalperen3008"
+        href="https://medium.com/@alperengokbak"
         target="_blank"
         rel="noopener noreferrer"
         className="social-media-btn"

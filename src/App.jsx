@@ -1,11 +1,10 @@
-import React from "react";
-
 // Background Image And Photos
 import sweden from "./assets/sweden.jpeg";
 import photo from "./assets/photo.jpeg";
 import DockerMedium from "./assets/DockerMedium.webp";
 import BookingHotelSs from "./assets/BookingHotelSs.jpeg";
 import PrescriptionManagement from "./assets/PrescriptionManagement.png";
+import twitter_frontend from "./assets/twitter_frontend.png";
 import SwaggerUi from "./assets/Swagger_ui.png";
 
 // Typewriter
@@ -29,7 +28,7 @@ function App() {
             <h2 className="text-3xl card-text">
               <Typewriter
                 options={{
-                  strings: ["Full Stack Developer", "Cloud Engineer", "DevOps Engineer", "Software Engineer"],
+                  strings: ["Solution Architect", "Cloud Engineer", "DevOps Engineer", "Software Engineer"],
                   autoStart: true,
                   loop: true,
                   deleteSpeed: 50,
@@ -42,10 +41,15 @@ function App() {
         </div>
       </div>
       <WhoIs photo={photo} />
-      <Project SwaggerUi={SwaggerUi} BookingHotelSs={BookingHotelSs} PrescriptionManagement={PrescriptionManagement} />
+      <Project
+        SwaggerUi={SwaggerUi}
+        twitter_frontend={twitter_frontend}
+        BookingHotelSs={BookingHotelSs}
+        PrescriptionManagement={PrescriptionManagement}
+      />
       <Blogs DockerMedium={DockerMedium} />
       <div className="footer">
-        <p className="footer-text">© 2024 Alperen Gökbak</p>
+        <p className="footer-text">© ${new Date().getFullYear} Alperen Gökbak</p>
       </div>
     </div>
   );

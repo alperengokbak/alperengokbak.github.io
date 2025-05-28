@@ -1,11 +1,9 @@
-import React from "react";
-
 export default function Blogs({ DockerMedium }) {
   return (
     <>
       <h1 className="blogs-header">Blogs</h1>
       <div className="blogs-containers">
-        <a href="https://medium.com/@swalperen3008/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6">
+        <a href="https://medium.com/@alperengokbak/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6">
           <div className="blogs-container">
             <img src={DockerMedium} className="blog-image" />
             <h2 className="blog-title">What Is Dockerize And Dockerize Your Project: A Step-by-Step Guide</h2>
