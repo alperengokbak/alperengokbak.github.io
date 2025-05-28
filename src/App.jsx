@@ -16,7 +16,6 @@ import ButtonComponent from "./components/ButtonComponent.jsx";
 import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
 import WhoIs from "./components/WhoIs.jsx";
 import Blogs from "./components/Blogs.jsx";
-import BlogKubernetes from "./components/BlogKubernetes.jsx";
 import Project from "./components/Project.jsx";
 
 function App() {
@@ -50,7 +49,6 @@ function App() {
         PrescriptionManagement={PrescriptionManagement}
       />
       <Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} />
-
       <div className="footer">
         <p className="footer-text">© {new Date().getFullYear()} Alperen Gökbak</p>
       </div>
