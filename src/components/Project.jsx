@@ -69,7 +69,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
               />
               <p className="projects-text">{project.description}</p>
               {project.videoLink && (
-                <a href={project.videoLink} className="projects-link hover:underline">
+                <a target={"_blank"} href={project.videoLink} className="projects-link hover:underline">
                   Click here to watch the video.
                 </a>
               )}
