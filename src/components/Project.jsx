@@ -49,10 +49,14 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
               imgSrc: twitter_frontend,
               description:
                 "I developed a Twitter clone using React, Node.js, Express, and PostgreSQL. It was a valuable learning experience and part of a project I worked on during my internship.",
-              link: [
-                "https://github.com/alperengokbak/TwitterFrontend",
-                "https://github.com/alperengokbak/TwitterBackend",
-              ],
+              link: "https://github.com/alperengokbak/TwitterFrontend",
+            },
+            {
+              title: "Twitter Clone Backend",
+              imgSrc: twitter_frontend,
+              description:
+                "This repo is backend server of Twitter Clone. You can reach out github repository from the below website link.",
+              link: "https://github.com/alperengokbak/TwitterBackend",
             },
           ].map((project, index) => (
             <div key={index} className="projects-container">
