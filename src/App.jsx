@@ -6,6 +6,7 @@ import BookingHotelSs from "./assets/BookingHotelSs.jpeg";
 import PrescriptionManagement from "./assets/PrescriptionManagement.png";
 import twitter_frontend from "./assets/twitter_frontend.png";
 import SwaggerUi from "./assets/Swagger_ui.png";
+import kubernetes from "./assets/kubernetes.webp";
 
 // Typewriter
 import Typewriter from "typewriter-effect";
@@ -15,6 +16,7 @@ import ButtonComponent from "./components/ButtonComponent.jsx";
 import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
 import WhoIs from "./components/WhoIs.jsx";
 import Blogs from "./components/Blogs.jsx";
+import BlogKubernetes from "./components/BlogKubernetes.jsx";
 import Project from "./components/Project.jsx";
 
 function App() {
@@ -47,9 +49,10 @@ function App() {
         BookingHotelSs={BookingHotelSs}
         PrescriptionManagement={PrescriptionManagement}
       />
-      <Blogs DockerMedium={DockerMedium} />
+      <Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} />
+
       <div className="footer">
-        <p className="footer-text">© ${new Date().getFullYear} Alperen Gökbak</p>
+        <p className="footer-text">© {new Date().getFullYear()} Alperen Gökbak</p>
       </div>
     </div>
   );
