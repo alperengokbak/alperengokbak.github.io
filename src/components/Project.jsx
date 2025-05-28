@@ -73,7 +73,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
                   Click here to watch the video.
                 </a>
               )}
-              <a href={project.link} className="projects-link">
+              <a target={"_blank"} href={project.link} className="projects-link">
                 View Project
               </a>
             </div>

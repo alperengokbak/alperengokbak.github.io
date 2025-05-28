@@ -3,7 +3,10 @@ export default function Blogs({ DockerMedium, kubernetes }) {
     <>
       <h1 className="blogs-header">Blogs</h1>
       <div className="blogs-containers">
-        <a href="https://medium.com/@alperengokbak/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6">
+        <a
+          target={"_blank"}
+          href="https://medium.com/@alperengokbak/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6"
+        >
           <div className="blogs-container">
             <img src={DockerMedium} className="blog-image" />
             <h2 className="blog-title">What Is Dockerize And Dockerize Your Project</h2>
@@ -24,7 +27,10 @@ export default function Blogs({ DockerMedium, kubernetes }) {
             </p>
           </div>
         </a>
-        <a href="https://alperengokbak.medium.com/creating-multi-node-kubernetes-cluster-by-using-kubeadm-tool-53af0faf27a4">
+        <a
+          target={"_blank"}
+          href="https://alperengokbak.medium.com/creating-multi-node-kubernetes-cluster-by-using-kubeadm-tool-53af0faf27a4"
+        >
           <div className="blogs-container">
             <img src={kubernetes} className="blog-image" />
             <h2 className="blog-title">Creating multi-node Kubernetes Cluster by using Kubeadm tool</h2>
