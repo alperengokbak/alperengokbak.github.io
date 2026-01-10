@@ -11,7 +11,6 @@ This is a personal portfolio website for Alperen Gökbak, a Full Stack Developer
 - [Components](#components)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Demo
 

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WhoIs({ photo }) {
   return (
-    <div className="who-is-container">
+    <section className="who-is-container" id="who-is">
       <img src={photo} className="my-photo" />
       <div className="about-me-text-con">
         <h1 className="who-is">
@@ -26,6 +26,6 @@ export default function WhoIs({ photo }) {
           countries and getting to know different cultures.
         </p>
       </div>
-    </div>
+    </section>
   );
 }
