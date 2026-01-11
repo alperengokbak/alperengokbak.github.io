@@ -106,7 +106,7 @@
 }
 
 .hero-btn {
-  @apply inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-semibold text-black shadow-glow transition hover:bg-white hover:text-neutral-900;
+  @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-900 via-slate-900 to-slate-800 px-6 py-3 font-semibold text-white shadow-[0_20px_55px_rgba(15,23,42,0.65)] transition duration-300 hover:brightness-125;
 }
 
 .hero-btn-secondary {
@@ -122,11 +122,12 @@
 }
 
 .social-media-btn {
-  @apply inline-flex items-center justify-center rounded-full border border-white/20 p-2 transition duration-200;
+  @apply inline-flex items-center justify-center p-1 text-white/80 transition duration-200;
+}
 
-  &:hover {
-    @apply border-neutral-500 transform scale-110;
-  }
+.social-media-btn:hover,
+.social-media-btn:focus-visible {
+  @apply text-white;
 }
 
 .card-container {
@@ -646,7 +647,17 @@
 }
 
 .nav-link {
-  @apply rounded-full px-3 py-2 font-semibold text-neutral-300 whitespace-nowrap transition hover:bg-white/10 hover:text-white;
+  @apply relative rounded-full px-3 py-2 font-semibold text-neutral-300 whitespace-nowrap transition hover:text-white;
+}
+
+.nav-link::after {
+  content: "";
+  @apply absolute left-3 right-3 bottom-1 h-0.5 scale-x-0 origin-center bg-white/70 transition duration-200 ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  @apply scale-x-100;
 }
 
 .nav-name-large {
@@ -662,20 +673,49 @@
 }
 
 .nav-social-links {
-  @apply hidden flex-shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 shadow-lg shadow-black/30 backdrop-blur-lg lg:flex;
+  @apply hidden flex-shrink-0 items-center gap-2 lg:flex;
 }
 
-.nav-social-links .social-media-btn {
-  @apply h-9 w-9 rounded-full border border-white/20 bg-white/20 text-white transition duration-200;
-
-  &:hover {
-    @apply border-accent bg-white text-neutral-900;
-  }
+.nav-divider {
+  @apply hidden h-8 w-px bg-white/15 lg:block;
 }
 
-.nav-social-links .social-media-btn img {
-  @apply h-4 w-4 object-contain;
-  filter: invert(1) saturate(0) brightness(1.4);
+.nav-social-links .social-media-btn,
+.mobile-social-links .social-media-btn {
+  @apply relative px-2 py-1 opacity-80 transition duration-200;
+}
+
+.nav-social-links .social-media-btn::after,
+.mobile-social-links .social-media-btn::after {
+  content: "";
+  @apply absolute left-1/2 bottom-0 h-0.5 w-0 -translate-x-1/2 bg-white/70 transition-all duration-200 ease-out;
+}
+
+.nav-social-links .social-media-btn:hover,
+.nav-social-links .social-media-btn:focus-visible,
+.mobile-social-links .social-media-btn:hover,
+.mobile-social-links .social-media-btn:focus-visible {
+  @apply opacity-100;
+}
+
+.nav-social-links .social-media-btn:hover::after,
+.nav-social-links .social-media-btn:focus-visible::after,
+.mobile-social-links .social-media-btn:hover::after,
+.mobile-social-links .social-media-btn:focus-visible::after {
+  @apply w-1/2;
+}
+
+.nav-social-links .social-media-btn img,
+.mobile-social-links .social-media-btn img {
+  @apply h-5 w-5 object-contain opacity-80 transition duration-200;
+  filter: none;
+}
+
+.nav-social-links .social-media-btn:hover img,
+.nav-social-links .social-media-btn:focus-visible img,
+.mobile-social-links .social-media-btn:hover img,
+.mobile-social-links .social-media-btn:focus-visible img {
+  @apply opacity-100;
 }
 
 .mobile-menu {
@@ -694,12 +734,12 @@
   @apply rounded-2xl border border-white/10 px-4 py-3 text-center font-medium text-neutral-100 transition hover:bg-white/10;
 }
 
-.mobile-social-block {
-  @apply mt-6 flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-inner backdrop-blur-xl;
+.mobile-divider {
+  @apply mt-6 block h-px w-full bg-white/10;
 }
 
-.mobile-social-label {
-  @apply text-xs font-semibold uppercase tracking-[0.4em] text-neutral-400;
+.mobile-social-block {
+  @apply mt-6 flex items-center justify-center;
 }
 
 .mobile-social-links {
@@ -707,10 +747,9 @@
 }
 
 .mobile-social-links .social-media-btn {
-  @apply h-12 w-12 rounded-full border border-white/20 bg-black/20 text-white transition duration-200 hover:border-accent hover:bg-white hover:text-neutral-900;
+  @apply px-3 py-2 text-white;
 }
 
 .mobile-social-links .social-media-btn img {
-  @apply h-5 w-5 object-contain;
-  filter: invert(1) saturate(0) brightness(1.4);
+  @apply h-6 w-6;
 }

@@ -2,12 +2,12 @@ const certificates = [
   {
     title: "Microsoft Certified: Azure Administrator Associate",
     issuer: "Microsoft",
-    issued: "2024",
+    issued: "2025",
     credentialId: "84349A265A564080",
     link: "https://learn.microsoft.com/api/credentials/share/en-us/AlperenGkbak-8544/84349A265A564080?sharingId=B7456D1AEE0694F0",
   },
   {
-    title: "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    title: "Microsoft Certified: Azure Fundamentals",
     issuer: "Microsoft",
     issued: "2024",
     credentialId: "BF51F0CD9A432C34",
@@ -16,7 +16,7 @@ const certificates = [
   {
     title: "Becoming an Ethical Hacker: Cyber Security",
     issuer: "Udemy",
-    issued: "2024",
+    issued: "2022",
     credentialId: "UC-7d9e782d-387b-42fc-9e80-212b833985af",
     link: "https://www.udemy.com/certificate/UC-7d9e782d-387b-42fc-9e80-212b833985af/",
   },

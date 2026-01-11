@@ -41,6 +41,7 @@ const NavBar = () => {
             </a>
           ))}
         </nav>
+        <span className="nav-divider" aria-hidden="true" />
         <SocialMediaLinks className="nav-social-links" />
       </div>
 
@@ -52,8 +53,8 @@ const NavBar = () => {
             </a>
           ))}
         </nav>
+        <span className="mobile-divider" aria-hidden="true" />
         <div className="mobile-social-block" aria-label="Social media">
-          <p className="mobile-social-label">Connect with me</p>
           <SocialMediaLinks className="mobile-social-links" />
         </div>
       </div>
