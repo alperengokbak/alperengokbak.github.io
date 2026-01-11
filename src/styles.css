@@ -94,7 +94,7 @@
 }
 
 .hero-role-cursor {
-  @apply text-accent;
+  @apply text-white;
 }
 
 .hero-summary {
