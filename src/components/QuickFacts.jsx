@@ -6,8 +6,8 @@ const facts = [
   },
   {
     title: "Education",
-    detail: "B.Sc. Software Engineering @ Yasar University",
-    meta: "Senior-year student blending academic research with applied product builds.",
+    detail: "B.Sc. Software Engineering @ Yasar University (Graduated 2024)",
+    meta: "Specialized in software engineering and algorithms; capstone on AI engineering.",
   },
   {
     title: "Product Experience",
@@ -15,13 +15,13 @@ const facts = [
     meta: "Hands-on delivery during my Univenn internship and personal launches.",
   },
   {
-    title: "Toolbox",
-    detail: "JavaScript • Java • Python • SQL/NoSQL",
-    meta: "Comfortable moving between backend services, APIs, and data layers.",
+    title: "Current Role",
+    detail: "Solution Architect & DevOps Engineer @ ConStraight",
+    meta: "Lead Terraform team, Kubernetes administrator, and reliability advocate.",
   },
   {
     title: "Languages",
-    detail: "English • Turkish",
+    detail: "English (Professional) • Turkish (Native)",
     meta: "Daily collaboration with international teams and communities.",
   },
   {
