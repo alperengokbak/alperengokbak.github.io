@@ -273,7 +273,7 @@
 }
 
 .project-card-action {
-  @apply inline-flex flex-1 items-center justify-center rounded-2xl bg-white/90 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.3em] text-neutral-900 transition hover:bg-white;
+  @apply inline-flex flex-1 items-center justify-center rounded-full px-3 py-2 text-center text-sm font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
 }
 
 .project-card-action-secondary {
@@ -342,7 +342,7 @@
 }
 
 .blog-card-link {
-  @apply mt-auto text-sm font-semibold uppercase tracking-[0.4em] text-accent transition hover:text-white;
+  @apply mt-auto text-sm font-semibold uppercase tracking-[0.4em] text-accent-soft transition hover:text-white;
 }
 
 .site-footer {
@@ -590,7 +590,7 @@
 }
 
 .certificate-link {
-  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent transition hover:text-white;
+  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
 }
 
 .contact-form {
@@ -677,7 +677,7 @@
 }
 
 .nav-divider {
-  @apply hidden h-8 w-px bg-white/15 lg:block;
+  @apply hidden h-10 w-[3px] flex-shrink-0 rounded-full bg-gradient-to-b from-orange-400 via-white to-sky-400 opacity-95 shadow-[0_0_16px_rgba(255,255,255,0.55)] lg:block;
 }
 
 .nav-social-links .social-media-btn,
