@@ -1,5 +1,10 @@
 const facts = [
   {
+    title: "Current Role",
+    detail: "Solution Architect & DevOps Engineer @ ConStraight",
+    meta: "Lead Terraform team, Kubernetes administrator, and reliability advocate.",
+  },
+  {
     title: "Current Focus",
     detail: "Cloud-native solution design & DevOps",
     meta: "Designing resilient architectures that bridge software and infrastructure.",
@@ -13,11 +18,6 @@ const facts = [
     title: "Product Experience",
     detail: "Node.js + React across web & mobile",
     meta: "Hands-on delivery during my Univenn internship and personal launches.",
-  },
-  {
-    title: "Current Role",
-    detail: "Solution Architect & DevOps Engineer @ ConStraight",
-    meta: "Lead Terraform team, Kubernetes administrator, and reliability advocate.",
   },
   {
     title: "Languages",

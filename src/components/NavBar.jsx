@@ -3,6 +3,7 @@ import SocialMediaLinks from "./SocialMediaComponent.jsx";
 
 const navItems = [
   { label: "About", href: "#about" },
+  { label: "Profile", href: "#snapshot" },
   { label: "Skills", href: "#skills" },
   { label: "Tech Stack", href: "#tech" },
   { label: "Certificates", href: "#certificates" },
