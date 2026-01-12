@@ -25,7 +25,7 @@ const NavBar = () => {
           <span className="nav-name nav-name-large">Alperen Gokbak</span>
         </a>
         <button
-          className="nav-hamburger lg:hidden"
+          className={`nav-hamburger lg:hidden ${isMenuOpen ? "nav-hamburger-open" : ""}`}
           type="button"
           aria-label="Toggle navigation"
           aria-expanded={isMenuOpen}
