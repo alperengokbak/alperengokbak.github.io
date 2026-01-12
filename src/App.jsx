@@ -130,7 +130,7 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="footer-bottom">© {new Date().getFullYear()} | Built with love and automation.</div>
+        <div className="footer-bottom">© {new Date().getFullYear()} | Built with love.</div>
       </footer>
     </div>
   );

@@ -378,7 +378,7 @@
 }
 
 .footer-email {
-  @apply inline-flex items-center font-semibold text-accent transition hover:text-white;
+  @apply inline-flex items-center font-semibold text-white transition hover:text-accent;
 }
 
 .footer-coffee {
