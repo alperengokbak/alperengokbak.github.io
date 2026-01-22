@@ -1,6 +1,6 @@
 // Background Image And Photos
 import sweden from "./assets/sweden.jpeg";
-import photo from "./assets/photo.jpeg";
+import photo from "./assets/my_photo.png";
 import heroCloud from "./assets/hero-cloud.jpg";
 import heroCopenhagen from "./assets/hero-copenhagen.jpg";
 import DockerMedium from "./assets/DockerMedium.webp";
