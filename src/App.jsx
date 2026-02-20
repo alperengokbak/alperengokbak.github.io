@@ -76,12 +76,11 @@ function App() {
                   Get in Touch
                 </a>
                 <a
-                  href="https://drive.google.com/file/d/1oXlulUQl0aFLAfCG_DJkr9VA86zm7Kmn/preview"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="https://drive.google.com/uc?export=download&id=1oXlulUQl0aFLAfCG_DJkr9VA86zm7Kmn"
+                  download
                   className="hero-btn hero-btn-secondary"
                 >
-                  View CV
+                  ↓ Download CV
                 </a>
               </div>
             </div>
