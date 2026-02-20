@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ImageModal from "./ImageModal";
 
+const FILTERS = ["All", "FullStack", "Cloud", "DevOps"];
+
 export default function Project({ twitter_frontend, BookingHotelSs, PrescriptionManagement, SwaggerUi, kubernetesImg }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
 
   const openModal = (imgSrc) => {
     setSelectedImage(imgSrc);
@@ -26,6 +29,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       videoLink: "https://www.youtube.com/watch?v=SRnzqtjv-tE",
       link: "https://booking-hotel-sntf.onrender.com/",
       accent: "rgba(248, 113, 113, 0.35)",
+      category: "FullStack",
     },
     {
       title: "Prescription Management",
@@ -37,6 +41,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       videoLink: "https://www.youtube.com/watch?v=ZMvQaYzIY6w",
       link: "https://prescription-frontend.onrender.com/",
       accent: "rgba(251, 191, 36, 0.35)",
+      category: "FullStack",
     },
     {
       title: "Airline Management System",
@@ -47,6 +52,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["Node.js", "Express", "Swagger"],
       link: "https://github.com/alperengokbak/Airline-Management-System",
       accent: "rgba(94, 234, 212, 0.25)",
+      category: "FullStack",
     },
     {
       title: "Twitter Clone",
@@ -57,6 +63,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["React", "Tailwind", "Node"],
       link: "https://github.com/alperengokbak/TwitterFrontend",
       accent: "rgba(59, 130, 246, 0.35)",
+      category: "FullStack",
     },
     {
       title: "Twitter Clone API",
@@ -67,6 +74,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["Express", "PostgreSQL", "Prisma"],
       link: "https://github.com/alperengokbak/TwitterBackend",
       accent: "rgba(14, 165, 233, 0.35)",
+      category: "FullStack",
     },
     {
       title: "Automated Cloud Infrastructure with Terraform & AWS",
@@ -77,6 +85,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["Terraform", "AWS", "GitHub Actions"],
       link: "https://github.com/alperengokbak?tab=repositories",
       accent: "rgba(16, 185, 129, 0.35)",
+      category: "Cloud",
     },
     {
       title: "Azure DevOps Terraform Platform",
@@ -87,6 +96,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["Azure DevOps", "Terraform", "AKS"],
       link: "https://dev.azure.com/alperengokbak",
       accent: "rgba(99, 102, 241, 0.35)",
+      category: "Cloud",
     },
     {
       title: "Multi-node Kubernetes Cluster",
@@ -97,8 +107,11 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
       badges: ["Kubernetes", "kubeadm", "Argo CD"],
       link: "https://github.com/alperengokbak/k8s-lab",
       accent: "rgba(96, 165, 250, 0.35)",
+      category: "DevOps",
     },
   ];
+
+  const filtered = activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter);
 
   return (
     <section className="section-shell" id="projects">
@@ -110,8 +123,21 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
         </p>
       </div>
 
+      <div className="filter-bar" role="group" aria-label="Filter projects by category">
+        {FILTERS.map((f) => (
+          <button
+            key={f}
+            onClick={() => setActiveFilter(f)}
+            className={`filter-pill ${activeFilter === f ? "filter-pill-active" : ""}`}
+            aria-pressed={activeFilter === f}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+
       <div className="project-card-grid">
-        {projects.map((project) => (
+        {filtered.map((project) => (
           <article key={project.title} className="project-card" style={{ "--project-accent": project.accent }}>
             <div className="project-card-media" onClick={() => openModal(project.imgSrc)}>
               <img src={project.imgSrc} alt={project.title} loading="lazy" />

@@ -19,9 +19,13 @@ import ExperienceTimeline from "./components/ExperienceTimeline.jsx";
 import TechStack from "./components/TechStack.jsx";
 import Certificates from "./components/Certificates.jsx";
 import NavBar from "./components/NavBar.jsx";
+import BackToTop from "./components/BackToTop.jsx";
 import Typewriter from "typewriter-effect";
+import { useScrollReveal } from "./hooks/useScrollReveal.js";
 
 function App() {
+  const mainRef = useScrollReveal();
+
   return (
     <div className="site-shell">
       <section className="hero-stage" id="top">
@@ -83,20 +87,22 @@ function App() {
           </div>
         </section>
       </section>
-      <main className="site-content">
-        <QuickFacts />
-        <SkillHighlights />
-        <TechStack />
-        <Certificates />
-        <ExperienceTimeline />
-        <Project
-          SwaggerUi={SwaggerUi}
-          twitter_frontend={twitter_frontend}
-          BookingHotelSs={BookingHotelSs}
-          PrescriptionManagement={PrescriptionManagement}
-          kubernetesImg={kubernetes}
-        />
-        <Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} />
+      <main className="site-content" ref={mainRef}>
+        <div className="reveal"><QuickFacts /></div>
+        <div className="reveal"><SkillHighlights /></div>
+        <div className="reveal"><TechStack /></div>
+        <div className="reveal"><Certificates /></div>
+        <div className="reveal"><ExperienceTimeline /></div>
+        <div className="reveal">
+          <Project
+            SwaggerUi={SwaggerUi}
+            twitter_frontend={twitter_frontend}
+            BookingHotelSs={BookingHotelSs}
+            PrescriptionManagement={PrescriptionManagement}
+            kubernetesImg={kubernetes}
+          />
+        </div>
+        <div className="reveal"><Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} /></div>
       </main>
       <footer className="site-footer">
         <div className="footer-inner">
@@ -133,6 +139,7 @@ function App() {
         </div>
         <div className="footer-bottom">© {new Date().getFullYear()} | Built with love.</div>
       </footer>
+      <BackToTop />
     </div>
   );
 }

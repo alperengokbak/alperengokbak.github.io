@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import SocialMediaLinks from "./SocialMediaComponent.jsx";
 
 const navItems = [
@@ -14,9 +14,38 @@ const navItems = [
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
+  const observerRef = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.slice(1));
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry with the greatest intersection ratio that's actually intersecting
+        const intersecting = entries.filter((e) => e.isIntersecting);
+        if (intersecting.length === 0) return;
+        const best = intersecting.reduce((a, b) =>
+          a.intersectionRatio >= b.intersectionRatio ? a : b
+        );
+        setActiveId(best.target.id);
+      },
+      {
+        rootMargin: "-30% 0px -60% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observerRef.current.observe(el);
+    });
+
+    return () => observerRef.current?.disconnect();
+  }, []);
 
   return (
     <header className="site-nav">
@@ -36,11 +65,18 @@ const NavBar = () => {
           <span />
         </button>
         <nav className="nav-links" aria-label="Primary">
-          {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="nav-link">
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const id = item.href.slice(1);
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`nav-link ${activeId === id ? "nav-link-active" : ""}`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
         <span className="nav-divider" aria-hidden="true" />
         <SocialMediaLinks className="nav-social-links" />
