@@ -1,10 +1,24 @@
 const milestones = [
   {
-    period: "06/2024 - Present",
+    period: "01/2026 - Present",
+    title: "Cloud Solution Architect",
+    location: "P3 · Germany",
+    summary:
+      "Designing and delivering secure, automated cloud foundations for enterprise customers with a strong focus on Terraform- and Azure DevOps-first delivery.",
+    highlights: [
+      "Architecting resilient multi-cloud solutions across Azure and AWS, translating business requirements into HLD/LLD design packages.",
+      "Automating end-to-end infrastructure deployments with Terraform and Azure DevOps to ensure reliability, scalability, and compliance.",
+      "Designing CI/CD pipelines for IaC provisioning, reducing infrastructure rollout time and manual toil significantly.",
+      "Partnering with security, platform, and product teams to enforce availability, automation, and governance best practices.",
+      "Conducting cloud architecture reviews and stakeholder alignment sessions to ensure delivery quality across engagements.",
+    ],
+  },
+  {
+    period: "06/2024 - 01/2026",
     title: "Solution Architect",
     location: "ConStraight · Osnabrück, Germany",
     summary:
-      "Architecting secure, automated cloud foundations for enterprise customers while driving Terraform- and Azure DevOps-first delivery.",
+      "Architected secure, automated cloud foundations for enterprise customers while driving Terraform- and Azure DevOps-first delivery.",
     highlights: [
       "Automated end-to-end infrastructure deployments with Terraform and Azure DevOps to ensure reliability, scalability, and compliance.",
       "Designed Azure DevOps pipelines for IaC provisioning that cut infrastructure rollout time by 50%.",

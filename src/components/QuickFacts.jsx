@@ -1,8 +1,8 @@
 const facts = [
   {
     title: "Current Role",
-    detail: "Solution Architect & DevOps Engineer @ ConStraight",
-    meta: "Lead Terraform team, Kubernetes administrator, and reliability advocate.",
+    detail: "Cloud Solution Architect @ P3",
+    meta: "Designing enterprise cloud architectures and automating infrastructure delivery across Azure and AWS.",
   },
   {
     title: "Current Focus",
