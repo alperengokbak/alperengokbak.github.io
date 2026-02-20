@@ -20,6 +20,7 @@ import TechStack from "./components/TechStack.jsx";
 import Certificates from "./components/Certificates.jsx";
 import NavBar from "./components/NavBar.jsx";
 import BackToTop from "./components/BackToTop.jsx";
+import ConnectSection from "./components/ConnectSection.jsx";
 import Typewriter from "typewriter-effect";
 import { useScrollReveal } from "./hooks/useScrollReveal.js";
 
@@ -103,6 +104,7 @@ function App() {
           />
         </div>
         <div className="reveal"><Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} /></div>
+        <div className="reveal"><ConnectSection /></div>
       </main>
       <footer className="site-footer">
         <div className="footer-inner">

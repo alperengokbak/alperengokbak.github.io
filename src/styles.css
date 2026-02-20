@@ -597,6 +597,10 @@
   @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
 }
 
+.connect-section {
+  @apply grid w-full max-w-5xl gap-8 md:grid-cols-[1fr,auto];
+}
+
 .contact-form {
   @apply flex flex-col gap-4 text-left;
 }
