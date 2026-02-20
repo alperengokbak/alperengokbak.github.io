@@ -30,6 +30,7 @@ function App() {
           className="hero-background"
           alt="Copenhagen skyline at dusk"
           aria-hidden="true"
+          fetchpriority="high"
         />
         <NavBar />
         <section className="hero-shell" id="about">

@@ -38,8 +38,7 @@ const QuickFacts = () => {
         <p className="eyebrow">Snapshot</p>
         <h2 className="section-title">Quick Facts</h2>
         <p className="section-blurb">
-          Highlights that shape how I learn, collaborate, and build products. Inspired by Felipe Cordero&apos;s clean, story-first
-          layout, but tailored to my journey.
+          Key details that shape how I learn, collaborate, and build products — tailored to my journey as a cloud and software engineer.
         </p>
       </div>
 

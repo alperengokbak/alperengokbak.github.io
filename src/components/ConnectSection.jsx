@@ -29,7 +29,7 @@ const ConnectSection = () => {
         <p className="eyebrow">Let&apos;s Connect</p>
         <h2 className="section-title">Start a Conversation</h2>
         <p className="section-blurb">
-          Echoing Felipe&apos;s thoughtful contact block, here&apos;s a space to reach out about opportunities, collaborations, or tech chats.
+          Have an opportunity, project idea, or just want to connect? I&apos;d love to hear from you.
         </p>
       </div>
 

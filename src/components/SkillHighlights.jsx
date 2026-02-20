@@ -32,7 +32,7 @@ const SkillHighlights = () => {
         <p className="eyebrow">Capabilities</p>
         <h2 className="section-title">Skills</h2>
         <p className="section-blurb">
-          Borrowing the modular feel of Felipe Cordero&apos;s skills grid, this section surfaces the areas where I deliver the most value today.
+          A look at the areas where I deliver the most consistent value — from cloud infrastructure and automation to full-stack delivery and developer enablement.
         </p>
       </div>
 
