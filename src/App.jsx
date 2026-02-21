@@ -1,12 +1,12 @@
 // Background Image And Photos
-import photo from "./assets/my_photo.png";
-import heroCloud from "./assets/hero-cloud.jpg";
-import heroCopenhagen from "./assets/hero-copenhagen.jpg";
+import photo from "./assets/my_photo.webp";
+import heroCloud from "./assets/hero-cloud.webp";
+import heroCopenhagen from "./assets/hero-copenhagen.webp";
 import DockerMedium from "./assets/DockerMedium.webp";
-import BookingHotelSs from "./assets/BookingHotelSs.jpeg";
-import PrescriptionManagement from "./assets/PrescriptionManagement.png";
-import twitter_frontend from "./assets/twitter_frontend.png";
-import SwaggerUi from "./assets/Swagger_ui.png";
+import BookingHotelSs from "./assets/BookingHotelSs.webp";
+import PrescriptionManagement from "./assets/PrescriptionManagement.webp";
+import twitter_frontend from "./assets/twitter_frontend.webp";
+import SwaggerUi from "./assets/Swagger_ui.webp";
 import kubernetes from "./assets/kubernetes.webp";
 
 // Components
