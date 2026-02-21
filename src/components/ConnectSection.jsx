@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard.js";
 
 const initialForm = {
   name: "",
@@ -9,6 +10,7 @@ const initialForm = {
 
 const ConnectSection = () => {
   const [formData, setFormData] = useState(initialForm);
+  const [emailCopied, copyEmail] = useCopyToClipboard();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -79,7 +81,14 @@ const ConnectSection = () => {
         <div className="contact-info">
           <div className="contact-chip">
             <span>Email</span>
-            <a href="mailto:gokbakalperen@gmail.com">gokbakalperen@gmail.com</a>
+            <button
+              onClick={() => copyEmail("gokbakalperen@gmail.com")}
+              className="copy-email-btn"
+              aria-label="Copy email address"
+            >
+              gokbakalperen@gmail.com
+              <span className="copy-badge">{emailCopied ? "✓ Copied!" : "Copy"}</span>
+            </button>
           </div>
           <div className="contact-chip">
             <span>LinkedIn</span>

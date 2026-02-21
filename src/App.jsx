@@ -23,9 +23,11 @@ import BackToTop from "./components/BackToTop.jsx";
 import ConnectSection from "./components/ConnectSection.jsx";
 import Typewriter from "typewriter-effect";
 import { useScrollReveal } from "./hooks/useScrollReveal.js";
+import { useCopyToClipboard } from "./hooks/useCopyToClipboard.js";
 
 function App() {
   const mainRef = useScrollReveal();
+  const [emailCopied, copyEmail] = useCopyToClipboard();
 
   return (
     <div className="site-shell">
@@ -116,9 +118,14 @@ function App() {
             </p>
             <p className="footer-location">📍 Izmir, Turkey · Remote friendly</p>
             <div className="footer-contact">
-              <a href="mailto:gokbakalperen@gmail.com" className="footer-email">
+              <button
+                onClick={() => copyEmail("gokbakalperen@gmail.com")}
+                className="footer-email copy-email-btn"
+                aria-label="Copy email address"
+              >
                 gokbakalperen@gmail.com
-              </a>
+                <span className="copy-badge">{emailCopied ? "✓ Copied!" : "Copy"}</span>
+              </button>
               <a className="footer-coffee" href="https://buymeacoffee.com/alperense" target="_blank" rel="noreferrer">
                 Buy me a coffee ☕
               </a>

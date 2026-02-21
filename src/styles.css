@@ -868,3 +868,52 @@
 .filter-pill-active {
   @apply border-accent bg-accent/20 text-white;
 }
+
+/* ─── Copy-to-clipboard button ───────────────────────────── */
+.copy-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.copy-email-btn:hover {
+  color: rgba(251, 146, 60, 0.9);
+}
+
+.copy-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.copy-email-btn:hover .copy-badge {
+  background: rgba(251, 146, 60, 0.15);
+  border-color: rgba(251, 146, 60, 0.4);
+  color: rgba(251, 146, 60, 0.9);
+}
+
+
+
+/* green flash when copied — toggled via JS class change in content */
+.copy-email-btn:focus-visible .copy-badge {
+  outline: 2px solid rgba(251, 146, 60, 0.5);
+  outline-offset: 2px;
+}
