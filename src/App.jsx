@@ -1,5 +1,4 @@
 // Background Image And Photos
-import sweden from "./assets/sweden.jpeg";
 import photo from "./assets/my_photo.png";
 import heroCloud from "./assets/hero-cloud.jpg";
 import heroCopenhagen from "./assets/hero-copenhagen.jpg";
@@ -33,7 +32,7 @@ function App() {
     <div className="site-shell">
       <section className="hero-stage" id="top">
         <img
-          src={heroCopenhagen ?? heroCloud ?? sweden}
+          src={heroCopenhagen ?? heroCloud}
           className="hero-background"
           alt="Copenhagen skyline at dusk"
           aria-hidden="true"
