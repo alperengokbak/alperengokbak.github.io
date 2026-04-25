@@ -11,8 +11,8 @@ const facts = [
   },
   {
     title: "Education",
-    detail: "B.Sc. Software Engineering @ Yasar University (Graduated 2024)",
-    meta: "Specialized in software engineering and algorithms; capstone on AI engineering.",
+    detail: "B.Sc. Software Engineering @ Yasar University (08/2021 – 07/2024)",
+    meta: "Capstone: HearingMate, an AI-powered mobile app classifying ambient sounds for hearing-impaired users.",
   },
   {
     title: "Product Experience",

@@ -15,6 +15,7 @@ import Project from "./components/Project.jsx";
 import QuickFacts from "./components/QuickFacts.jsx";
 import SkillHighlights from "./components/SkillHighlights.jsx";
 import ExperienceTimeline from "./components/ExperienceTimeline.jsx";
+import Education from "./components/Education.jsx";
 import TechStack from "./components/TechStack.jsx";
 import Certificates from "./components/Certificates.jsx";
 import NavBar from "./components/NavBar.jsx";
@@ -94,6 +95,7 @@ function App() {
         <div className="reveal"><TechStack /></div>
         <div className="reveal"><Certificates /></div>
         <div className="reveal"><ExperienceTimeline /></div>
+        <div className="reveal"><Education /></div>
         <div className="reveal">
           <Project
             SwaggerUi={SwaggerUi}

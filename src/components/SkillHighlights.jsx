@@ -1,27 +1,27 @@
 const skillAreas = [
   {
-    title: "Cloud & DevOps Engineering",
+    title: "Cloud & Infrastructure",
     description:
-      "Terraform-free experiments built with Kubernetes, Docker, and GitHub Actions. I focus on observability, cost-aware architectures, and tightening feedback loops.",
-    stack: ["Kubernetes", "Docker", "GitHub Actions", "CI/CD", "Monitoring"],
+      "Designing and operating production cloud platforms on Azure and AWS — provisioning Kubernetes clusters, container workloads, and Linux-based infrastructure for enterprise customers with Terraform and Azure Bicep.",
+    stack: ["Microsoft Azure", "AWS", "Azure Bicep", "Terraform (IaC)", "Kubernetes", "Docker", "Linux"],
   },
   {
-    title: "Full-Stack Product Builds",
+    title: "DevOps & CI/CD",
     description:
-      "React (web + native) on the front, Node.js/Express services on the back, and Postgres or MongoDB for data. I like owning UX and DX end-to-end.",
-    stack: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB"],
+      "Automating multi-stage delivery pipelines on Azure DevOps and GitHub Actions with reusable templates, branching strategies, and policy gates that keep infrastructure rollouts reliable and repeatable.",
+    stack: ["Azure DevOps", "GitHub Actions", "Git", "CI/CD Pipelines"],
   },
   {
-    title: "API & Systems Design",
+    title: "Development",
     description:
-      "Designing modular REST APIs, documenting with Swagger, and layering authentication, caching, and rate limiting so that services are reliable at launch.",
-    stack: ["REST", "Swagger", "Auth", "Caching", "Testing"],
+      "Writing automation scripts, glue services, and the occasional full-stack feature — comfortable across server-side JavaScript and Python tooling.",
+    stack: ["Python", "JavaScript", "Node.js"],
   },
   {
-    title: "Developer Enablement",
+    title: "Professional",
     description:
-      "I author setup docs, automate repetitive scripts, and create onboarding guides so collaborators can deploy or ship in minutes instead of hours.",
-    stack: ["Docs", "CLI automation", "Playbooks", "Storytelling"],
+      "Working in Agile delivery teams, owning stakeholder communication, and producing HLD/LLD design packages that align engineering and business outcomes.",
+    stack: ["Agile", "Scrum", "Stakeholder Management", "Cross-functional Collaboration", "HLD/LLD Documentation"],
   },
 ];
 
@@ -32,7 +32,7 @@ const SkillHighlights = () => {
         <p className="eyebrow">Capabilities</p>
         <h2 className="section-title">Skills</h2>
         <p className="section-blurb">
-          A look at the areas where I deliver the most consistent value — from cloud infrastructure and automation to full-stack delivery and developer enablement.
+          The four pillars I deliver across enterprise engagements: cloud and infrastructure design, DevOps automation, hands-on development, and professional collaboration.
         </p>
       </div>
 
