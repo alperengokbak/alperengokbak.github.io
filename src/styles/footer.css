@@ -1,0 +1,77 @@
+.site-footer {
+  @apply mt-16 border-t border-white/5 bg-gradient-to-b from-neutral-950/80 to-black/90 text-white;
+}
+
+.footer-inner {
+  @apply mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-12 md:flex-row md:items-start md:justify-between;
+}
+
+.footer-bio {
+  @apply max-w-2xl space-y-3;
+}
+
+.footer-name {
+  @apply text-2xl font-bold;
+}
+
+.footer-tagline {
+  @apply text-lg text-accent-soft;
+}
+
+.footer-summary {
+  @apply text-base text-neutral-300;
+}
+
+.footer-location {
+  @apply text-sm text-neutral-400;
+}
+
+.footer-contact {
+  @apply mt-4 flex flex-col items-start gap-3;
+}
+
+.footer-email {
+  @apply inline-flex items-center font-semibold text-white transition hover:text-accent;
+}
+
+.footer-coffee {
+  @apply inline-flex items-center text-sm font-semibold uppercase tracking-[0.3em] text-neutral-400 transition hover:text-white;
+}
+
+.footer-socials {
+  @apply flex gap-6 pt-4 text-sm uppercase tracking-[0.3em] text-neutral-400;
+}
+
+.footer-socials a {
+  @apply transition hover:text-white hover:scale-110;
+}
+
+.footer-pills {
+  @apply flex flex-wrap gap-3 md:max-w-sm;
+}
+
+.footer-pills span {
+  @apply rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-neutral-100 shadow-inner shadow-black/30;
+}
+
+.footer-bottom {
+  @apply border-t border-white/5 px-4 py-4 text-center text-xs uppercase tracking-[0.3em] text-neutral-500;
+}
+
+.copy-email-btn {
+  @apply inline-flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-semibold text-white transition-colors duration-200 hover:text-orange-400/90;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.copy-badge {
+  @apply inline-flex items-center rounded-full border border-white/15 bg-white/10 px-[0.55rem] py-[0.1rem] text-[0.7rem] font-bold uppercase tracking-[0.08em] text-white/60 transition-colors duration-[250ms];
+}
+
+.copy-email-btn:hover .copy-badge {
+  @apply border-orange-400/40 bg-orange-400/15 text-orange-400/90;
+}
+
+.copy-email-btn:focus-visible .copy-badge {
+  @apply outline outline-2 outline-orange-400/50 outline-offset-2;
+}

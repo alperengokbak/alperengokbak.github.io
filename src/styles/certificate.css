@@ -1,0 +1,35 @@
+.certificate-grid {
+  @apply grid w-full max-w-5xl gap-6 md:grid-cols-2;
+}
+
+.certificate-card {
+  @apply flex h-full flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg transition duration-300 ease-out hover:-translate-y-1 hover:border-accent/60;
+}
+
+.certificate-title {
+  @apply text-xl font-semibold text-white;
+}
+
+.certificate-issuer {
+  @apply text-sm uppercase tracking-[0.2em] text-neutral-400;
+}
+
+.certificate-meta {
+  @apply text-sm text-neutral-300;
+}
+
+.certificate-link {
+  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
+}
+
+.certificate-card-row {
+  @apply flex items-start gap-4;
+}
+
+.certificate-card-text {
+  @apply flex flex-col gap-1;
+}
+
+.certificate-badge {
+  @apply h-16 w-auto flex-shrink-0 object-contain;
+}

@@ -1,0 +1,11 @@
+.image-model-container {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70;
+}
+
+.image-model-img {
+  @apply max-h-screen rounded-lg border shadow-lg xs:max-w-screen-xs sm:max-w-screen-sm lg:max-w-screen-xl;
+}
+
+.image-model-btn {
+  @apply absolute right-0 top-0 text-black xs:mx-3 xs:my-0 xs:text-2xl md:mx-6 md:my-4 md:text-4xl;
+}

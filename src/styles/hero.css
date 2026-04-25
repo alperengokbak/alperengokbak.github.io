@@ -1,0 +1,105 @@
+.hero-stage {
+  @apply relative min-h-screen overflow-hidden text-neutral-100;
+  background: radial-gradient(circle at 10% 20%, rgba(251, 146, 60, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.2), transparent 55%),
+    linear-gradient(135deg, #050816 0%, #0f172a 45%, #020617 100%);
+}
+
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 100% 22px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.hero-background {
+  @apply absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-lighten select-none;
+}
+
+.hero-shell {
+  @apply relative z-10 flex min-h-screen w-full items-center justify-center px-4 pb-20 pt-32;
+}
+
+.hero-inner {
+  @apply relative mx-auto grid max-w-6xl gap-10 rounded-[40px] border border-white/5 bg-surface-dark/70 p-8 shadow-overlay backdrop-blur-2xl lg:grid-cols-[auto,1fr];
+}
+
+.hero-media {
+  @apply flex flex-col items-center gap-4 text-center lg:text-left;
+}
+
+.hero-avatar {
+  @apply relative flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-glow;
+}
+
+.hero-avatar img {
+  @apply h-full w-full object-cover;
+}
+
+.hero-location {
+  @apply mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-sm font-semibold text-white;
+}
+
+.hero-location-icon {
+  @apply h-4 w-4 text-accent-soft;
+}
+
+.hero-copy {
+  @apply flex flex-col gap-5 text-left max-w-2xl;
+}
+
+.hero-eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.4em] text-accent-soft;
+}
+
+.hero-heading {
+  @apply text-5xl font-bold text-white md:text-6xl;
+}
+
+.hero-role {
+  @apply text-3xl font-semibold text-white/90 md:text-4xl;
+}
+
+.hero-role-dynamic {
+  @apply capitalize;
+}
+
+.hero-role-cursor {
+  @apply text-white;
+}
+
+.hero-summary {
+  @apply text-lg leading-relaxed text-neutral-200;
+}
+
+.hero-actions {
+  @apply flex flex-wrap gap-4;
+}
+
+.hero-btn {
+  @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-900 via-slate-900 to-slate-800 px-6 py-3 font-semibold text-white shadow-[0_20px_55px_rgba(15,23,42,0.65)] transition duration-300 hover:brightness-125;
+}
+
+.hero-btn-secondary {
+  @apply border border-white/30 bg-transparent text-white hover:bg-white/10;
+}
+
+.hero-btn-ghost {
+  @apply border border-white/20 bg-transparent text-white hover:bg-white/15;
+}
+
+.social-links {
+  @apply flex flex-wrap items-center gap-4;
+}
+
+.social-media-btn {
+  @apply inline-flex items-center justify-center p-1 text-white/80 transition duration-200;
+}
+
+.social-media-btn:hover,
+.social-media-btn:focus-visible {
+  @apply text-white;
+}

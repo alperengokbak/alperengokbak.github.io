@@ -1,0 +1,32 @@
+.quick-facts-grid {
+  @apply grid w-full max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.quick-fact-card {
+  @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg shadow-black/50 transition duration-300 ease-out hover:border-accent/60;
+}
+
+.quick-fact-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.25), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quick-fact-card:hover::after {
+  opacity: 1;
+}
+
+.quick-fact-title {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-accent-soft/90;
+}
+
+.quick-fact-body {
+  @apply mt-2 text-2xl font-semibold text-white;
+}
+
+.quick-fact-meta {
+  @apply mt-4 text-sm text-neutral-400;
+}

@@ -1,0 +1,161 @@
+.site-nav {
+  @apply fixed top-0 left-0 right-0 z-40 border-b border-white/5 bg-neutral-950/90 backdrop-blur-xl;
+}
+
+.nav-inner {
+  @apply mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-3;
+}
+
+.nav-logo {
+  @apply flex flex-shrink-0 items-center text-white no-underline;
+}
+
+.nav-name {
+  @apply text-lg font-bold tracking-tight md:text-xl;
+}
+
+.nav-links {
+  @apply hidden flex-1 items-center justify-center gap-2 text-sm font-medium text-neutral-200 lg:flex;
+}
+
+.nav-link {
+  @apply relative rounded-full px-3 py-2 font-semibold text-neutral-300 whitespace-nowrap transition hover:text-white;
+}
+
+.nav-link::after {
+  content: "";
+  @apply absolute left-3 right-3 bottom-1 h-0.5 scale-x-0 origin-center bg-white/70 transition duration-200 ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  @apply scale-x-100;
+}
+
+.nav-name-large {
+  @apply text-lg md:text-xl font-bold;
+}
+
+.nav-hamburger {
+  @apply inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border border-white/15 bg-white/5 text-white shadow-[0_12px_35px_rgba(2,6,23,0.55)] transition duration-300 hover:border-accent/50 hover:bg-white/10;
+}
+
+.nav-hamburger span {
+  @apply block h-0.5 w-6 rounded-full bg-white;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.nav-hamburger span:nth-child(2) {
+  width: 22px;
+  opacity: 0.85;
+}
+
+.nav-hamburger-open {
+  @apply border-accent/60 bg-white/10;
+}
+
+.nav-hamburger-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  width: 24px;
+}
+
+.nav-hamburger-open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(8px);
+}
+
+.nav-hamburger-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  width: 24px;
+}
+
+.nav-social-links {
+  @apply hidden flex-shrink-0 items-center gap-2 lg:flex;
+}
+
+.nav-divider {
+  @apply hidden h-10 w-[3px] flex-shrink-0 rounded-full bg-gradient-to-b from-orange-400 via-white to-sky-400 opacity-95 shadow-[0_0_16px_rgba(255,255,255,0.55)] lg:block;
+}
+
+.nav-social-links .social-media-btn,
+.mobile-social-links .social-media-btn {
+  @apply relative px-2 py-1 opacity-80 transition duration-200;
+}
+
+.nav-social-links .social-media-btn::after,
+.mobile-social-links .social-media-btn::after {
+  content: "";
+  @apply absolute left-1/2 bottom-0 h-0.5 w-0 -translate-x-1/2 bg-white/70 transition-all duration-200 ease-out;
+}
+
+.nav-social-links .social-media-btn:hover,
+.nav-social-links .social-media-btn:focus-visible,
+.mobile-social-links .social-media-btn:hover,
+.mobile-social-links .social-media-btn:focus-visible {
+  @apply opacity-100;
+}
+
+.nav-social-links .social-media-btn:hover::after,
+.nav-social-links .social-media-btn:focus-visible::after,
+.mobile-social-links .social-media-btn:hover::after,
+.mobile-social-links .social-media-btn:focus-visible::after {
+  @apply w-1/2;
+}
+
+.nav-social-links .social-media-btn img,
+.mobile-social-links .social-media-btn img {
+  @apply h-5 w-5 object-contain opacity-80 transition duration-200;
+  filter: none;
+}
+
+.nav-social-links .social-media-btn:hover img,
+.nav-social-links .social-media-btn:focus-visible img,
+.mobile-social-links .social-media-btn:hover img,
+.mobile-social-links .social-media-btn:focus-visible img {
+  @apply opacity-100;
+}
+
+.mobile-menu {
+  @apply pointer-events-none fixed top-[72px] left-0 right-0 z-30 -translate-y-full bg-neutral-900/95 px-6 py-6 text-white opacity-0 transition duration-300 lg:hidden;
+}
+
+.mobile-menu-open {
+  @apply pointer-events-auto translate-y-0 opacity-100;
+}
+
+.mobile-menu nav {
+  @apply flex flex-col gap-3 text-base;
+}
+
+.mobile-link {
+  @apply rounded-2xl border border-white/10 px-4 py-3 text-center font-medium text-neutral-100 transition hover:bg-white/10;
+}
+
+.mobile-divider {
+  @apply mt-6 block h-px w-full bg-white/10;
+}
+
+.mobile-social-block {
+  @apply mt-6 flex items-center justify-center;
+}
+
+.mobile-social-links {
+  @apply flex flex-wrap items-center justify-center gap-3;
+}
+
+.mobile-social-links .social-media-btn {
+  @apply px-3 py-2 text-white;
+}
+
+.mobile-social-links .social-media-btn img {
+  @apply h-6 w-6;
+}
+
+.nav-link-active {
+  @apply text-white;
+}
+
+.nav-link-active::after {
+  @apply scale-x-100;
+  background-color: rgba(251, 146, 60, 0.9);
+}

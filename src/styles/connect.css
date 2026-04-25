@@ -1,0 +1,35 @@
+.connect-section {
+  @apply grid w-full max-w-5xl gap-8 md:grid-cols-[1fr,auto];
+}
+
+.contact-form {
+  @apply flex flex-col gap-4 text-left;
+}
+
+.contact-field {
+  @apply w-full rounded-2xl border border-white/20 bg-transparent px-4 py-3 text-white outline-none transition placeholder:text-neutral-500 focus:border-accent;
+}
+
+.connect-button {
+  @apply inline-flex items-center justify-center rounded-2xl bg-accent px-6 py-3 font-semibold text-black transition hover:bg-white/90;
+}
+
+.contact-info {
+  @apply flex h-full flex-col gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-surface-dark/70 to-surface-muted/40 p-6;
+}
+
+.contact-chip {
+  @apply flex items-center gap-3 border-b border-white/5 pb-4 text-left last:border-none;
+}
+
+.contact-chip span {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400;
+}
+
+.contact-chip a {
+  @apply text-lg font-semibold text-white transition hover:text-accent;
+}
+
+.contact-chip p {
+  @apply text-lg text-neutral-200;
+}

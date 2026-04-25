@@ -1,0 +1,84 @@
+.project-card-grid {
+  @apply grid w-full max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.project-card {
+  @apply flex h-full flex-col overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-b from-white/5 to-white/0 text-left shadow-2xl transition duration-300 ease-out;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--project-accent, rgba(255, 255, 255, 0.25));
+  box-shadow: 0 35px 90px var(--project-accent, rgba(59, 130, 246, 0.35));
+}
+
+.project-card-media {
+  @apply relative h-48 w-full cursor-zoom-in overflow-hidden;
+}
+
+.project-card-media img {
+  @apply h-full w-full object-cover transition duration-500 ease-out;
+}
+
+.project-card:hover .project-card-media img {
+  @apply scale-105;
+}
+
+.project-card-media::after {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent;
+}
+
+.project-card-pill {
+  @apply absolute left-4 top-4 inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-white backdrop-blur;
+}
+
+.project-card-body {
+  @apply flex flex-1 flex-col gap-4 p-6 text-neutral-200;
+}
+
+.project-card-title {
+  @apply text-2xl font-semibold text-white;
+}
+
+.project-card-summary {
+  @apply text-base leading-relaxed text-neutral-300;
+}
+
+.project-card-tags {
+  @apply flex flex-wrap gap-2;
+}
+
+.project-card-tags span {
+  @apply rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-200;
+}
+
+.project-card-actions {
+  @apply mt-auto flex flex-wrap gap-3;
+}
+
+.project-card-action {
+  @apply inline-flex flex-1 items-center justify-center rounded-full px-3 py-2 text-center text-sm font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
+}
+
+.project-card-action-secondary {
+  @apply flex-1 bg-transparent text-white/80 hover:text-white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.filter-pill {
+  @apply rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-300 transition duration-200 hover:border-accent/60 hover:text-white cursor-pointer;
+}
+
+.filter-pill-active {
+  @apply border-accent bg-accent/20 text-white;
+}

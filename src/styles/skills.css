@@ -1,0 +1,19 @@
+.skill-grid {
+  @apply grid w-full max-w-6xl gap-6 md:grid-cols-2;
+}
+
+.skill-card {
+  @apply rounded-3xl border border-white/10 bg-gradient-to-br from-surface-dark/60 to-surface-muted/40 p-6 text-left shadow-xl shadow-black/40;
+}
+
+.skill-title {
+  @apply mb-3 text-2xl font-semibold text-white;
+}
+
+.skill-pill-container {
+  @apply mt-4 flex flex-wrap gap-2;
+}
+
+.skill-pill {
+  @apply rounded-full border border-white/10 bg-white/10 px-3 py-1 text-sm text-accent-soft/90;
+}

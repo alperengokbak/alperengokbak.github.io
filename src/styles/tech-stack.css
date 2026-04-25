@@ -1,0 +1,32 @@
+.tech-stack-grid {
+  @apply grid w-full max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.tech-stack-card {
+  @apply rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg;
+}
+
+.tech-stack-title {
+  @apply mb-4 text-xl font-semibold text-white;
+}
+
+.tech-pill {
+  @apply mr-2 mb-2 inline-flex rounded-full border border-white/10 bg-neutral-800/70 px-3 py-1 text-sm text-neutral-100;
+}
+
+.tech-icon-grid {
+  @apply grid w-full gap-3;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.tech-icon-chip {
+  @apply flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 shadow-inner shadow-black/20 backdrop-blur transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:border-accent/60 hover:bg-white/10;
+}
+
+.tech-icon-chip img {
+  @apply h-8 w-8 object-contain;
+}
+
+.tech-icon-chip span {
+  @apply text-sm font-medium text-white;
+}
