@@ -545,6 +545,10 @@
   @apply h-12 w-12 flex-shrink-0 rounded-xl bg-white/95 object-contain p-1.5 shadow-md;
 }
 
+.timeline-logo--dark {
+  @apply bg-slate-900;
+}
+
 .timeline-list {
   @apply mt-4 space-y-2 list-disc pl-5 text-left text-neutral-300;
 }

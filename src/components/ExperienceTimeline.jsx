@@ -1,8 +1,14 @@
+import p3Logo from "../assets/company-logos/p3_group_logo.webp";
+import constraightLogo from "../assets/company-logos/constraight-logo.png";
+import univennLogo from "../assets/company-logos/univenn_logo.png";
+
 const milestones = [
   {
     period: "01/2026 - Present",
     title: "DevOps Engineer",
     location: "P3 Group · Germany",
+    logo: p3Logo,
+    logoVariant: "dark",
     summary:
       "Owning enterprise cloud architecture and driving Azure Bicep, Terraform, and Kubernetes-based delivery on Azure DevOps.",
     highlights: [
@@ -16,6 +22,7 @@ const milestones = [
     period: "04/2025 - 01/2026",
     title: "Cloud Engineer",
     location: "ConStraight – Die CloudExperten · Germany",
+    logo: constraightLogo,
     summary:
       "Leading Terraform-driven Azure provisioning and ongoing application support to keep enterprise cloud operations secure and compliant.",
     highlights: [
@@ -29,6 +36,7 @@ const milestones = [
     period: "09/2024 - 04/2025",
     title: "Solutions Architect",
     location: "ConStraight – Die CloudExperten · Germany",
+    logo: constraightLogo,
     summary:
       "Designing end-to-end Azure and AWS architectures and producing HLD/LLD packages for enterprise customers.",
     highlights: [
@@ -42,6 +50,7 @@ const milestones = [
     period: "06/2024 - 09/2024",
     title: "Information Technology Consultant",
     location: "ConStraight – Die CloudExperten · Germany",
+    logo: constraightLogo,
     summary:
       "Delivering Microsoft modern workplace and identity services for enterprise end users.",
     highlights: [
@@ -52,6 +61,7 @@ const milestones = [
     period: "07/2023 - 12/2023",
     title: "Full-Stack Web Developer",
     location: "Univenn · Izmir, Turkey",
+    logo: univennLogo,
     summary:
       "Built customer-facing Node.js and React applications while collaborating across front-end and back-end squads in an Agile environment.",
     highlights: [
@@ -79,7 +89,12 @@ const ExperienceTimeline = () => {
             <div className="timeline-body">
               <div className="timeline-header">
                 {item.logo ? (
-                  <img className="timeline-logo" src={item.logo} alt={`${item.location} logo`} loading="lazy" />
+                  <img
+                    className={`timeline-logo${item.logoVariant === "dark" ? " timeline-logo--dark" : ""}`}
+                    src={item.logo}
+                    alt={`${item.location} logo`}
+                    loading="lazy"
+                  />
                 ) : null}
                 <div className="flex flex-col gap-1 text-left">
                   <div className="text-sm font-semibold text-accent-soft/90 tracking-[0.3em] uppercase">{item.period}</div>

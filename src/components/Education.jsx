@@ -1,8 +1,11 @@
+import yasarLogo from "../assets/company-logos/yasar_university_logo.webp";
+
 const education = [
   {
     period: "08/2021 - 07/2024",
     title: "Bachelor of Science in Software Engineering",
     location: "Yasar University · Izmir, Turkey",
+    logo: yasarLogo,
     summary:
       "Software engineering fundamentals with a research-flavoured capstone in applied AI on mobile and cloud.",
     highlights: [
