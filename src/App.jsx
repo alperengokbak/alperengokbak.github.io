@@ -56,7 +56,7 @@ function App() {
               <p className="hero-role" aria-live="polite">
                 <Typewriter
                   options={{
-                    strings: ["solution architect", "devops engineer", "software engineer"],
+                    strings: ["devops engineer", "solutions architect", "software engineer"],
                     autoStart: true,
                     loop: true,
                     delay: 65,
@@ -68,18 +68,18 @@ function App() {
                 />
               </p>
               <p className="hero-summary">
-                Cloud Solution Architect and DevOps Engineer with expertise in Azure DevOps, Terraform, Kubernetes, and
-                Infrastructure as Code (IaC). Experienced in designing resilient cloud architectures across Azure and AWS.
-                Passionate about secure systems design, automation, and applied AI research in distributed computing
-                environments. Proven ability to deliver scalable solutions in both commercial and research settings.
+                DevOps Engineer and Solutions Architect with nearly three years of experience working remotely for German
+                technology companies. Specialising in cloud infrastructure, Infrastructure as Code, and enterprise architecture,
+                with a proven track record of designing and delivering complex Azure environments at enterprise scale. Microsoft
+                Certified Azure Solutions Architect Expert and Azure Administrator Associate.
               </p>
               <div className="hero-actions">
                 <a href="mailto:gokbakalperen@gmail.com" className="hero-btn">
                   Get in Touch
                 </a>
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1oXlulUQl0aFLAfCG_DJkr9VA86zm7Kmn"
-                  download
+                  href="/Alperen_Gokbak_CV.pdf"
+                  download="Alperen_Gokbak_CV.pdf"
                   className="hero-btn hero-btn-secondary"
                 >
                   ↓ Download CV
@@ -112,10 +112,10 @@ function App() {
         <div className="footer-inner">
           <div className="footer-bio">
             <h3 className="footer-name">Alperen Gökbak</h3>
-            <p className="footer-tagline">Solution Architect · DevOps Engineer · Problem Solver</p>
+            <p className="footer-tagline">DevOps Engineer · Solutions Architect · Problem Solver</p>
             <p className="footer-summary">
-              Structural-thinking engineer crafting secure, automated cloud platforms across Azure and AWS. Currently exploring
-              AI-assisted infrastructure design, compliance automation, and end-to-end observability.
+              Designing and delivering secure, automated Azure environments at enterprise scale. Specialising in Infrastructure
+              as Code with Terraform and Azure Bicep, multi-stage CI/CD on Azure DevOps, and Kubernetes-based microservices.
             </p>
             <p className="footer-location">📍 Izmir, Turkey · Remote friendly</p>
             <div className="footer-contact">
@@ -141,7 +141,7 @@ function App() {
             </div>
           </div>
           <div className="footer-pills">
-            {["Cloud Architecture", "DevOps Automation", "AI Playbooks", "Platform Security", "Technical Leadership"].map((pill) => (
+            {["Azure Architecture", "Infrastructure as Code", "Kubernetes Delivery", "CI/CD Automation", "HLD/LLD Documentation"].map((pill) => (
               <span key={pill}>{pill}</span>
             ))}
           </div>

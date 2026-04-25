@@ -1,13 +1,13 @@
 const facts = [
   {
     title: "Current Role",
-    detail: "Cloud Solution Architect @ P3",
-    meta: "Designing enterprise cloud architectures and automating infrastructure delivery across Azure and AWS.",
+    detail: "DevOps Engineer @ P3 Group",
+    meta: "Owning enterprise cloud architecture and driving Azure Bicep, Terraform, and Kubernetes-based delivery on Azure DevOps.",
   },
   {
     title: "Current Focus",
-    detail: "Cloud-native solution design & DevOps",
-    meta: "Designing resilient architectures that bridge software and infrastructure.",
+    detail: "Infrastructure as Code & enterprise architecture",
+    meta: "Designing modular Azure environments at enterprise scale and automating multi-stage CI/CD delivery.",
   },
   {
     title: "Education",
@@ -21,8 +21,8 @@ const facts = [
   },
   {
     title: "Languages",
-    detail: "English (Professional) • Turkish (Native)",
-    meta: "Daily collaboration with international teams and communities.",
+    detail: "Turkish (Native) • English (B2 CEFR)",
+    meta: "Daily collaboration with German and international teams in Agile delivery environments.",
   },
   {
     title: "Outside of Code",
