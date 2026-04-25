@@ -1,0 +1,12 @@
+.social-links {
+  @apply flex flex-wrap items-center gap-4;
+}
+
+.social-media-btn {
+  @apply inline-flex items-center justify-center p-1 text-white/80 transition duration-200;
+}
+
+.social-media-btn:hover,
+.social-media-btn:focus-visible {
+  @apply text-white;
+}
