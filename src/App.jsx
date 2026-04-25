@@ -8,6 +8,8 @@ import PrescriptionManagement from "./assets/PrescriptionManagement.webp";
 import twitter_frontend from "./assets/twitter_frontend.webp";
 import SwaggerUi from "./assets/Swagger_ui.webp";
 import kubernetes from "./assets/kubernetes.webp";
+import terraformAwsCover from "./assets/project-covers/terraform-aws.svg";
+import azureDevOpsTerraformCover from "./assets/project-covers/azure-devops-terraform.svg";
 
 // Components
 import Blogs from "./components/Blogs.jsx";
@@ -47,7 +49,20 @@ function App() {
                 <img src={photo} alt="Alperen Gökbak smiling" />
               </div>
               <div className="hero-location">
-                <span aria-hidden="true">📍</span> Izmir, Turkey
+                <svg
+                  className="hero-location-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Izmir, Turkey · Open to relocation
               </div>
             </div>
             <div className="hero-copy">
@@ -103,6 +118,8 @@ function App() {
             BookingHotelSs={BookingHotelSs}
             PrescriptionManagement={PrescriptionManagement}
             kubernetesImg={kubernetes}
+            terraformAwsCover={terraformAwsCover}
+            azureDevOpsTerraformCover={azureDevOpsTerraformCover}
           />
         </div>
         <div className="reveal"><Blogs DockerMedium={DockerMedium} kubernetes={kubernetes} /></div>

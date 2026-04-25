@@ -3,7 +3,7 @@ import ImageModal from "./ImageModal";
 
 const FILTERS = ["All", "FullStack", "Cloud", "DevOps"];
 
-export default function Project({ twitter_frontend, BookingHotelSs, PrescriptionManagement, SwaggerUi, kubernetesImg }) {
+export default function Project({ twitter_frontend, BookingHotelSs, PrescriptionManagement, SwaggerUi, kubernetesImg, terraformAwsCover, azureDevOpsTerraformCover }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -79,7 +79,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
     {
       title: "Automated Cloud Infrastructure with Terraform & AWS",
       timeframe: "11/2024 - 12/2024",
-      imgSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1600&q=80",
+      imgSrc: terraformAwsCover,
       description:
         "Terraform blueprints that spin up VPC, ALB, EC2, RDS, and S3 with IAM guardrails, plus GitHub Actions lint/plan gates cutting release toil in half.",
       badges: ["Terraform", "AWS", "GitHub Actions"],
@@ -90,7 +90,7 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
     {
       title: "Azure DevOps Terraform Platform",
       timeframe: "06/2025 - 08/2025",
-      imgSrc: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+      imgSrc: azureDevOpsTerraformCover,
       description:
         "Azure DevOps pipelines provisioning VNets, subnets, AKS, and storage accounts with policy compliance, drift detection, and auto-approvals.",
       badges: ["Azure DevOps", "Terraform", "AKS"],

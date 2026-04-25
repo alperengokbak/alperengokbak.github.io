@@ -77,6 +77,10 @@
   @apply mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-sm font-semibold text-white;
 }
 
+.hero-location-icon {
+  @apply h-4 w-4 text-accent-soft;
+}
+
 .hero-copy {
   @apply flex flex-col gap-5 text-left max-w-2xl;
 }
@@ -533,6 +537,14 @@
   @apply mt-2 text-sm uppercase tracking-[0.2em] text-neutral-400;
 }
 
+.timeline-header {
+  @apply flex items-start gap-4;
+}
+
+.timeline-logo {
+  @apply h-12 w-12 flex-shrink-0 rounded-xl bg-white/95 object-contain p-1.5 shadow-md;
+}
+
 .timeline-list {
   @apply mt-4 space-y-2 list-disc pl-5 text-left text-neutral-300;
 }
@@ -554,11 +566,8 @@
 }
 
 .tech-icon-grid {
-  @apply flex flex-col gap-4;
-}
-
-.tech-icon-row {
-  @apply grid w-full grid-cols-1 gap-3 sm:grid-cols-2;
+  @apply grid w-full gap-3;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
 
 .tech-icon-chip {
@@ -595,6 +604,18 @@
 
 .certificate-link {
   @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
+}
+
+.certificate-card-row {
+  @apply flex items-start gap-4;
+}
+
+.certificate-card-text {
+  @apply flex flex-col gap-1;
+}
+
+.certificate-badge {
+  @apply h-16 w-auto flex-shrink-0 object-contain;
 }
 
 .connect-section {

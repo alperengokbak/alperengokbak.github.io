@@ -77,10 +77,15 @@ const ExperienceTimeline = () => {
           <article key={item.title} className="timeline-item">
             <div className="timeline-node" aria-hidden="true" />
             <div className="timeline-body">
-              <div className="flex flex-col gap-1 text-left">
-                <div className="text-sm font-semibold text-accent-soft/90 tracking-[0.3em] uppercase">{item.period}</div>
-                <h3 className="timeline-title">{item.title}</h3>
-                <p className="timeline-meta">{item.location}</p>
+              <div className="timeline-header">
+                {item.logo ? (
+                  <img className="timeline-logo" src={item.logo} alt={`${item.location} logo`} loading="lazy" />
+                ) : null}
+                <div className="flex flex-col gap-1 text-left">
+                  <div className="text-sm font-semibold text-accent-soft/90 tracking-[0.3em] uppercase">{item.period}</div>
+                  <h3 className="timeline-title">{item.title}</h3>
+                  <p className="timeline-meta">{item.location}</p>
+                </div>
               </div>
               <p className="mt-4 text-left text-neutral-300 leading-relaxed">{item.summary}</p>
               <ul className="timeline-list">
