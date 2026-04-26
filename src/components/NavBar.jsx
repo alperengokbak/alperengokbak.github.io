@@ -53,6 +53,7 @@ const NavBar = () => {
     <header className="site-nav">
       <div className="nav-inner">
         <a href="#top" className="nav-logo" aria-label="Scroll to top">
+          <img src="/monogram.svg" alt="" className="nav-logo-mark" aria-hidden="true" />
           <span className="nav-name nav-name-large">Alperen Gokbak</span>
         </a>
         <button

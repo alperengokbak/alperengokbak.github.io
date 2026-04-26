@@ -7,7 +7,11 @@
 }
 
 .nav-logo {
-  @apply flex flex-shrink-0 items-center text-white no-underline;
+  @apply flex flex-shrink-0 items-center gap-2 text-white no-underline;
+}
+
+.nav-logo-mark {
+  @apply h-8 w-8 md:h-9 md:w-9;
 }
 
 .nav-name {
