@@ -1,7 +1,7 @@
 // Background Image And Photos
 import photo from "./assets/my_photo.webp";
 import heroCloud from "./assets/hero-cloud.webp";
-import heroCopenhagen from "./assets/hero-copenhagen.webp";
+import heroLondon from "./assets/hero-london.webp";
 import DockerMedium from "./assets/DockerMedium.webp";
 import BookingHotelSs from "./assets/BookingHotelSs.webp";
 import PrescriptionManagement from "./assets/PrescriptionManagement.webp";
@@ -35,9 +35,9 @@ function App() {
     <div className="site-shell">
       <section className="hero-stage" id="top">
         <img
-          src={heroCopenhagen ?? heroCloud}
+          src={heroLondon ?? heroCloud}
           className="hero-background"
-          alt="Copenhagen skyline at dusk"
+          alt="London skyline at night"
           aria-hidden="true"
           fetchpriority="high"
         />
