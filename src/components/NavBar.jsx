@@ -81,7 +81,6 @@ const NavBar = () => {
             );
           })}
         </nav>
-        <span className="nav-divider" aria-hidden="true" />
         <SocialMediaLinks className="nav-social-links" />
       </div>
 

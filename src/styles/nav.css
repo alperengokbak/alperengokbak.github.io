@@ -77,10 +77,6 @@
   @apply hidden flex-shrink-0 items-center gap-2 lg:flex;
 }
 
-.nav-divider {
-  @apply hidden h-10 w-[3px] flex-shrink-0 rounded-full bg-gradient-to-b from-orange-400 via-white to-sky-400 opacity-95 shadow-[0_0_16px_rgba(255,255,255,0.55)] lg:block;
-}
-
 .nav-social-links .social-media-btn,
 .mobile-social-links .social-media-btn {
   @apply relative px-2 py-1 opacity-80 transition duration-200;

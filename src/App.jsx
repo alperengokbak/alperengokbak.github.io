@@ -21,6 +21,7 @@ import Education from "./components/Education.jsx";
 import TechStack from "./components/TechStack.jsx";
 import Certificates from "./components/Certificates.jsx";
 import NavBar from "./components/NavBar.jsx";
+import SocialMediaLinks from "./components/SocialMediaComponent.jsx";
 import BackToTop from "./components/BackToTop.jsx";
 import ConnectSection from "./components/ConnectSection.jsx";
 import Typewriter from "typewriter-effect";
@@ -64,6 +65,7 @@ function App() {
                 </svg>
                 Izmir, Turkey · Open to relocation
               </div>
+              <SocialMediaLinks className="hero-social-links" />
             </div>
             <div className="hero-copy">
               <p className="hero-eyebrow">Hello, I&apos;m</p>
