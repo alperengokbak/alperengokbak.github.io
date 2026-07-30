@@ -17,3 +17,22 @@
  * dark palette, so no data-theme attribute is required.
  */
 export const LIGHT_THEME_ENABLED = false;
+
+/**
+ * TURKISH_ENABLED — off pending Alperen's review of the translations.
+ *
+ * Nothing is deleted: locales.js keeps the full `tr` dictionary and i18n.test.jsx mocks
+ * this flag on, so the translation machinery stays covered and cannot rot while it is
+ * off. The site ships English-only and the language button does not render.
+ *
+ * Turning the button off is not sufficient on its own. `resolveInitialLocale` reads a
+ * stored preference and the browser's language, so a visitor who previously chose
+ * Turkish — or who simply has a Turkish browser — would land in a language with no way
+ * out. The flag is therefore enforced in `isSupported`, which both locale resolution
+ * and `setLocale` route through.
+ *
+ * To bring it back:
+ *   1. Set this to true.
+ *   2. Delete src/components/LanguageSwitcher.disabled.test.jsx.
+ */
+export const TURKISH_ENABLED = false;

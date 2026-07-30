@@ -6,6 +6,14 @@ import { useTranslation } from "./useTranslation.js";
 import { LOCALES, translations } from "./locales.js";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 
+/**
+ * Turkish is shipped OFF (src/lib/featureFlags.js) pending Alperen's review of the
+ * translations. These tests mock the flag ON so the translation machinery stays covered
+ * and cannot rot before it is switched back on. The shipped, flag-off behaviour is
+ * asserted in components/LanguageSwitcher.disabled.test.jsx.
+ */
+vi.mock("../lib/featureFlags.js", () => ({ LIGHT_THEME_ENABLED: false, TURKISH_ENABLED: true }));
+
 function Probe({ path, vars }) {
   const { t, locale } = useTranslation();
   return (

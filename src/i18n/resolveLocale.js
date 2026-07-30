@@ -1,8 +1,17 @@
 import { DEFAULT_LOCALE, LOCALES } from "./locales.js";
+import { TURKISH_ENABLED } from "../lib/featureFlags.js";
 
 export const STORAGE_KEY = "locale";
 
-export const isSupported = (code) => Object.prototype.hasOwnProperty.call(LOCALES, code);
+/**
+ * The single gate for every route into a locale: a stored preference, the browser's
+ * language, and setLocale all pass through here. Disabling Turkish anywhere else would
+ * leave one of those three paths open.
+ */
+export const isSupported = (code) => {
+  if (code === "tr" && !TURKISH_ENABLED) return false;
+  return Object.prototype.hasOwnProperty.call(LOCALES, code);
+};
 
 /** Stored choice, else the browser's language, else English. */
 export function resolveInitialLocale() {
