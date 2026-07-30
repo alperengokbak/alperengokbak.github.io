@@ -1,5 +1,7 @@
 .site-footer {
-  @apply mt-16 border-t border-white/5 bg-gradient-to-b from-neutral-950/80 to-black/90 text-white;
+  @apply mt-16 border-t bg-gradient-to-b from-[color-mix(in_srgb,var(--ground)_80%,transparent)] to-[rgb(0_0_0/0.9)];
+  border-color: rgb(var(--overlay-rgb) / 0.05);
+  color: var(--text-strong);
 }
 
 .footer-inner {
@@ -15,15 +17,18 @@
 }
 
 .footer-tagline {
-  @apply text-lg text-accent-soft;
+  @apply text-lg;
+  color: var(--accent-soft);
 }
 
 .footer-summary {
-  @apply text-base text-neutral-300;
+  @apply text-base;
+  color: var(--text-secondary);
 }
 
 .footer-location {
-  @apply text-sm text-neutral-400;
+  @apply text-sm;
+  color: var(--text-muted);
 }
 
 .footer-contact {
@@ -31,19 +36,22 @@
 }
 
 .footer-email {
-  @apply inline-flex items-center font-semibold text-white transition hover:text-accent;
+  @apply inline-flex items-center font-semibold transition hover:text-accent;
+  color: var(--text-strong);
 }
 
 .footer-coffee {
-  @apply inline-flex items-center text-sm font-semibold uppercase tracking-[0.3em] text-neutral-400 transition hover:text-white;
+  @apply inline-flex items-center text-sm font-semibold uppercase tracking-[0.3em] transition hover:[color:var(--text-strong)];
+  color: var(--text-muted);
 }
 
 .footer-socials {
-  @apply flex gap-6 pt-4 text-sm uppercase tracking-[0.3em] text-neutral-400;
+  @apply flex gap-6 pt-4 text-sm uppercase tracking-[0.3em];
+  color: var(--text-muted);
 }
 
 .footer-socials a {
-  @apply transition hover:text-white hover:scale-110;
+  @apply transition hover:[color:var(--text-strong)] hover:scale-110;
 }
 
 .footer-pills {
@@ -51,21 +59,30 @@
 }
 
 .footer-pills span {
-  @apply rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-neutral-100 shadow-inner shadow-black/30;
+  @apply rounded-full border px-4 py-2 text-sm font-semibold shadow-inner shadow-black/30;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-primary);
 }
 
 .footer-bottom {
-  @apply border-t border-white/5 px-4 py-4 text-center text-xs uppercase tracking-[0.3em] text-neutral-500;
+  @apply border-t px-4 py-4 text-center text-xs uppercase tracking-[0.3em];
+  border-color: rgb(var(--overlay-rgb) / 0.05);
+  color: var(--text-faint);
 }
 
 .copy-email-btn {
-  @apply inline-flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-semibold text-white transition-colors duration-200 hover:text-orange-400/90;
+  @apply inline-flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-semibold transition-colors duration-200 hover:text-orange-400/90;
+  color: var(--text-strong);
   font-size: inherit;
   font-family: inherit;
 }
 
 .copy-badge {
-  @apply inline-flex items-center rounded-full border border-white/15 bg-white/10 px-[0.55rem] py-[0.1rem] text-[0.7rem] font-bold uppercase tracking-[0.08em] text-white/60 transition-colors duration-[250ms];
+  @apply inline-flex items-center rounded-full border px-[0.55rem] py-[0.1rem] text-[0.7rem] font-bold uppercase tracking-[0.08em] transition-colors duration-[250ms];
+  border-color: rgb(var(--overlay-rgb) / 0.15);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-muted);
 }
 
 .copy-email-btn:hover .copy-badge {

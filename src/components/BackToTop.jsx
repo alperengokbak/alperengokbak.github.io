@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "../i18n/useTranslation.js";
 
 export default function BackToTop() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function BackToTop() {
     <button
       onClick={scrollToTop}
       className={`back-to-top ${visible ? "back-to-top-visible" : ""}`}
-      aria-label="Back to top"
+      aria-label={t("backToTop")}
     >
       ↑
     </button>

@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "./styles/fonts.css";
+@import "./styles/theme.css";
 
 @import "./styles/layout.css";
 @import "./styles/section.css";
@@ -15,6 +16,7 @@
 @import "./styles/connect.css";
 @import "./styles/footer.css";
 @import "./styles/modal.css";
+@import "./styles/case-study.css";
 @import "./styles/interactions.css";
 
 @tailwind base;
@@ -29,7 +31,10 @@
 
   body {
     font-family: "IBM Plex Sans", system-ui, sans-serif;
-    @apply bg-neutral-950 text-neutral-100 antialiased;
+    @apply antialiased;
+    background-color: var(--ground);
+    color: var(--text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1,
@@ -53,6 +58,15 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+
+    /* Killing the transition is not enough on its own: .reveal starts at opacity 0 and
+       only becomes visible when the IntersectionObserver fires. Show the content
+       unconditionally so reduced-motion users never depend on that. */
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition-delay: 0ms !important;
     }
   }
 }

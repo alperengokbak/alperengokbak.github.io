@@ -9,7 +9,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(251, 146, 60, 0.8));
+  background: linear-gradient(180deg, rgb(var(--overlay-rgb) / 0), rgba(251, 146, 60, 0.8));
 }
 
 .timeline-item {
@@ -17,24 +17,30 @@
 }
 
 .timeline-node {
-  @apply absolute left-[14px] top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-accent bg-neutral-950 shadow-glow;
+  @apply absolute left-[14px] top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-accent shadow-glow;
+  background-color: var(--ground);
 }
 
 .timeline-node::after {
   content: "";
-  @apply block h-2 w-2 rounded-full bg-accent;
+  @apply block h-2 w-2 rounded-full;
+  background-color: var(--accent);
 }
 
 .timeline-body {
-  @apply rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-xl;
+  @apply rounded-2xl border p-6 text-left shadow-xl;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .timeline-title {
-  @apply text-2xl font-semibold text-white;
+  @apply text-2xl font-semibold;
+  color: var(--text-strong);
 }
 
 .timeline-meta {
-  @apply mt-2 text-sm uppercase tracking-[0.2em] text-neutral-400;
+  @apply mt-2 text-sm uppercase tracking-[0.2em];
+  color: var(--text-muted);
 }
 
 .timeline-header {
@@ -42,13 +48,15 @@
 }
 
 .timeline-logo {
-  @apply h-12 w-12 flex-shrink-0 rounded-xl bg-white/95 object-contain p-1.5 shadow-md;
+  @apply h-12 w-12 flex-shrink-0 rounded-xl object-contain p-1.5 shadow-md;
+  background-color: rgb(var(--overlay-rgb) / 0.95);
 }
 
 .timeline-logo--dark {
-  @apply bg-slate-900;
+  background-color: var(--ground-sunken);
 }
 
 .timeline-list {
-  @apply mt-4 space-y-2 list-disc pl-5 text-left text-neutral-300;
+  @apply mt-4 space-y-2 list-disc pl-5 text-left;
+  color: var(--text-secondary);
 }

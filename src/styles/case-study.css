@@ -1,0 +1,112 @@
+.case-study {
+  @apply mx-auto w-full max-w-3xl px-5 pb-24 pt-32;
+}
+
+.case-study-inner {
+  @apply flex flex-col gap-10 text-left;
+}
+
+.case-study-back {
+  @apply text-sm font-semibold uppercase tracking-[0.3em] transition;
+  color: var(--accent-soft);
+}
+
+.case-study-back:hover {
+  color: var(--text-strong);
+}
+
+.case-study-header {
+  @apply flex flex-col gap-4;
+}
+
+.case-study-title {
+  @apply text-4xl font-bold md:text-5xl;
+  color: var(--text-strong);
+}
+
+.case-study-summary {
+  @apply text-lg leading-relaxed;
+  color: var(--text-secondary);
+}
+
+.case-study-facts {
+  @apply mt-4 grid gap-4 rounded-3xl border p-5 sm:grid-cols-3;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
+}
+
+.case-study-facts dt {
+  @apply text-xs font-semibold uppercase tracking-[0.3em];
+  color: var(--text-muted);
+}
+
+.case-study-facts dd {
+  @apply mt-1 text-sm font-medium;
+  color: var(--text-primary);
+}
+
+.case-study-section {
+  @apply flex flex-col gap-4;
+}
+
+.case-study-section-title {
+  @apply text-2xl font-semibold;
+  color: var(--text-strong);
+}
+
+.case-study-section p {
+  @apply text-base leading-relaxed;
+  color: var(--text-secondary);
+}
+
+.case-study-list {
+  @apply flex list-disc flex-col gap-2 pl-5 text-base leading-relaxed;
+  color: var(--text-secondary);
+}
+
+.case-study-decisions {
+  @apply flex flex-col gap-5;
+}
+
+.case-study-decision {
+  @apply rounded-3xl border p-5;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
+}
+
+.case-study-decision h3 {
+  @apply mb-3 text-lg font-semibold;
+  color: var(--text-strong);
+}
+
+.case-study-decision p {
+  @apply text-sm leading-relaxed;
+  color: var(--text-secondary);
+}
+
+.case-study-tradeoff {
+  @apply mt-2;
+  color: var(--text-muted);
+}
+
+.case-study-footer {
+  @apply mt-4 flex;
+}
+
+.project-card-action-study {
+  color: var(--text-strong);
+}
+
+.not-found {
+  @apply mx-auto flex min-h-screen w-full max-w-xl flex-col items-center justify-center gap-4 px-5 text-center;
+}
+
+.not-found-title {
+  @apply text-3xl font-bold md:text-4xl;
+  color: var(--text-strong);
+}
+
+.not-found-body {
+  @apply mb-4 text-base;
+  color: var(--text-secondary);
+}

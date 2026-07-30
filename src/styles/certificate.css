@@ -3,23 +3,29 @@
 }
 
 .certificate-card {
-  @apply flex h-full flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg transition duration-300 ease-out hover:-translate-y-1 hover:border-accent/60;
+  @apply flex h-full flex-col justify-between gap-4 rounded-3xl border p-6 text-left shadow-lg transition duration-300 ease-out hover:-translate-y-1 hover:border-accent/60;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .certificate-title {
-  @apply text-xl font-semibold text-white;
+  @apply text-xl font-semibold;
+  color: var(--text-strong);
 }
 
 .certificate-issuer {
-  @apply text-sm uppercase tracking-[0.2em] text-neutral-400;
+  @apply text-sm uppercase tracking-[0.2em];
+  color: var(--text-muted);
 }
 
 .certificate-meta {
-  @apply text-sm text-neutral-300;
+  @apply text-sm;
+  color: var(--text-secondary);
 }
 
 .certificate-link {
-  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-accent-soft transition hover:text-white;
+  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] transition hover:[color:var(--text-strong)];
+  color: var(--accent-soft);
 }
 
 .certificate-card-row {

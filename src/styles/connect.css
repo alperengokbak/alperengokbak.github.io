@@ -7,29 +7,69 @@
 }
 
 .contact-field {
-  @apply w-full rounded-2xl border border-white/20 bg-transparent px-4 py-3 text-white outline-none transition placeholder:text-neutral-500 focus:border-accent;
+  @apply w-full rounded-2xl border bg-transparent px-4 py-3 outline-none transition placeholder:[color:var(--text-faint)] focus:border-accent;
+  border-color: rgb(var(--overlay-rgb) / 0.2);
+  color: var(--text-strong);
 }
 
 .connect-button {
-  @apply inline-flex items-center justify-center rounded-2xl bg-accent px-6 py-3 font-semibold text-black transition hover:bg-white/90;
+  @apply inline-flex items-center justify-center rounded-2xl px-6 py-3 font-semibold transition hover:[background-color:rgb(var(--overlay-rgb)/0.9)];
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.connect-button:disabled {
+  @apply cursor-not-allowed opacity-60 hover:bg-accent;
+}
+
+.contact-field:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+/* Reserves no space when empty, so the success line does not shift the form. */
+.form-status:empty {
+  @apply hidden;
+}
+
+.form-status {
+  @apply text-sm font-semibold text-emerald-400;
+}
+
+.form-status-error {
+  @apply text-sm font-semibold text-red-400;
+}
+
+.form-status-error a,
+.form-fallback a {
+  @apply underline underline-offset-2 hover:[color:var(--text-strong)];
+}
+
+.form-fallback {
+  @apply text-sm;
+  color: var(--text-muted);
 }
 
 .contact-info {
-  @apply flex h-full flex-col gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-surface-dark/70 to-surface-muted/40 p-6;
+  @apply flex h-full flex-col gap-6 rounded-3xl border bg-gradient-to-br from-[var(--ground-sunken)] to-[color-mix(in_srgb,var(--ground-sunken)_40%,transparent)] p-6;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
 }
 
 .contact-chip {
-  @apply flex items-center gap-3 border-b border-white/5 pb-4 text-left last:border-none;
+  @apply flex items-center gap-3 border-b pb-4 text-left last:border-none;
+  border-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .contact-chip span {
-  @apply text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400;
+  @apply text-sm font-semibold uppercase tracking-[0.2em];
+  color: var(--text-muted);
 }
 
 .contact-chip a {
-  @apply text-lg font-semibold text-white transition hover:text-accent;
+  @apply text-lg font-semibold transition hover:text-accent;
+  color: var(--text-strong);
 }
 
 .contact-chip p {
-  @apply text-lg text-neutral-200;
+  @apply text-lg;
+  color: var(--text-secondary);
 }

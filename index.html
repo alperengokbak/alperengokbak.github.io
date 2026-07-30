@@ -4,11 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      Content Security Policy. GitHub Pages cannot set response headers, so this is
+      delivered as a meta tag. All fonts, icons, badges and cover images are vendored
+      into the bundle, so nothing but 'self' is needed for sub-resources.
+      'unsafe-inline' on style-src is required: React sets the inline `style` attribute
+      used for the --project-accent / --card-accent custom properties.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self';
+               style-src 'self' 'unsafe-inline';
+               img-src 'self' data:;
+               font-src 'self';
+               connect-src 'self' https://api.web3forms.com;
+               form-action 'self' https://api.web3forms.com;
+               frame-ancestors 'none';
+               base-uri 'self';
+               object-src 'none'"
+    />
+
     <!-- Primary Meta -->
     <title>Alperen Gökbak — Solution Architect &amp; DevOps Engineer</title>
     <meta
       name="description"
-      content="Alperen Gökbak is a Solution Architect and DevOps Engineer specializing in Azure, Terraform, Kubernetes, and cloud-native infrastructure. Based in Izmir, Turkey."
+      content="Alperen Gökbak is a Solution Architect and DevOps Engineer specializing in Azure, Terraform, Kubernetes, and cloud-native infrastructure. Based in Portsmouth, United Kingdom."
     />
     <meta name="author" content="Alperen Gökbak" />
     <meta name="robots" content="index, follow" />
@@ -57,8 +78,8 @@
         },
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Izmir",
-          "addressCountry": "TR"
+          "addressLocality": "Portsmouth",
+          "addressCountry": "GB"
         },
         "sameAs": [
           "https://www.linkedin.com/in/alperengokbak/",
@@ -68,8 +89,30 @@
       }
     </script>
 
-    <!-- Performance: Preconnect to external icon/font CDNs -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <!--
+      The site is dark-only while LIGHT_THEME_ENABLED is false (src/lib/featureFlags.js).
+      :root in styles/theme.css already carries the dark palette, so nothing needs to run
+      before first paint.
+
+      When the light theme is re-enabled, restore this block and add its sha256 back to
+      script-src above, or the page will flash dark before switching:
+
+      <script>
+        (function () {
+          try {
+            var stored = localStorage.getItem("theme");
+            var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+            var theme = stored === "light" || stored === "dark" ? stored : prefersLight ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", theme);
+          } catch (e) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        })();
+      </script>
+
+      Recompute the hash with:
+        printf '%s' '<exact script contents>' | openssl dgst -sha256 -binary | openssl base64
+    -->
   </head>
   <body>
     <div id="root"></div>

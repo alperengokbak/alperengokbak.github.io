@@ -3,18 +3,25 @@
 }
 
 .blog-card {
-  @apply relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-b from-white/5 to-white/0 text-left shadow-xl transition duration-300 ease-out;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+  @apply relative flex h-full flex-col overflow-hidden rounded-[32px] border bg-gradient-to-b from-[rgb(var(--overlay-rgb)/0.05)] to-[rgb(var(--overlay-rgb)/0)] text-left shadow-xl transition duration-300 ease-out;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  box-shadow: var(--card-shadow);
 }
 
 .blog-card:hover {
   transform: translateY(-6px);
-  border-color: var(--card-accent, rgba(255, 255, 255, 0.2));
+  border-color: var(--card-accent, rgb(var(--overlay-rgb) / 0.2));
   box-shadow: 0 35px 90px var(--card-accent, rgba(59, 130, 246, 0.35));
 }
 
 .blog-card-media {
   @apply relative h-56 w-full overflow-hidden;
+}
+
+/* Shown when a post has no downloadable cover. */
+.blog-card-media-placeholder {
+  @apply h-full w-full;
+  background: linear-gradient(135deg, rgb(var(--overlay-rgb) / 0.12), rgb(var(--overlay-rgb) / 0.04));
 }
 
 .blog-card-media img {
@@ -27,11 +34,14 @@
 
 .blog-card-media::after {
   content: "";
-  @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent;
+  @apply absolute inset-0 bg-gradient-to-t from-[var(--scrim)] via-[rgb(0_0_0/0.2)] to-transparent;
 }
 
 .blog-card-pill {
-  @apply absolute left-4 top-4 inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white backdrop-blur;
+  @apply absolute left-4 top-4 inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] backdrop-blur;
+  border-color: rgb(var(--overlay-rgb) / 0.3);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-strong);
 }
 
 .blog-card-body {
@@ -39,15 +49,18 @@
 }
 
 .blog-card-date {
-  @apply text-xs font-semibold uppercase tracking-[0.4em] text-neutral-400;
+  @apply text-xs font-semibold uppercase tracking-[0.4em];
+  color: var(--text-muted);
 }
 
 .blog-card-title {
-  @apply text-2xl font-semibold text-white;
+  @apply text-2xl font-semibold;
+  color: var(--text-strong);
 }
 
 .blog-card-summary {
-  @apply text-base text-neutral-300;
+  @apply text-base;
+  color: var(--text-secondary);
 }
 
 .blog-card-tags {
@@ -55,9 +68,13 @@
 }
 
 .blog-card-tags span {
-  @apply rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-200;
+  @apply rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em];
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-secondary);
 }
 
 .blog-card-link {
-  @apply mt-auto text-sm font-semibold uppercase tracking-[0.4em] text-accent-soft transition hover:text-white;
+  @apply mt-auto text-sm font-semibold uppercase tracking-[0.4em] transition hover:[color:var(--text-strong)];
+  color: var(--accent-soft);
 }

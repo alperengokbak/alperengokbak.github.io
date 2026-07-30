@@ -1,129 +1,52 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ImageModal from "./ImageModal";
+import { projects, projectCategories } from "../data/projects.js";
+import { Link } from "react-router-dom";
+import { caseStudyForProject } from "../data/caseStudies.js";
+import { useTranslation } from "../i18n/useTranslation.js";
 
-const FILTERS = ["All", "FullStack", "Cloud", "DevOps"];
+// "All" is a sentinel, not a category; its label is translated at render time.
+const ALL = "All";
+const FILTERS = [ALL, ...projectCategories];
 
-export default function Project({ twitter_frontend, BookingHotelSs, PrescriptionManagement, SwaggerUi, kubernetesImg, terraformAwsCover, azureDevOpsTerraformCover }) {
+/** Category -> the CSS custom property holding that category's hue in the active theme. */
+const ACCENT_VAR = {
+  FullStack: "var(--cat-fullstack)",
+  Cloud: "var(--cat-cloud)",
+  DevOps: "var(--cat-devops)",
+};
+const accentFor = (category) => ACCENT_VAR[category] ?? "var(--cat-neutral)";
+
+export default function Project() {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeFilter, setActiveFilter] = useState(ALL);
 
-  const openModal = (imgSrc) => {
-    setSelectedImage(imgSrc);
+  const openModal = (project) => {
+    setSelectedProject(project);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedImage(null);
+    setSelectedProject(null);
   };
 
-  const projects = [
-    {
-      title: "Booking Hotel",
-      timeframe: "React · Node · Mongo",
-      imgSrc: BookingHotelSs,
-      description:
-        "Full-stack reservation experience with JWT auth, dynamic availability search, and Stripe-ready checkout. Currently demo-only due to DB plan limits.",
-      badges: ["React", "Express", "MongoDB"],
-      videoLink: "https://www.youtube.com/watch?v=SRnzqtjv-tE",
-      link: "https://booking-hotel-sntf.onrender.com/",
-      accent: "rgba(248, 113, 113, 0.35)",
-      category: "FullStack",
-    },
-    {
-      title: "Prescription Management",
-      timeframe: "Next.js · Node",
-      imgSrc: PrescriptionManagement,
-      description:
-        "Clinician dashboard for tracking prescriptions, refills, and approvals with audit logging. Demo video available while hosted DB is paused.",
-      badges: ["Next.js", "Express", "PostgreSQL"],
-      videoLink: "https://www.youtube.com/watch?v=ZMvQaYzIY6w",
-      link: "https://prescription-frontend.onrender.com/",
-      accent: "rgba(251, 191, 36, 0.35)",
-      category: "FullStack",
-    },
-    {
-      title: "Airline Management System",
-      timeframe: "Node · Swagger",
-      imgSrc: SwaggerUi,
-      description:
-        "RESTful API for bookings, cancellations, and fleet metadata secured with JWT. Includes full Swagger docs and Postman collections for onboarding teams fast.",
-      badges: ["Node.js", "Express", "Swagger"],
-      link: "https://github.com/alperengokbak/Airline-Management-System",
-      accent: "rgba(94, 234, 212, 0.25)",
-      category: "FullStack",
-    },
-    {
-      title: "Twitter Clone",
-      timeframe: "Internship Challenge",
-      imgSrc: twitter_frontend,
-      description:
-        "Feature-complete React client mirroring Twitter timelines, likes, and composer flows paired with a Node/PG backend for real-time updates.",
-      badges: ["React", "Tailwind", "Node"],
-      link: "https://github.com/alperengokbak/TwitterFrontend",
-      accent: "rgba(59, 130, 246, 0.35)",
-      category: "FullStack",
-    },
-    {
-      title: "Twitter Clone API",
-      timeframe: "Express · PostgreSQL",
-      imgSrc: twitter_frontend,
-      description:
-        "Backend powering the clone: RESTful services, auth flows, and feed fan-out with Prisma migrations and deployment scripts.",
-      badges: ["Express", "PostgreSQL", "Prisma"],
-      link: "https://github.com/alperengokbak/TwitterBackend",
-      accent: "rgba(14, 165, 233, 0.35)",
-      category: "FullStack",
-    },
-    {
-      title: "Automated Cloud Infrastructure with Terraform & AWS",
-      timeframe: "11/2024 - 12/2024",
-      imgSrc: terraformAwsCover,
-      description:
-        "Terraform blueprints that spin up VPC, ALB, EC2, RDS, and S3 with IAM guardrails, plus GitHub Actions lint/plan gates cutting release toil in half.",
-      badges: ["Terraform", "AWS", "GitHub Actions"],
-      link: "https://github.com/alperengokbak?tab=repositories",
-      accent: "rgba(16, 185, 129, 0.35)",
-      category: "Cloud",
-    },
-    {
-      title: "Azure DevOps Terraform Platform",
-      timeframe: "06/2025 - 08/2025",
-      imgSrc: azureDevOpsTerraformCover,
-      description:
-        "Azure DevOps pipelines provisioning VNets, subnets, AKS, and storage accounts with policy compliance, drift detection, and auto-approvals.",
-      badges: ["Azure DevOps", "Terraform", "AKS"],
-      link: "https://dev.azure.com/alperengokbak",
-      accent: "rgba(99, 102, 241, 0.35)",
-      category: "Cloud",
-    },
-    {
-      title: "Multi-node Kubernetes Cluster",
-      timeframe: "01/2025 - Present",
-      imgSrc: kubernetesImg ?? SwaggerUi,
-      description:
-        "Three-node kubeadm lab with HA control plane, Argo CD GitOps flow, Prometheus/Grafana stack, and chaos testing scripts.",
-      badges: ["Kubernetes", "kubeadm", "Argo CD"],
-      link: "https://github.com/alperengokbak/k8s-lab",
-      accent: "rgba(96, 165, 250, 0.35)",
-      category: "DevOps",
-    },
-  ];
 
-  const filtered = activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter);
+  const filtered = activeFilter === ALL ? projects : projects.filter((p) => p.category === activeFilter);
 
   return (
     <section className="section-shell" id="projects">
       <div className="section-header">
-        <p className="eyebrow">Builds</p>
-        <h2 className="section-title">Projects</h2>
+        <p className="eyebrow">{t("sections.projectsEyebrow")}</p>
+        <h2 className="section-title">{t("sections.projectsTitle")}</h2>
         <p className="section-blurb">
           Selected launches where I owned architecture, automation, or product polish. Each card links to repos, demos, or case studies.
         </p>
       </div>
 
-      <div className="filter-bar" role="group" aria-label="Filter projects by category">
+      <div className="filter-bar" role="group" aria-label={t("projects.filterLabel")}>
         {FILTERS.map((f) => (
           <button
             key={f}
@@ -131,18 +54,23 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
             className={`filter-pill ${activeFilter === f ? "filter-pill-active" : ""}`}
             aria-pressed={activeFilter === f}
           >
-            {f}
+            {f === ALL ? t("projects.all") : f}
           </button>
         ))}
       </div>
 
       <div className="project-card-grid">
         {filtered.map((project) => (
-          <article key={project.title} className="project-card" style={{ "--project-accent": project.accent }}>
-            <div className="project-card-media" onClick={() => openModal(project.imgSrc)}>
-              <img src={project.imgSrc} alt={project.title} loading="lazy" />
+          <article key={project.title} className="project-card" style={{ "--project-accent": accentFor(project.category) }}>
+            <button
+              type="button"
+              className="project-card-media"
+              onClick={() => openModal(project)}
+              aria-label={t("projects.openPreview", { title: project.title })}
+            >
+              <img src={project.imgSrc} alt={project.title} width="640" height="384" loading="lazy" />
               {project.timeframe && <span className="project-card-pill">{project.timeframe}</span>}
-            </div>
+            </button>
             <div className="project-card-body">
               <h3 className="project-card-title">{project.title}</h3>
               <p className="project-card-summary">{project.description}</p>
@@ -154,19 +82,33 @@ export default function Project({ twitter_frontend, BookingHotelSs, Prescription
               <div className="project-card-actions">
                 {project.videoLink && (
                   <a href={project.videoLink} target="_blank" rel="noreferrer" className="project-card-action project-card-action-secondary">
-                    Watch demo
+                    {t("projects.watchDemo")}
                   </a>
                 )}
                 <a href={project.link} target="_blank" rel="noreferrer" className="project-card-action">
-                  View project
+                  {t("projects.viewProject")}
                 </a>
+                {caseStudyForProject(project.title) && (
+                  <Link
+                    to={`/case-studies/${caseStudyForProject(project.title).slug}`}
+                    className="project-card-action project-card-action-study"
+                  >
+                    {t("projects.readCaseStudy")}
+                  </Link>
+                )}
               </div>
             </div>
           </article>
         ))}
       </div>
 
-      <ImageModal isOpen={isModalOpen} onClose={closeModal} imgSrc={selectedImage} />
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        imgSrc={selectedProject?.imgSrc}
+        title={selectedProject?.title}
+      />
     </section>
   );
 }
+

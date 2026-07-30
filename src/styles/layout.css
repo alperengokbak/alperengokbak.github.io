@@ -1,7 +1,10 @@
 .site-shell {
-  @apply relative min-h-screen bg-neutral-950 text-neutral-100;
+  @apply relative min-h-screen;
+  background-color: var(--ground);
+  color: var(--text-primary);
 }
 
 .site-content {
-  @apply relative z-10 flex flex-col gap-0 bg-neutral-950;
+  @apply relative z-10 flex flex-col gap-0;
+  background-color: var(--ground);
 }

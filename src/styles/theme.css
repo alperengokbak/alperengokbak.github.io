@@ -1,0 +1,107 @@
+/**
+ * Semantic colour tokens.
+ *
+ * The design is built almost entirely from translucent overlays (`white/5`, `white/10`,
+ * `white/20`) layered over a ground. Rather than hand-authoring a second palette, the
+ * theme exposes the *base* RGB those overlays are mixed from. Flipping that base
+ * inverts the whole system while preserving every alpha relationship, so light mode
+ * keeps the same depth and hierarchy as dark mode.
+ *
+ * Consume as: rgb(var(--overlay-rgb) / 0.1)
+ *
+ * ── Colour policy ────────────────────────────────────────────────────────────
+ * ONE accent (orange) carries the brand in both themes. The ground is a single
+ * warm family — charcoal in dark, paper in light — so the hero and the page below
+ * it are continuous rather than two different darks meeting at a seam.
+ *
+ * Category hues are the ONLY other colours, and they encode meaning: a project or
+ * post's category, never decoration. Three total. Do not add a fourth without a
+ * fourth category to justify it.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Warm charcoal, not neutral black: it shares a hue family with the orange accent
+     and with the light theme's paper ground, so both themes read as one brand. */
+  --ground: #0c0a09;
+  --ground-raised: rgb(28 25 23 / 0.95);
+  --ground-sunken: #080605;
+
+  --overlay-rgb: 255 255 255;
+
+  /* All values verified against --ground at >= 4.5:1 (WCAG AA body text). */
+  --text-strong: #fafaf9;      /* 18.92:1 */
+  --text-primary: #f5f5f4;     /* 18.11:1 */
+  --text-secondary: #d6d3d1;   /* 13.26:1 */
+  --text-muted: #a8a29e;       /*  7.83:1 */
+  --text-faint: #837c77;       /*  4.81:1 */
+
+  --accent: #f97316;           /*  7.05:1 on ground */
+  --accent-soft: #fed7aa;      /* 14.60:1 */
+  /* Text ON the accent. White would be 2.80:1 and fail; dark is 7.05:1. */
+  --accent-contrast: #0c0a09;
+
+  /* Continuous with --ground. The previous navy (#050816 -> #0f172a) left a visible
+     seam where the hero met the neutral-black page below it. */
+  --hero-gradient: linear-gradient(135deg, #14100d 0%, #0c0a09 45%, #080605 100%);
+  --hero-wash-warm: rgba(249, 115, 22, 0.16);
+  --hero-wash-cool: rgba(180, 83, 9, 0.12);
+  --hero-image-opacity: 0.3;
+  --hero-image-blend: lighten;
+
+  --card-shadow: 0 25px 60px rgb(0 0 0 / 0.45);
+  --scrim: rgb(0 0 0 / 0.72);
+  /* The frosted hero card sits over the background photo, so it needs its own
+     translucency rather than a plain surface colour. */
+  --hero-card: rgb(28 25 23 / 0.72);
+
+  /* Category hues — the only non-accent colours in the system. */
+  --cat-devops: #f97316;       /*  7.05:1 */
+  --cat-cloud: #38bdf8;        /*  9.22:1 */
+  --cat-fullstack: #a78bfa;    /*  7.26:1 */
+  --cat-neutral: #a8a29e;      /*  7.83:1 */
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* "Warm paper": an off-white warm ground rather than a cool clinical white, so the
+     burnt-orange accent sits in the same colour family instead of fighting it. */
+  --ground: #faf8f5;
+  --ground-raised: rgb(255 253 250 / 0.97);
+  --ground-sunken: #f2efe9;
+
+  /* Warm stone rather than pure black or cool slate: every translucent overlay in the
+     design is mixed from this, so a cool base would tint the whole page grey-blue. */
+  --overlay-rgb: 28 25 23;
+
+  /* All values verified against --ground at >= 4.5:1 (WCAG AA body text). */
+  --text-strong: #1c1917;      /* 16.50:1 */
+  --text-primary: #292524;     /* 14.31:1 */
+  --text-secondary: #44403c;   /*  9.69:1 */
+  --text-muted: #57534e;       /*  7.20:1 */
+  --text-faint: #6b6560;       /*  5.42:1 */
+
+  --accent: #c2410c;           /*  4.89:1 on ground; 5.18:1 for white on accent */
+  --accent-soft: #9a3412;      /*  6.89:1 — used for links and small caps text */
+  --accent-contrast: #ffffff;
+
+  --hero-gradient: linear-gradient(135deg, #f4efe6 0%, #faf8f5 45%, #efe8dd 100%);
+  --hero-wash-warm: rgba(249, 115, 22, 0.14);
+  --hero-wash-cool: rgba(120, 113, 108, 0.1);
+  --hero-image-opacity: 0.16;
+  --hero-image-blend: multiply;
+
+  --card-shadow: 0 18px 45px rgb(28 25 23 / 0.1);
+  --scrim: rgb(28 25 23 / 0.62);
+  --hero-card: rgb(255 253 250 / 0.82);
+
+  /* Category hues — darkened for the paper ground, same three meanings. */
+  --cat-devops: #c2410c;       /*  4.89:1 */
+  --cat-cloud: #0369a1;        /*  5.60:1 */
+  --cat-fullstack: #6d28d9;    /*  6.70:1 */
+  --cat-neutral: #57534e;      /*  7.20:1 */
+}

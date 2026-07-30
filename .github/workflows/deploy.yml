@@ -37,8 +37,16 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test:run
       - name: Build
         run: npm run build
+        env:
+          # Public submission token, not a credential (see .env.example). Without it
+          # the contact form degrades to opening the visitor's mail client.
+          VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
