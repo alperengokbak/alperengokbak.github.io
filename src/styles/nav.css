@@ -215,35 +215,6 @@
   @apply h-10 w-10 text-lg;
 }
 
-.language-switcher {
-  @apply inline-flex flex-shrink-0 items-center gap-0.5 rounded-full border p-0.5;
-  border-color: rgb(var(--overlay-rgb) / 0.15);
-  background-color: rgb(var(--overlay-rgb) / 0.05);
-}
-
-.language-option {
-  @apply rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wider transition duration-200;
-  color: var(--text-muted);
-}
-
-.language-option:hover {
-  color: var(--text-strong);
-}
-
-.language-option:focus-visible {
-  @apply outline-none ring-2;
-  --tw-ring-color: var(--accent);
-}
-
-.language-option-active {
-  background-color: rgb(var(--overlay-rgb) / 0.14);
-  color: var(--text-strong);
-}
-
-.language-switcher-mobile .language-option {
-  @apply px-3 py-2 text-sm;
-}
-
 .language-toggle {
   @apply inline-flex h-9 min-w-9 items-center justify-center rounded-full border px-2.5 text-xs font-semibold uppercase tracking-wider transition duration-200;
   border-color: rgb(var(--overlay-rgb) / 0.15);
