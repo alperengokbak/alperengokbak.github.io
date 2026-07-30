@@ -7,11 +7,9 @@ import udemyBadge from "../assets/cert-badges/udemy.svg";
 // Content for the Certificates section.
 export const certificates = [
   {
-    // TODO(alperen): set `issued` to the real month/year (e.g. "07/2026") and move this
-    // entry if it is not your most recent — the list is ordered newest first.
-    // The credential page renders its date client-side so it could not be read.
     title: "Microsoft Certified: Azure Developer Associate",
     issuer: "Microsoft",
+    issued: "07/2026",
     credentialId: "3D25371246282E5",
     badge: msAssociateBadge,
     link: "https://learn.microsoft.com/api/credentials/share/en-us/AlperenGkbak-8544/3D25371246282E5?sharingId=B7456D1AEE0694F0",
