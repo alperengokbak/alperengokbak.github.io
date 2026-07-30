@@ -1,22 +1,27 @@
 .hero-stage {
-  @apply relative min-h-screen overflow-hidden text-neutral-100;
-  background: radial-gradient(circle at 10% 20%, rgba(251, 146, 60, 0.18), transparent 45%),
-    radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.2), transparent 55%),
-    linear-gradient(135deg, #050816 0%, #0f172a 45%, #020617 100%);
+  @apply relative min-h-screen overflow-hidden;
+  color: var(--text-primary);
+  background: radial-gradient(circle at 10% 20%, var(--hero-wash-warm), transparent 45%),
+    radial-gradient(circle at 80% 0%, var(--hero-wash-cool), transparent 55%),
+    var(--hero-gradient);
 }
 
 .hero-stage::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-image: linear-gradient(0deg, rgb(var(--overlay-rgb) / 0.04) 1px, transparent 0);
   background-size: 100% 22px;
   opacity: 0.2;
   pointer-events: none;
 }
 
+/* Lighten over a dark ground, multiply over a light one — otherwise the photo
+   washes the light theme out completely. */
 .hero-background {
-  @apply absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-lighten select-none;
+  @apply absolute inset-0 h-full w-full object-cover select-none;
+  opacity: var(--hero-image-opacity);
+  mix-blend-mode: var(--hero-image-blend);
 }
 
 .hero-shell {
@@ -24,7 +29,9 @@
 }
 
 .hero-inner {
-  @apply relative mx-auto grid max-w-6xl gap-10 rounded-[40px] border border-white/5 bg-surface-dark/70 p-8 shadow-overlay backdrop-blur-2xl lg:grid-cols-[auto,1fr];
+  @apply relative mx-auto grid max-w-6xl gap-10 rounded-[40px] border p-8 shadow-overlay backdrop-blur-2xl lg:grid-cols-[auto,1fr];
+  background-color: var(--hero-card);
+  border-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .hero-media {
@@ -32,7 +39,9 @@
 }
 
 .hero-avatar {
-  @apply relative flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-glow;
+  @apply relative flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border shadow-glow;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .hero-avatar img {
@@ -40,11 +49,15 @@
 }
 
 .hero-location {
-  @apply mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-sm font-semibold text-white;
+  @apply mt-4 inline-flex items-center gap-2 rounded-full border px-4 py-1 text-sm font-semibold;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-strong);
 }
 
 .hero-location-icon {
-  @apply h-4 w-4 text-accent-soft;
+  @apply h-4 w-4;
+  color: var(--accent-soft);
 }
 
 .hero-copy {
@@ -52,15 +65,18 @@
 }
 
 .hero-eyebrow {
-  @apply text-xs font-semibold uppercase tracking-[0.4em] text-accent-soft;
+  @apply text-xs font-semibold uppercase tracking-[0.4em];
+  color: var(--accent-soft);
 }
 
 .hero-heading {
-  @apply text-5xl font-bold text-white md:text-6xl;
+  @apply text-5xl font-bold md:text-6xl;
+  color: var(--text-strong);
 }
 
 .hero-role {
-  @apply text-3xl font-semibold text-white/90 md:text-4xl;
+  @apply text-3xl font-semibold md:text-4xl;
+  color: var(--text-primary);
 }
 
 .hero-role-dynamic {
@@ -68,11 +84,12 @@
 }
 
 .hero-role-cursor {
-  @apply text-white;
+  color: var(--text-strong);
 }
 
 .hero-summary {
-  @apply text-lg leading-relaxed text-neutral-200;
+  @apply text-lg leading-relaxed;
+  color: var(--text-secondary);
 }
 
 .hero-actions {
@@ -80,15 +97,24 @@
 }
 
 .hero-btn {
-  @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-900 via-slate-900 to-slate-800 px-6 py-3 font-semibold text-white shadow-[0_20px_55px_rgba(15,23,42,0.65)] transition duration-300 hover:brightness-125;
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition duration-300 hover:brightness-110;
+  /* The primary CTA is the accent colour. It used to be an indigo gradient, which
+     made the loudest element on the page a hue that appeared nowhere else. */
+  background-color: var(--accent);
+  box-shadow: 0 18px 45px color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent-contrast);
 }
 
 .hero-btn-secondary {
-  @apply border border-white/30 bg-transparent text-white hover:bg-white/10;
+  @apply border bg-transparent hover:[background-color:rgb(var(--overlay-rgb)/0.1)];
+  border-color: rgb(var(--overlay-rgb) / 0.3);
+  color: var(--text-strong);
 }
 
 .hero-btn-ghost {
-  @apply border border-white/20 bg-transparent text-white hover:bg-white/15;
+  @apply border bg-transparent hover:[background-color:rgb(var(--overlay-rgb)/0.15)];
+  border-color: rgb(var(--overlay-rgb) / 0.2);
+  color: var(--text-strong);
 }
 
 .hero-social-links {
@@ -99,6 +125,6 @@
   @apply relative px-1 py-1 opacity-80 transition duration-200 hover:opacity-100 hover:-translate-y-0.5;
 }
 
-.hero-social-links .social-media-btn img {
+.hero-social-links .social-media-btn svg {
   @apply h-6 w-6 object-contain;
 }

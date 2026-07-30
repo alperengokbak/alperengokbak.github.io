@@ -3,15 +3,21 @@
 }
 
 .tech-stack-card {
-  @apply rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg;
+  @apply rounded-3xl border p-6 text-left shadow-lg;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .tech-stack-title {
-  @apply mb-4 text-xl font-semibold text-white;
+  @apply mb-4 text-xl font-semibold;
+  color: var(--text-strong);
 }
 
 .tech-pill {
-  @apply mr-2 mb-2 inline-flex rounded-full border border-white/10 bg-neutral-800/70 px-3 py-1 text-sm text-neutral-100;
+  @apply mr-2 mb-2 inline-flex rounded-full border px-3 py-1 text-sm;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: color-mix(in srgb, var(--ground-raised) 70%, transparent);
+  color: var(--text-primary);
 }
 
 .tech-icon-grid {
@@ -20,7 +26,9 @@
 }
 
 .tech-icon-chip {
-  @apply flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 shadow-inner shadow-black/20 backdrop-blur transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:border-accent/60 hover:bg-white/10;
+  @apply flex w-full items-center gap-3 rounded-2xl border px-3 py-2 shadow-inner shadow-black/20 backdrop-blur transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:border-accent/60 hover:[background-color:rgb(var(--overlay-rgb)/0.1)];
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .tech-icon-chip img {
@@ -28,5 +36,6 @@
 }
 
 .tech-icon-chip span {
-  @apply text-sm font-medium text-white;
+  @apply text-sm font-medium;
+  color: var(--text-strong);
 }

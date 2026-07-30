@@ -3,11 +3,13 @@
 }
 
 .skill-card {
-  @apply rounded-3xl border border-white/10 bg-gradient-to-br from-surface-dark/60 to-surface-muted/40 p-6 text-left shadow-xl shadow-black/40;
+  @apply rounded-3xl border bg-gradient-to-br from-[var(--ground-sunken)] to-[color-mix(in_srgb,var(--ground-sunken)_40%,transparent)] p-6 text-left shadow-xl shadow-black/40;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
 }
 
 .skill-title {
-  @apply mb-3 text-2xl font-semibold text-white;
+  @apply mb-3 text-2xl font-semibold;
+  color: var(--text-strong);
 }
 
 .skill-pill-container {
@@ -15,5 +17,7 @@
 }
 
 .skill-pill {
-  @apply rounded-full border border-white/10 bg-white/10 px-3 py-1 text-sm text-accent-soft/90;
+  @apply rounded-full border px-3 py-1 text-sm text-accent-soft/90;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.1);
 }

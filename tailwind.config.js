@@ -13,10 +13,6 @@ export default {
           DEFAULT: "#f97316",
           soft: "#fed7aa",
         },
-        surface: {
-          dark: "#0f172a",
-          muted: "#1f1b2e",
-        },
       },
       boxShadow: {
         glow: "0 0 35px rgba(249, 115, 22, 0.35)",

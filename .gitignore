@@ -17,17 +17,25 @@ dist-ssr
 .env.local
 .env.development
 .env.production
+!.env.example
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
+.history/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.bak
+*~
+
+# OS cruft
+.DS_Store
+Thumbs.db
+Desktop.ini
 
 # Tooling state
 coverage
@@ -36,4 +44,13 @@ coverage
 storybook-static
 *.tsbuildinfo
 
-.claude
+# Credentials and keys — nothing like this is in the repo today, and the point is
+# to keep it that way given CI runs against this remote.
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_dsa
+*.ppk

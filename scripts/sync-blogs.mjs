@@ -1,0 +1,165 @@
+/**
+ * Regenerates the Blogs section from the Medium RSS feed.
+ *
+ *   node scripts/sync-blogs.mjs
+ *
+ * Writes src/data/blogs.generated.js and downloads each post's cover image into
+ * src/assets/blog-covers/generated/. Covers are vendored rather than hotlinked so the
+ * page keeps working under the `img-src 'self'` CSP and never calls Medium's CDN.
+ *
+ * Curation (topic label and accent colour) stays hand-maintained in src/data/blogs.js;
+ * this script only owns the facts that change when a post is published or edited.
+ */
+import { mkdir, writeFile, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import sharp from "sharp";
+
+const FEED_URL = "https://medium.com/feed/@alperengokbak";
+const IMAGE_DIR = join(process.cwd(), "src/assets/blog-covers/generated");
+const OUT_FILE = join(process.cwd(), "src/data/blogs.generated.js");
+
+const cdata = (value) => value?.replace(/^<!\[CDATA\[/, "").replace(/\]\]>$/, "").trim();
+const pick = (block, tag) => cdata(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`).exec(block)?.[1]);
+
+const decodeEntities = (s) =>
+  s
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;|&apos;/g, "'")
+    .replace(/&nbsp;/g, " ");
+
+/** Medium appends ?source=rss-… tracking parameters; strip them for a stable, clean URL. */
+const cleanUrl = (url) => url.split("?")[0];
+
+const slugify = (url) => {
+  const tail = cleanUrl(url).split("/").pop() ?? "post";
+  // Medium slugs end in a hex id; keep it, it is what makes them unique.
+  return tail.toLowerCase().replace(/[^a-z0-9-]/g, "-").slice(0, 80);
+};
+
+const summarise = (html) => {
+  const withoutTags = html
+    .replace(/<figure[\s\S]*?<\/figure>/g, " ")
+    .replace(/<[^>]+>/g, " ");
+  const text = decodeEntities(withoutTags).replace(/\s+/g, " ").trim();
+  if (text.length <= 200) return text;
+  // Cut on a word boundary rather than mid-word.
+  return `${text.slice(0, 200).replace(/\s+\S*$/, "")}…`;
+};
+
+const formatDate = (pubDate) => {
+  const d = new Date(pubDate);
+  if (Number.isNaN(d.getTime())) return pubDate;
+  return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+};
+
+/**
+ * Fetches a post's cover and re-encodes it to an 800px-wide WebP.
+ *
+ * Medium's own variants are PNG screenshots that run 260 kB–720 kB; re-encoding keeps
+ * these at a few tens of kB, which matters because they are all rendered as ~400px cards.
+ */
+async function downloadCover(imageUrl, slug) {
+  const source = imageUrl.replace(/\/max\/\d+\//, "/max/1024/");
+  const response = await fetch(source);
+  if (!response.ok) throw new Error(`cover download failed (${response.status})`);
+
+  const file = `${slug}.webp`;
+  const output = await sharp(Buffer.from(await response.arrayBuffer()))
+    .resize({ width: 800, withoutEnlargement: true })
+    .webp({ quality: 72 })
+    .toBuffer();
+
+  await writeFile(join(IMAGE_DIR, file), output);
+  return { file, bytes: output.byteLength };
+}
+
+const xml = await fetch(FEED_URL).then((r) => {
+  if (!r.ok) throw new Error(`Feed request failed: ${r.status}`);
+  return r.text();
+});
+
+const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+if (items.length === 0) throw new Error("Feed returned no items — refusing to overwrite blogs.generated.js");
+
+await mkdir(IMAGE_DIR, { recursive: true });
+
+const posts = [];
+for (const block of items) {
+  const link = pick(block, "link");
+  const title = pick(block, "title");
+  if (!link || !title) continue;
+
+  const slug = slugify(link);
+  const content = new RegExp("<content:encoded>([\\s\\S]*?)</content:encoded>").exec(block)?.[1] ?? "";
+  const decodedContent = decodeEntities(cdata(content) ?? "");
+  const categories = [...block.matchAll(/<category>([\s\S]*?)<\/category>/g)]
+    .map((m) => cdata(m[1]))
+    .filter(Boolean);
+
+  const imageUrl = /<img[^>]+src="([^"]+)"/.exec(decodedContent)?.[1];
+  let imageFile = null;
+  let imageBytes = 0;
+  if (imageUrl) {
+    try {
+      ({ file: imageFile, bytes: imageBytes } = await downloadCover(imageUrl, slug));
+    } catch (error) {
+      console.warn(`  ! ${slug}: ${error.message} — post will render without a cover`);
+    }
+  }
+
+  posts.push({
+    slug,
+    title: decodeEntities(title),
+    href: cleanUrl(link),
+    date: formatDate(pick(block, "pubDate")),
+    summary: summarise(decodedContent),
+    tags: categories.slice(0, 3).map((c) => c.replace(/-/g, " ")),
+    imageFile,
+  });
+  const weight = imageBytes ? ` (${(imageBytes / 1024).toFixed(0)} kB cover)` : "";
+  console.log(`  ${posts.length}. ${posts.at(-1).title.slice(0, 58)}${weight}`);
+}
+
+const withCovers = posts.filter((p) => p.imageFile);
+const importLines = withCovers
+  .map((p, i) => `import cover${i} from "../assets/blog-covers/generated/${p.imageFile}";`)
+  .join("\n");
+const coverFor = new Map(withCovers.map((p, i) => [p.slug, `cover${i}`]));
+
+const body = posts
+  .map((p) => {
+    const image = coverFor.get(p.slug) ?? "null";
+    return `  {
+    slug: ${JSON.stringify(p.slug)},
+    title: ${JSON.stringify(p.title)},
+    href: ${JSON.stringify(p.href)},
+    date: ${JSON.stringify(p.date)},
+    summary: ${JSON.stringify(p.summary)},
+    tags: ${JSON.stringify(p.tags)},
+    image: ${image},
+  },`;
+  })
+  .join("\n");
+
+const output = `// GENERATED by scripts/sync-blogs.mjs — do not edit by hand.
+// Source: ${FEED_URL}
+// Curation (topic label, accent colour, pinned older posts) lives in src/data/blogs.js.
+${importLines}
+
+export const generatedPosts = [
+${body}
+];
+`;
+
+const previous = existsSync(OUT_FILE) ? await readFile(OUT_FILE, "utf8") : "";
+if (previous === output) {
+  console.log("\nNo change.");
+} else {
+  await writeFile(OUT_FILE, output);
+  console.log(`\n${posts.length} posts written to src/data/blogs.generated.js`);
+}

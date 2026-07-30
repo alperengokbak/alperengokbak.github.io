@@ -3,7 +3,9 @@
 }
 
 .quick-fact-card {
-  @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-lg shadow-black/50 transition duration-300 ease-out hover:border-accent/60;
+  @apply relative overflow-hidden rounded-3xl border p-6 text-left shadow-lg shadow-black/50 transition duration-300 ease-out hover:border-accent/60;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  background-color: rgb(var(--overlay-rgb) / 0.05);
 }
 
 .quick-fact-card::after {
@@ -24,9 +26,11 @@
 }
 
 .quick-fact-body {
-  @apply mt-2 text-2xl font-semibold text-white;
+  @apply mt-2 text-2xl font-semibold;
+  color: var(--text-strong);
 }
 
 .quick-fact-meta {
-  @apply mt-4 text-sm text-neutral-400;
+  @apply mt-4 text-sm;
+  color: var(--text-muted);
 }

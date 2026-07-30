@@ -1,20 +1,32 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import Monogram from "./Monogram.jsx";
 import SocialMediaLinks from "./SocialMediaComponent.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { useTranslation } from "../i18n/useTranslation.js";
 
+// `key` indexes into the locale files; `href` is the section anchor.
+// Anchors are written root-relative at render time so they still resolve when the
+// nav is shown on a /case-studies/* route rather than on "/".
 const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Profile", href: "#snapshot" },
-  { label: "Skills", href: "#skills" },
-  { label: "Stack", href: "#tech" },
-  { label: "Certs", href: "#certificates" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Projects", href: "#projects" },
-  { label: "Blogs", href: "#blogs" },
-  { label: "Contact", href: "#contact" },
+  { key: "about", href: "#about" },
+  { key: "snapshot", href: "#snapshot" },
+  { key: "skills", href: "#skills" },
+  { key: "tech", href: "#tech" },
+  { key: "certificates", href: "#certificates" },
+  { key: "experience", href: "#experience" },
+  { key: "education", href: "#education" },
+  { key: "projects", href: "#projects" },
+  { key: "blogs", href: "#blogs" },
+  { key: "contact", href: "#contact" },
 ];
 
 const NavBar = () => {
+  const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const onHome = pathname === "/";
+  const hrefFor = (anchor) => (onHome ? anchor : `/${anchor}`);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
   const observerRef = useRef(null);
@@ -23,6 +35,8 @@ const NavBar = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
+    // The scroll-spy only has sections to observe on the home page.
+    if (!onHome) return;
     const sectionIds = navItems.map((item) => item.href.slice(1));
 
     observerRef.current = new IntersectionObserver(
@@ -47,54 +61,87 @@ const NavBar = () => {
     });
 
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [onHome]);
+
+  // Escape closes the mobile menu, and the page behind it must not scroll while it is open.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="site-nav">
       <div className="nav-inner">
-        <a href="#top" className="nav-logo" aria-label="Scroll to top">
-          <img src="/monogram.svg" alt="" className="nav-logo-mark" aria-hidden="true" />
+        <a href={hrefFor("#top")} className="nav-logo" aria-label={t("nav.scrollToTop")}>
+          <Monogram className="nav-logo-mark" size={36} decorative />
           <span className="nav-name nav-name-large">Alperen Gokbak</span>
         </a>
         <button
           className={`nav-hamburger lg:hidden ${isMenuOpen ? "nav-hamburger-open" : ""}`}
           type="button"
-          aria-label="Toggle navigation"
+          aria-label={t("nav.toggleNavigation")}
           aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
           onClick={toggleMenu}
         >
           <span />
           <span />
           <span />
         </button>
-        <nav className="nav-links" aria-label="Primary">
+        <nav className="nav-links" aria-label={t("nav.primary")}>
           {navItems.map((item) => {
             const id = item.href.slice(1);
             return (
               <a
-                key={item.label}
-                href={item.href}
+                key={item.key}
+                href={hrefFor(item.href)}
                 className={`nav-link ${activeId === id ? "nav-link-active" : ""}`}
               >
-                {item.label}
+                {t(`nav.${item.key}`)}
               </a>
             );
           })}
         </nav>
-        <SocialMediaLinks className="nav-social-links" />
+        {/* Social links intentionally omitted here: they already appear in the hero
+            and again in the footer, and three copies crowded the bar. */}
+        <div className="nav-actions">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
       </div>
 
-      <div className={`mobile-menu ${isMenuOpen ? "mobile-menu-open" : ""}`}>
-        <nav aria-label="Mobile">
+      {/* `inert` keeps the closed menu out of the tab order and the accessibility tree —
+          opacity/translate alone leave all ten links focusable behind the page. */}
+      <div
+        id="mobile-menu"
+        className={`mobile-menu ${isMenuOpen ? "mobile-menu-open" : ""}`}
+        inert={isMenuOpen ? undefined : ""}
+        aria-hidden={!isMenuOpen}
+      >
+        <nav aria-label={t("nav.mobile")}>
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="mobile-link" onClick={closeMenu}>
-              {item.label}
+            <a key={item.key} href={hrefFor(item.href)} className="mobile-link" onClick={closeMenu}>
+              {t(`nav.${item.key}`)}
             </a>
           ))}
         </nav>
         <span className="mobile-divider" aria-hidden="true" />
-        <div className="mobile-social-block" aria-label="Social media">
+        <div className="mobile-social-block" aria-label={t("nav.socialMedia")}>
           <SocialMediaLinks className="mobile-social-links" />
+          <LanguageSwitcher className="language-toggle-mobile" />
+          <ThemeToggle className="theme-toggle-mobile" />
         </div>
       </div>
     </header>

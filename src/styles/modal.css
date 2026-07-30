@@ -1,11 +1,40 @@
 .image-model-container {
-  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70;
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8;
+  background-color: var(--scrim);
+}
+
+/* The image box is sized against the viewport, not against fixed pixel breakpoints.
+   The previous rule capped width at max-w-screen-sm (640px) with no md: step, so
+   768-1023px viewports showed everything at 640px — and because no width was set,
+   an image never scaled *up*: the SVG covers have no intrinsic size and fell back to
+   the 300px replaced-element default, and kubernetes.webp is only 720px wide. */
+.image-model-figure {
+  @apply relative flex items-center justify-center;
+  width: min(92vw, 1600px);
+  height: min(86vh, 1000px);
 }
 
 .image-model-img {
-  @apply max-h-screen rounded-lg border shadow-lg xs:max-w-screen-xs sm:max-w-screen-sm lg:max-w-screen-xl;
+  @apply rounded-lg border shadow-lg;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-color: rgb(var(--overlay-rgb) / 0.15);
 }
 
 .image-model-btn {
-  @apply absolute right-0 top-0 text-black xs:mx-3 xs:my-0 xs:text-2xl md:mx-6 md:my-4 md:text-4xl;
+  @apply absolute -top-2 right-0 flex h-10 w-10 items-center justify-center rounded-full text-2xl leading-none transition md:-top-4 md:-right-4 md:h-12 md:w-12 md:text-3xl;
+  /* Sits on the dark scrim in both themes, so it needs its own contrast pair
+     rather than the accent's — --accent-contrast is black in dark mode. */
+  background-color: rgb(255 255 255 / 0.12);
+  color: #ffffff;
+}
+
+.image-model-btn:hover {
+  background-color: rgb(255 255 255 / 0.22);
+}
+
+.image-model-btn:focus-visible {
+  @apply outline-none ring-2;
+  --tw-ring-color: var(--accent);
 }
