@@ -7,6 +7,40 @@ const hamburger = () => screen.getByRole("button", { name: /toggle navigation/i 
 const mobileMenu = () => document.getElementById("mobile-menu");
 
 describe("NavBar", () => {
+  it("offers the CV from the bar, which scrolling cannot otherwise reach", () => {
+    render(<NavBar />);
+
+    // The hero's download button scrolls out of sight; the bar is pinned. There are two
+    // copies by design — the bar's is hidden below lg, where the mobile menu carries it.
+    const [barCv] = within(document.querySelector(".nav-actions")).getAllByRole("link", {
+      name: /download cv/i,
+    });
+    expect(barCv).toHaveAttribute("href", "/Alperen_Gokbak_CV.pdf");
+    expect(barCv).toHaveAttribute("download");
+  });
+
+  it("also offers the CV inside the mobile menu", async () => {
+    const user = userEvent.setup();
+    render(<NavBar />);
+
+    // The closed menu is inert and aria-hidden, so its contents are correctly absent
+    // from the accessibility tree until it is opened.
+    await user.click(hamburger());
+
+    const menuCv = within(mobileMenu()).getByRole("link", { name: /download cv/i });
+    expect(menuCv).toHaveAttribute("href", "/Alperen_Gokbak_CV.pdf");
+  });
+
+  it("closes the mobile menu after the CV is downloaded", async () => {
+    const user = userEvent.setup();
+    render(<NavBar />);
+
+    await user.click(hamburger());
+    await user.click(within(mobileMenu()).getByRole("link", { name: /download cv/i }));
+
+    expect(hamburger()).toHaveAttribute("aria-expanded", "false");
+  });
+
   it("starts with the mobile menu closed", () => {
     render(<NavBar />);
 

@@ -33,6 +33,7 @@ export const translations = {
       primary: "Primary",
       mobile: "Mobile",
       socialMedia: "Social media",
+      downloadCv: "Download CV",
       language: "Language",
     },
     hero: {
@@ -120,6 +121,7 @@ export const translations = {
       primary: "Ana menü",
       mobile: "Mobil menü",
       socialMedia: "Sosyal medya",
+      downloadCv: "CV İndir",
       language: "Dil",
     },
     hero: {

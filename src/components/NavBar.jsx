@@ -117,6 +117,15 @@ const NavBar = () => {
         {/* Social links intentionally omitted here: they already appear in the hero
             and again in the footer, and three copies crowded the bar. */}
         <div className="nav-actions">
+          {/* The hero's download scrolls out of sight, so the CV is otherwise
+              unreachable from anywhere below it. The bar is pinned. */}
+          <a
+            className="nav-cv"
+            href="/Alperen_Gokbak_CV.pdf"
+            download="Alperen_Gokbak_CV.pdf"
+          >
+            {t("nav.downloadCv")}
+          </a>
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
@@ -137,6 +146,14 @@ const NavBar = () => {
             </a>
           ))}
         </nav>
+        <a
+          className="mobile-cv"
+          href="/Alperen_Gokbak_CV.pdf"
+          download="Alperen_Gokbak_CV.pdf"
+          onClick={closeMenu}
+        >
+          {t("nav.downloadCv")}
+        </a>
         <span className="mobile-divider" aria-hidden="true" />
         <div className="mobile-social-block" aria-label={t("nav.socialMedia")}>
           <SocialMediaLinks className="mobile-social-links" />
