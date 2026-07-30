@@ -46,7 +46,7 @@ describe("useCopyToClipboard", () => {
 
     await waitFor(() => expect(document.execCommand).toHaveBeenCalledWith("copy"));
     expect(result.current[0]).toBe(true);
-    // The temporary textarea must not be left behind in the DOM.
+
     expect(document.querySelector("textarea")).toBeNull();
   });
 });

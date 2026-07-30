@@ -18,7 +18,6 @@
   @apply relative h-56 w-full overflow-hidden;
 }
 
-/* Shown when a post has no downloadable cover. */
 .blog-card-media-placeholder {
   @apply h-full w-full;
   background: linear-gradient(135deg, rgb(var(--overlay-rgb) / 0.12), rgb(var(--overlay-rgb) / 0.04));

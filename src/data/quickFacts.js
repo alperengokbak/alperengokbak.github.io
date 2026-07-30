@@ -1,4 +1,3 @@
-// Content for the Quick Facts section.
 export const facts = [
   {
     title: "Current Role",

@@ -16,8 +16,6 @@
   pointer-events: none;
 }
 
-/* Lighten over a dark ground, multiply over a light one — otherwise the photo
-   washes the light theme out completely. */
 .hero-background {
   @apply absolute inset-0 h-full w-full object-cover select-none;
   opacity: var(--hero-image-opacity);
@@ -98,8 +96,7 @@
 
 .hero-btn {
   @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition duration-300 hover:brightness-110;
-  /* The primary CTA is the accent colour. It used to be an indigo gradient, which
-     made the loudest element on the page a hue that appeared nowhere else. */
+
   background-color: var(--accent);
   box-shadow: 0 18px 45px color-mix(in srgb, var(--accent) 40%, transparent);
   color: var(--accent-contrast);

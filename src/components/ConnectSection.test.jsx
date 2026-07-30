@@ -11,7 +11,6 @@ const fill = async (user, { name = "Ada", email = "ada@example.com", subject = "
   await user.type(screen.getByLabelText(/^message$/i), message);
 };
 
-// The label flips to "Sending…" mid-request, so match either state.
 const submit = () => screen.getByRole("button", { name: /send message|sending|delivered/i });
 
 describe("buildMailto", () => {
@@ -45,14 +44,11 @@ describe("ConnectSection", () => {
   });
 
   it("gives every field a label that survives typing", async () => {
-    // Placeholders disappear the moment someone types, so they are not an accessible
-    // name. Each field needs a real <label> a screen reader can announce at any point.
     const user = userEvent.setup();
     render(<ConnectSection />);
 
     await user.type(screen.getByLabelText(/^name$/i), "Ada");
 
-    // The label must still resolve the field after typing — a placeholder would not.
     for (const label of [/^name$/i, /^email$/i, /^subject$/i, /^message$/i]) {
       expect(screen.getByLabelText(label)).toBeInTheDocument();
     }
@@ -67,7 +63,6 @@ describe("ConnectSection", () => {
     await fill(user);
     await user.click(submit());
 
-    // The action keeps one verb through the flow: send -> sending -> delivered.
     expect(await screen.findByRole("button", { name: /delivered/i })).toBeInTheDocument();
 
     await act(async () => {
@@ -201,7 +196,6 @@ describe("ConnectSection", () => {
     const user = userEvent.setup();
     await fill(user);
 
-    // Simulate a bot completing the hidden field.
     const honeypot = container.querySelector('input[name="botcheck"]');
     await user.type(honeypot, "i am a robot");
     await user.click(submit());
@@ -214,7 +208,6 @@ describe("ConnectSection", () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
 
-    // jsdom cannot navigate, so observe the assignment instead.
     const originalLocation = window.location;
     delete window.location;
     window.location = { ...originalLocation, href: "" };

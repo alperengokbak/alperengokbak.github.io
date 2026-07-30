@@ -51,7 +51,6 @@ describe("Project", () => {
     const user = userEvent.setup();
     renderProjects();
 
-    // The trigger used to be a bare <div onClick>, which no keyboard user could reach.
     const trigger = screen.getByRole("button", { name: /open a larger preview of Booking Hotel/i });
     trigger.focus();
     await user.keyboard("{Enter}");

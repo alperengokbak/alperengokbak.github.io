@@ -1,10 +1,7 @@
-// Icons are vendored under src/assets/tech-icons rather than pulled from jsDelivr
-// at runtime: the CDN path was unpinned, and every visitor hit a third party.
 import azure from "../assets/tech-icons/azure.svg";
 import aws from "../assets/tech-icons/aws.svg";
 import terraform from "../assets/tech-icons/terraform.svg";
-// Bicep is the one logo devicon does not carry; this is Microsoft's own, from
-// Azure/bicep docs/images/BicepLogoImage.svg.
+
 import bicep from "../assets/tech-icons/bicep.svg";
 import kubernetes from "../assets/tech-icons/kubernetes.svg";
 import helm from "../assets/tech-icons/helm.svg";
@@ -18,7 +15,6 @@ import javascript from "../assets/tech-icons/javascript.svg";
 import nodejs from "../assets/tech-icons/nodejs.svg";
 import postgresql from "../assets/tech-icons/postgresql.svg";
 
-// Content for the Tech Stack section.
 export const stackSections = [
   {
     title: "Cloud & Infrastructure",

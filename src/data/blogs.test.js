@@ -14,7 +14,7 @@ describe("blog curation", () => {
     expect(posts.length).toBeGreaterThan(0);
     for (const post of posts) {
       expect(post.topic).toBeTruthy();
-      // Accent is a category token, resolved per theme in styles/theme.css.
+
       expect(post.accent).toMatch(/^var\(--cat-(devops|cloud|fullstack|neutral)\)$/);
     }
   });
@@ -25,8 +25,6 @@ describe("blog curation", () => {
   });
 
   it("falls back to a title-cased tag for uncurated posts", () => {
-    // Any post without a CURATION entry must still render a sensible label rather
-    // than undefined, so newly published posts are safe to ship unattended.
     for (const post of posts) {
       expect(post.topic).not.toMatch(/^\s*$/);
       expect(post.topic[0]).toBe(post.topic[0].toUpperCase());

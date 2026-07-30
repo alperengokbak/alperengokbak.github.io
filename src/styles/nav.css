@@ -127,8 +127,6 @@
   @apply opacity-100;
 }
 
-/* `visibility: hidden` backs up the `inert` attribute for engines that do not support it,
-   and keeps the closed menu out of the tab order. */
 .mobile-menu {
   @apply pointer-events-none invisible fixed top-[72px] left-0 right-0 z-30 -translate-y-full px-6 py-6 opacity-0 transition duration-300 lg:hidden;
   background-color: var(--ground-raised);
@@ -144,8 +142,6 @@
   @apply flex flex-col gap-3 text-base;
 }
 
-/* Shares the mobile-link shape so the menu reads as one list, but carries the accent
-   because it is the one action here rather than another destination. */
 .mobile-cv {
   @apply rounded-2xl border px-4 py-3 text-center font-semibold no-underline transition;
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);
@@ -196,30 +192,6 @@
 
 .nav-actions {
   @apply flex flex-shrink-0 items-center gap-2;
-}
-
-/**
- * Outlined rather than filled: the bar already competes with ten links, and a solid
- * accent button there would outshout the section a visitor is actually reading. It
- * fills on hover, so it still reads as the one action in the bar.
- */
-/* Hidden below lg, where the bar is only a logo and a hamburger and a pill would
-   crowd a 340px screen. The mobile menu carries its own copy instead. */
-.nav-cv {
-  @apply hidden whitespace-nowrap rounded-full border px-3 py-1.5 text-sm font-semibold no-underline transition lg:inline-flex;
-  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
-  color: var(--accent);
-}
-
-.nav-cv:hover {
-  background-color: var(--accent);
-  color: var(--accent-contrast);
-  border-color: var(--accent);
-}
-
-.nav-cv:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
 }
 
 .theme-toggle {

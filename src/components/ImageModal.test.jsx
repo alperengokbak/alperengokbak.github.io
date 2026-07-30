@@ -8,6 +8,7 @@ const defaults = { imgSrc: "/preview.webp", title: "Booking Hotel" };
 describe("ImageModal", () => {
   it("renders nothing when closed", () => {
     render(<ImageModal isOpen={false} onClose={vi.fn()} {...defaults} />);
+
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
@@ -59,6 +60,7 @@ describe("ImageModal", () => {
 
   it("moves focus into the dialog on open", () => {
     render(<ImageModal isOpen onClose={vi.fn()} {...defaults} />);
+
     expect(screen.getByRole("button", { name: /close preview/i })).toHaveFocus();
   });
 
@@ -69,9 +71,11 @@ describe("ImageModal", () => {
     expect(trigger).toHaveFocus();
 
     const { rerender } = render(<ImageModal isOpen onClose={vi.fn()} {...defaults} />);
+
     expect(screen.getByRole("button", { name: /close preview/i })).toHaveFocus();
 
     rerender(<ImageModal isOpen={false} onClose={vi.fn()} {...defaults} />);
+
     expect(trigger).toHaveFocus();
 
     trigger.remove();
@@ -79,9 +83,11 @@ describe("ImageModal", () => {
 
   it("locks background scrolling while open and releases it on close", () => {
     const { rerender } = render(<ImageModal isOpen onClose={vi.fn()} {...defaults} />);
+
     expect(document.body.style.overflow).toBe("hidden");
 
     rerender(<ImageModal isOpen={false} onClose={vi.fn()} {...defaults} />);
+
     expect(document.body.style.overflow).toBe("");
   });
 
@@ -92,8 +98,6 @@ describe("ImageModal", () => {
     const closeButton = screen.getByRole("button", { name: /close preview/i });
     expect(closeButton).toHaveFocus();
 
-    // The close button is the only focusable node, so the trap must cycle back to it
-    // rather than letting focus escape to the page behind the dialog.
     await user.tab();
     expect(closeButton).toHaveFocus();
   });

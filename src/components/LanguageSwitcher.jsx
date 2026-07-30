@@ -2,15 +2,9 @@ import { LOCALES } from "../i18n/locales.js";
 import { TURKISH_ENABLED } from "../lib/featureFlags.js";
 import { useTranslation } from "../i18n/useTranslation.js";
 
-/**
- * With two locales a segmented EN|TR control costs more nav width than it earns, so
- * this renders a single button showing the language you would switch *to*. If a third
- * locale is ever added, revisit — a toggle stops making sense past two.
- */
 export default function LanguageSwitcher({ className = "" }) {
   const { locale, setLocale, t } = useTranslation();
 
-  // English-only for now, so there is nothing to switch between.
   if (!TURKISH_ENABLED) return null;
 
   const codes = Object.keys(LOCALES);

@@ -3,10 +3,6 @@ import { describe, expect, it } from "vitest";
 import { useScrollReveal } from "./useScrollReveal.js";
 import { MockIntersectionObserver } from "../test/setup.js";
 
-/**
- * The hook only does anything once its ref is attached to a real element, so it has
- * to be exercised through a component rather than via renderHook.
- */
 function Revealer({ count = 3 }) {
   const ref = useScrollReveal();
   return (
@@ -23,6 +19,7 @@ const latestObserver = () => MockIntersectionObserver.instances.at(-1);
 describe("useScrollReveal", () => {
   it("observes every .reveal child", () => {
     const { getByTestId } = render(<Revealer count={3} />);
+
     const observer = latestObserver();
 
     expect(observer.observed.size).toBe(3);
@@ -32,6 +29,7 @@ describe("useScrollReveal", () => {
 
   it("adds the visible class only to entries that are intersecting", () => {
     const { getByTestId } = render(<Revealer count={2} />);
+
     const observer = latestObserver();
 
     act(() => {
@@ -47,6 +45,7 @@ describe("useScrollReveal", () => {
 
   it("unobserves a target after revealing it so it only animates once", () => {
     const { getByTestId } = render(<Revealer count={1} />);
+
     const observer = latestObserver();
     const target = getByTestId("reveal-0");
 
@@ -60,14 +59,13 @@ describe("useScrollReveal", () => {
   it("uses a zero threshold so sections taller than the viewport still reveal", () => {
     render(<Revealer count={1} />);
 
-    // A ratio-based threshold is unreachable for a section several times taller than
-    // the viewport, which would strand that content at opacity 0. Guard the regression.
     expect(latestObserver().options.threshold).toBe(0);
     expect(latestObserver().options.rootMargin).toBe("0px 0px -10% 0px");
   });
 
   it("disconnects on unmount", () => {
     const { unmount } = render(<Revealer count={2} />);
+
     const observer = latestObserver();
 
     unmount();

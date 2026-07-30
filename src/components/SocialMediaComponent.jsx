@@ -1,12 +1,3 @@
-/**
- * Social icons as inline SVG paths using `currentColor`.
- *
- * These were white PNGs from the vendor brand kits, which meant they were invisible
- * against the light theme's paper ground. Inline SVG follows the theme's text colour,
- * stays crisp at any size, and costs ~1 kB instead of 16 kB of raster.
- *
- * Paths from Simple Icons (CC0).
- */
 const SOCIAL_LINKS = [
   {
     name: "GitHub",
@@ -30,11 +21,6 @@ const SOCIAL_LINKS = [
   },
 ];
 
-/**
- * @param {object} props
- * @param {string} [props.className] Extra class appended to the `social-links` wrapper,
- *   used by nav/hero/mobile to vary sizing and spacing.
- */
 export default function SocialMediaLinks({ className = "" }) {
   const wrapperClass = className ? `social-links ${className}` : "social-links";
 
@@ -52,7 +38,9 @@ export default function SocialMediaLinks({ className = "" }) {
         >
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
             <path d={path} />
+
           </svg>
+
         </a>
       ))}
     </div>

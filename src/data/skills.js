@@ -1,4 +1,3 @@
-// Content for the Skills section.
 export const skillAreas = [
   {
     title: "Cloud & Infrastructure",

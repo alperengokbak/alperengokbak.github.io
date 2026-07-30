@@ -7,7 +7,6 @@
   color: var(--text-secondary);
 }
 
-/* Default size; nav/hero/mobile override it. */
 .social-media-btn svg {
   @apply h-5 w-5;
 }

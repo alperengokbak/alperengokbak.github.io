@@ -6,12 +6,6 @@ import { useTranslation } from "./useTranslation.js";
 import { LOCALES, translations } from "./locales.js";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 
-/**
- * Turkish is shipped OFF (src/lib/featureFlags.js) pending Alperen's review of the
- * translations. These tests mock the flag ON so the translation machinery stays covered
- * and cannot rot before it is switched back on. The shipped, flag-off behaviour is
- * asserted in components/LanguageSwitcher.disabled.test.jsx.
- */
 vi.mock("../lib/featureFlags.js", () => ({ LIGHT_THEME_ENABLED: false, TURKISH_ENABLED: true }));
 
 function Probe({ path, vars }) {
@@ -19,7 +13,9 @@ function Probe({ path, vars }) {
   return (
     <>
       <span data-testid="locale">{locale}</span>
+
       <span data-testid="value">{t(path, vars)}</span>
+
     </>
   );
 }
@@ -79,6 +75,7 @@ describe("LocaleProvider", () => {
 
   it("interpolates named variables", () => {
     withProvider(<Probe path="projects.openPreview" vars={{ title: "Booking Hotel" }} />);
+
     expect(screen.getByTestId("value")).toHaveTextContent("Open a larger preview of Booking Hotel");
   });
 
@@ -125,7 +122,7 @@ describe("LanguageSwitcher", () => {
 
   it("offers the language you are not currently using", () => {
     withProvider(<LanguageSwitcher />);
-    // Starting locale is en, so the toggle advertises Türkçe.
+
     const toggle = screen.getByRole("button", { name: /Türkçe/ });
     expect(toggle).toHaveTextContent("TR");
     expect(toggle).toHaveAttribute("lang", "tr");
@@ -146,7 +143,6 @@ describe("LanguageSwitcher", () => {
     expect(localStorage.getItem("locale")).toBe("tr");
     expect(document.documentElement.lang).toBe("tr");
 
-    // Having switched, the toggle must now offer the way back.
     expect(screen.getByRole("button", { name: /English/ })).toHaveTextContent("EN");
   });
 

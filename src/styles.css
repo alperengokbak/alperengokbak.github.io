@@ -60,9 +60,6 @@
       scroll-behavior: auto !important;
     }
 
-    /* Killing the transition is not enough on its own: .reveal starts at opacity 0 and
-       only becomes visible when the IntersectionObserver fires. Show the content
-       unconditionally so reduced-motion users never depend on that. */
     .reveal {
       opacity: 1 !important;
       transform: none !important;

@@ -1,9 +1,5 @@
 import { useState, useCallback } from "react";
 
-/**
- * Returns a [copied, copyToClipboard] tuple.
- * `copied` resets to false after `resetMs` milliseconds (default 2000).
- */
 export function useCopyToClipboard(resetMs = 2000) {
   const [copied, setCopied] = useState(false);
 
@@ -14,7 +10,6 @@ export function useCopyToClipboard(resetMs = 2000) {
         setCopied(true);
         setTimeout(() => setCopied(false), resetMs);
       } catch {
-        // Fallback for older browsers
         const el = document.createElement("textarea");
         el.value = text;
         el.style.position = "fixed";

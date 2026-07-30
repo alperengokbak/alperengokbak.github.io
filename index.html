@@ -4,13 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--
-      Content Security Policy. GitHub Pages cannot set response headers, so this is
-      delivered as a meta tag. All fonts, icons, badges and cover images are vendored
-      into the bundle, so nothing but 'self' is needed for sub-resources.
-      'unsafe-inline' on style-src is required: React sets the inline `style` attribute
-      used for the --project-accent / --card-accent custom properties.
-    -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self';
@@ -25,7 +18,6 @@
                object-src 'none'"
     />
 
-    <!-- Primary Meta -->
     <title>Alperen Gökbak — Solution Architect &amp; DevOps Engineer</title>
     <meta
       name="description"
@@ -35,14 +27,12 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0a0a0f" />
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://alperengokbak.github.io/" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/monogram.svg" />
-    <link rel="apple-touch-icon" href="/monogram.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Open Graph -->
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://alperengokbak.github.io/" />
     <meta property="og:title" content="Alperen Gökbak — Solution Architect &amp; DevOps Engineer" />
@@ -54,7 +44,6 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Alperen Gökbak" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Alperen Gökbak — Solution Architect &amp; DevOps Engineer" />
     <meta
@@ -63,7 +52,6 @@
     />
     <meta name="twitter:image" content="https://alperengokbak.github.io/og-preview.png" />
 
-    <!-- Structured Data: Person -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,30 +76,6 @@
       }
     </script>
 
-    <!--
-      The site is dark-only while LIGHT_THEME_ENABLED is false (src/lib/featureFlags.js).
-      :root in styles/theme.css already carries the dark palette, so nothing needs to run
-      before first paint.
-
-      When the light theme is re-enabled, restore this block and add its sha256 back to
-      script-src above, or the page will flash dark before switching:
-
-      <script>
-        (function () {
-          try {
-            var stored = localStorage.getItem("theme");
-            var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-            var theme = stored === "light" || stored === "dark" ? stored : prefersLight ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", theme);
-          } catch (e) {
-            document.documentElement.setAttribute("data-theme", "dark");
-          }
-        })();
-      </script>
-
-      Recompute the hash with:
-        printf '%s' '<exact script contents>' | openssl dgst -sha256 -binary | openssl base64
-    -->
   </head>
   <body>
     <div id="root"></div>

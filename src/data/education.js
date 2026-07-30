@@ -1,11 +1,8 @@
 import portsmouthLogo from "../assets/company-logos/portsmouth_university_logo.svg";
 import yasarLogo from "../assets/company-logos/yasar_university_logo.webp";
 
-// Content for the Education timeline, ordered newest first.
 export const education = [
   {
-    // Starts September 2026. The summary says so in its first three words on purpose:
-    // a date range alone reads as current enrolment, which would not be true yet.
     period: "09/2026 - 09/2027",
     title: "MSc Computer Network Administration and Management",
     location: "University of Portsmouth · Portsmouth, United Kingdom",

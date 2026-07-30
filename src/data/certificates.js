@@ -4,7 +4,6 @@ import msFundamentalsBadge from "../assets/cert-badges/ms-fundamentals.svg";
 import linuxFoundationBadge from "../assets/cert-badges/linuxfoundation.svg";
 import udemyBadge from "../assets/cert-badges/udemy.svg";
 
-// Content for the Certificates section.
 export const certificates = [
   {
     title: "Microsoft Certified: Azure Developer Associate",

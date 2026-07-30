@@ -3,18 +3,11 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ThemeToggle from "./ThemeToggle.jsx";
 
-/**
- * The light theme is shipped OFF (src/lib/featureFlags.js) while Alperen decides on the
- * design. These tests mock the flag ON so the implementation stays covered and cannot
- * rot before it is switched back on. The final block asserts the shipped, flag-off
- * behaviour.
- */
 vi.mock("../lib/featureFlags.js", () => ({ LIGHT_THEME_ENABLED: true }));
 
 const root = () => document.documentElement;
 const toggle = () => screen.getByRole("button", { name: /switch to (light|dark) theme/i });
 
-/** Points matchMedia at a given prefers-color-scheme: light result. */
 const mockPrefersLight = (matches) => {
   const listeners = new Set();
   window.matchMedia = vi.fn().mockImplementation((query) => ({
@@ -24,7 +17,7 @@ const mockPrefersLight = (matches) => {
     removeEventListener: (_, cb) => listeners.delete(cb),
     dispatchEvent: vi.fn(),
   }));
-  // Wrapped in act() so the resulting React state update flushes before assertions.
+
   return { emit: (nextMatches) => act(() => listeners.forEach((cb) => cb({ matches: nextMatches }))) };
 };
 
@@ -41,7 +34,7 @@ describe("ThemeToggle", () => {
 
   it("adopts the theme the inline head script already applied", () => {
     root().setAttribute("data-theme", "light");
-    mockPrefersLight(false); // OS says dark; the applied attribute must still win.
+    mockPrefersLight(false);
 
     render(<ThemeToggle />);
 
@@ -87,11 +80,9 @@ describe("ThemeToggle", () => {
     render(<ThemeToggle />);
     expect(root()).toHaveAttribute("data-theme", "dark");
 
-    // No stored preference yet — the OS switching to light should carry the page along.
     media.emit(true);
     expect(root()).toHaveAttribute("data-theme", "light");
 
-    // Once chosen explicitly, the OS must stop overriding it.
     await user.click(toggle());
     expect(localStorage.getItem("theme")).toBe("dark");
 

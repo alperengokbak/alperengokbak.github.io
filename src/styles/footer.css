@@ -89,7 +89,6 @@
   color: var(--text-muted);
 }
 
-/* Was orange-400 (#fb923c), which is not the accent and does not follow the theme. */
 .copy-email-btn:hover .copy-badge {
   border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   background-color: color-mix(in srgb, var(--accent) 15%, transparent);

@@ -6,16 +6,8 @@ import kubernetesImg from "../assets/kubernetes.webp";
 import terraformAwsCover from "../assets/project-covers/terraform-aws.svg";
 import azureDevOpsTerraformCover from "../assets/project-covers/azure-devops-terraform.svg";
 
-/**
- * Categories offered by the filter bar, in display order. `All` is prepended by the UI.
- *
- * Category is also what drives a card's accent colour — see --cat-* in styles/theme.css.
- * Cards previously carried a hand-picked rgba() each, which meant eight unrelated hues
- * that encoded nothing. Colour now means something.
- */
 export const projectCategories = ["FullStack", "Cloud", "DevOps"];
 
-// Content for the Projects section.
 export const projects = [
   {
     title: "Booking Hotel",

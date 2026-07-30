@@ -1,36 +1,3 @@
-/**
- * Long-form case studies, one per slug.
- *
- * ─────────────────────────────────────────────────────────────────────────────
- *  THESE ARE SCAFFOLDS. Every value marked TODO is a placeholder.
- *
- *  The content has to be yours: these are claims about real client work, and an
- *  invented architecture detail or a made-up metric is worse than no case study
- *  at all. A page whose `status` is "draft" is NOT linked from the projects grid
- *  and returns a "not published" view if visited directly — so you can fill these
- *  in incrementally without half-written pages going live.
- *
- *  To publish one: replace the TODOs and set status: "published".
- * ─────────────────────────────────────────────────────────────────────────────
- *
- * @typedef {object} CaseStudy
- * @property {string}   slug        URL segment: /case-studies/<slug>
- * @property {string}   projectTitle Must match a `title` in projects.js to cross-link.
- * @property {"draft"|"published"} status
- * @property {string}   title       Page <h1>
- * @property {string}   summary     One-paragraph standfirst, also used as <meta description>
- * @property {string}   role        What you personally owned
- * @property {string}   timeframe   e.g. "06/2025 - 08/2025"
- * @property {string[]} stack
- * @property {string}   problem     What was broken or needed, and why it mattered
- * @property {string[]} constraints Compliance, budget, org, or legacy limits you worked within
- * @property {{ choice: string, why: string, tradeoff: string }[]} decisions
- * @property {string}   architecture Prose description of the resulting design
- * @property {string[]} outcomes    Measurable results. Numbers you can defend in an interview.
- * @property {string[]} lessons     What you would do differently
- */
-
-/** @type {CaseStudy[]} */
 export const caseStudies = [
   {
     slug: "azure-devops-terraform",
@@ -113,7 +80,6 @@ export const caseStudies = [
 
 export const caseStudyBySlug = (slug) => caseStudies.find((study) => study.slug === slug);
 
-/** Published studies only — what the projects grid is allowed to link to. */
 export const publishedCaseStudies = caseStudies.filter((study) => study.status === "published");
 
 export const caseStudyForProject = (projectTitle) =>

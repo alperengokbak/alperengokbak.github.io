@@ -2,7 +2,6 @@ import p3Logo from "../assets/company-logos/p3_group_logo.webp";
 import constraightLogo from "../assets/company-logos/constraight-logo.png";
 import univennLogo from "../assets/company-logos/univenn_logo.png";
 
-// Content for the Work Experience timeline.
 export const milestones = [
   {
     period: "01/2026 - Present",

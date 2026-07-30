@@ -5,16 +5,8 @@ import { useTranslation } from "../i18n/useTranslation.js";
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
-/** How long the button holds "Delivered" before offering to send again. */
 const DELIVERED_LABEL_MS = 2600;
 
-/**
- * Read at call time rather than module scope so the value is not frozen at import.
- *
- * Public by design: Vite inlines VITE_* into the client bundle, and Web3Forms treats
- * this as a submission token rather than a credential. The honeypot is what keeps the
- * endpoint from being trivially spammed.
- */
 const getAccessKey = () => import.meta.env.VITE_WEB3FORMS_KEY;
 
 const initialForm = {
@@ -28,18 +20,10 @@ const initialForm = {
 const ConnectSection = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState(initialForm);
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [emailCopied, copyEmail] = useCopyToClipboard();
 
-  /**
-   * Drives the button's "Delivered" label only.
-   *
-   * Deliberately separate from `status`: the confirmation message stays on screen for
-   * as long as `status` is "success", while the button returns to its idle label so the
-   * form is obviously ready to use again. Collapsing the two would either strand the
-   * button on "Delivered" or yank the confirmation away from a screen reader mid-read.
-   */
   const [justDelivered, setJustDelivered] = useState(false);
   const deliveredTimer = useRef(null);
 
@@ -53,11 +37,8 @@ const ConnectSection = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Bots that fill the hidden field get a no-op rather than a delivered message.
     if (formData.botcheck) return;
 
-    // With no key configured there is no endpoint to post to, so fall back to the
-    // visitor's mail client rather than failing with no explanation.
     const accessKey = getAccessKey();
     if (!accessKey) {
       window.location.href = buildMailto(formData);
@@ -105,8 +86,11 @@ const ConnectSection = () => {
     <section className="section-shell" id="contact">
       <div className="section-header">
         <p className="eyebrow">{t("sections.contactEyebrow")}</p>
+
         <h2 className="section-title">{t("sections.contactTitle")}</h2>
+
         <p className="section-blurb">{t("sections.contactBlurb")}</p>
+
       </div>
 
       <div className="connect-section">
@@ -116,6 +100,7 @@ const ConnectSection = () => {
               <label className="contact-label" htmlFor="contact-name">
                 {t("contact.name")}
               </label>
+
               <input
                 className="contact-field"
                 id="contact-name"
@@ -127,11 +112,14 @@ const ConnectSection = () => {
                 disabled={isSubmitting}
                 required
               />
+
             </div>
+
             <div className="contact-group">
               <label className="contact-label" htmlFor="contact-email">
                 {t("contact.email")}
               </label>
+
               <input
                 className="contact-field"
                 id="contact-email"
@@ -143,12 +131,16 @@ const ConnectSection = () => {
                 disabled={isSubmitting}
                 required
               />
+
             </div>
+
           </div>
+
           <div className="contact-group">
             <label className="contact-label" htmlFor="contact-subject">
               {t("contact.subject")}
             </label>
+
             <input
               className="contact-field"
               id="contact-subject"
@@ -158,16 +150,18 @@ const ConnectSection = () => {
               onChange={handleChange}
               disabled={isSubmitting}
             />
+
           </div>
+
           <div className="contact-group">
             <label className="contact-label" htmlFor="contact-message">
               {t("contact.messageLabel")}
             </label>
-            {/* A persistent hint rather than a placeholder: it says what to write and
-                stays visible while the visitor writes it. */}
+
             <p className="contact-hint" id="contact-message-hint">
               {t("contact.message")}
             </p>
+
             <textarea
               className="contact-field contact-textarea"
               id="contact-message"
@@ -178,9 +172,10 @@ const ConnectSection = () => {
               disabled={isSubmitting}
               required
             />
+
           </div>
 
-          {/* Honeypot: hidden from people, irresistible to bots. */}
+          {}
           <input
             type="text"
             name="botcheck"
@@ -203,19 +198,19 @@ const ConnectSection = () => {
               : justDelivered
                 ? t("contact.delivered")
                 : t("contact.send")}
-            {/* Decorative: the state is already carried by the label above, so the rail
-                is hidden from assistive tech and disabled under reduced motion. */}
             <span className="connect-button-rail" aria-hidden="true" />
           </button>
 
-          {/* Outcome is announced, so a screen reader user is not left guessing. */}
+          {}
           <p className="form-status" role="status" aria-live="polite">
             {status === "success" && t("contact.success")}
           </p>
+
           {status === "error" && (
             <p className="form-status-error" role="alert">
               {t("contact.errorPrefix")} ({errorMessage}).{" "}
               <a href={buildMailto(formData)}>{t("contact.emailDirectly")}</a>
+
             </p>
           )}
 
@@ -224,6 +219,7 @@ const ConnectSection = () => {
         <div className="contact-info">
           <div className="contact-chip">
             <span>Email</span>
+
             <button
               type="button"
               onClick={() => copyEmail(CONTACT_EMAIL)}
@@ -232,26 +228,40 @@ const ConnectSection = () => {
             >
               {CONTACT_EMAIL}
               <span className="copy-badge">{emailCopied ? t("contact.copied") : t("contact.copy")}</span>
+
             </button>
+
           </div>
+
           <div className="contact-chip">
             <span>LinkedIn</span>
+
             <a href="https://www.linkedin.com/in/alperengokbak/" target="_blank" rel="noreferrer">
               in/alperengokbak
             </a>
+
           </div>
+
           <div className="contact-chip">
             <span>GitHub</span>
+
             <a href="https://github.com/alperengokbak" target="_blank" rel="noreferrer">
               github.com/alperengokbak
             </a>
+
           </div>
+
           <div className="contact-chip">
             <span>{t("contact.base")}</span>
+
             <p>{t("contact.baseValue")}</p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
   );
 };

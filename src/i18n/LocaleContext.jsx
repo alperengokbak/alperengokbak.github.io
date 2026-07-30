@@ -3,7 +3,6 @@ import { DEFAULT_LOCALE, LOCALES, translations } from "./locales.js";
 import { LocaleContext } from "./context.js";
 import { isSupported, resolveInitialLocale, STORAGE_KEY } from "./resolveLocale.js";
 
-/** Walks a dotted key path; falls back to English, then to the key itself. */
 function lookup(locale, path) {
   const read = (dict) => path.split(".").reduce((acc, part) => acc?.[part], dict);
   return read(translations[locale]) ?? read(translations[DEFAULT_LOCALE]) ?? path;
@@ -22,15 +21,10 @@ export function LocaleProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {
-      // Private browsing can refuse writes; the choice still applies this session.
     }
   }, []);
 
   const value = useMemo(() => {
-    /**
-     * t("nav.about") -> "Hakkımda"
-     * t("projects.openPreview", { title: "Booking Hotel" }) interpolates {title}.
-     */
     const t = (path, vars) => {
       const raw = lookup(locale, path);
       if (typeof raw !== "string" || !vars) return raw;

@@ -1,10 +1,3 @@
-/**
- * Contact section.
- *
- * One centred column rather than a form/panel split. The old layout was
- * `md:grid-cols-[1fr,auto]`, and `auto` sizes to the widest child — which was the email
- * address at 18px semibold, so the address decided how much room the form got.
- */
 .connect-section {
   @apply mx-auto flex w-full max-w-[620px] flex-col gap-6;
 }
@@ -13,7 +6,6 @@
   @apply flex flex-col gap-5 text-left;
 }
 
-/* Name and email share a row on anything wider than a phone. */
 .contact-row {
   @apply grid gap-5 sm:grid-cols-2;
 }
@@ -22,14 +14,11 @@
   @apply flex flex-col gap-2;
 }
 
-/* The same small tracked caps as .contact-chip, so the form and the contact
-   details below it read as one system rather than two. */
 .contact-label {
   @apply font-display text-[11px] font-semibold uppercase tracking-[0.18em];
   color: var(--text-muted);
 }
 
-/* A hint, not a placeholder: it stays put while the visitor types. */
 .contact-hint {
   @apply -mt-1 text-sm;
   color: var(--text-faint);
@@ -53,8 +42,6 @@
 .contact-field:disabled {
   @apply cursor-not-allowed opacity-60;
 }
-
-/* ── Submit control ─────────────────────────────────────────────────────────── */
 
 .connect-button {
   @apply relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-3 font-semibold transition;
@@ -80,8 +67,6 @@
   @apply cursor-not-allowed opacity-60;
 }
 
-/* Reads as a job in flight. The label already says "Sending…", so this carries no
-   information on its own and is safe to drop for reduced-motion users. */
 .connect-button-rail {
   @apply pointer-events-none absolute bottom-0 left-0 h-[3px] w-full origin-left scale-x-0;
   background-color: rgb(0 0 0 / 0.25);
@@ -105,9 +90,6 @@
   }
 }
 
-/* ── Status ─────────────────────────────────────────────────────────────────── */
-
-/* Reserves no space when empty, so the success line does not shift the form. */
 .form-status:empty {
   @apply hidden;
 }
@@ -126,11 +108,6 @@
   @apply underline underline-offset-2 hover:[color:var(--text-strong)];
 }
 
-/* ── Contact details ────────────────────────────────────────────────────────── */
-
-/* Two columns, not three. Four entries divide evenly into a 2x2 with no orphan, and
-   at three columns each cell was only ~190px inside the 620px shell — narrower than
-   the email address, which then had nowhere to go. */
 .contact-info {
   @apply grid gap-x-6 gap-y-5 border-t pt-5 sm:grid-cols-2;
   border-color: rgb(var(--overlay-rgb) / 0.12);
@@ -150,11 +127,6 @@
   color: var(--text-strong);
 }
 
-/**
- * The Email entry is a <button>, so none of the `.contact-chip a` rules above reach it.
- * Without this it kept the inherited 16px and, being an inline-flex row with the Copy
- * badge beside it, had no way to wrap — so it ran past the edge of its column.
- */
 .contact-chip .copy-email-btn {
   @apply flex-wrap justify-start gap-x-2 gap-y-1 text-[15px];
   overflow-wrap: anywhere;

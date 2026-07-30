@@ -14,7 +14,6 @@
   box-shadow: 0 35px 90px var(--project-accent, rgba(59, 130, 246, 0.35));
 }
 
-/* Rendered as a <button> so the lightbox is reachable by keyboard; strip the default chrome. */
 .project-card-media {
   @apply relative block h-48 w-full cursor-zoom-in overflow-hidden border-0 bg-transparent p-0 text-left;
 }

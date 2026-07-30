@@ -7,12 +7,14 @@ const Education = () => {
     <section className="section-shell" id="education">
       <div className="section-header">
         <p className="eyebrow">{t("sections.educationEyebrow")}</p>
+
         <h2 className="section-title">{t("sections.educationTitle")}</h2>
-        {/* TODO(i18n): hardcoded English, so it stays English in Turkish mode. Same
-            defect as the contact blurb — both want a locale key. */}
+
+        {}
         <p className="section-blurb">
           Where the engineering fundamentals were built, and where they go next — from a cloud-AI capstone to a master&apos;s in network architecture.
         </p>
+
       </div>
 
       <div className="timeline">
@@ -26,20 +28,29 @@ const Education = () => {
                 ) : null}
                 <div className="flex flex-col gap-1 text-left">
                   <div className="text-sm font-semibold text-accent-soft/90 tracking-[0.3em] uppercase">{item.period}</div>
+
                   <h3 className="timeline-title">{item.title}</h3>
+
                   <p className="timeline-meta">{item.location}</p>
+
                 </div>
+
               </div>
+
               <p className="mt-4 text-left text-neutral-300 leading-relaxed">{item.summary}</p>
+
               <ul className="timeline-list">
                 {item.highlights.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+
             </div>
+
           </article>
         ))}
       </div>
+
     </section>
   );
 };

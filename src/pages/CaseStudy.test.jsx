@@ -38,7 +38,9 @@ const renderAt = (path) =>
   render(
     <Routes>
       <Route path="/case-studies/:slug" element={<CaseStudy />} />
+
     </Routes>,
+
     { route: path }
   );
 
@@ -74,8 +76,6 @@ describe("CaseStudy route", () => {
 
 describe("caseStudies scaffold", () => {
   it("ships every study as a draft until its content is written", async () => {
-    // Guards the real data file (not the mock) against a scaffold going live with
-    // TODO placeholders still in it.
     const actual = await vi.importActual("../data/caseStudies.js");
     for (const study of actual.caseStudies) {
       const serialised = JSON.stringify(study);

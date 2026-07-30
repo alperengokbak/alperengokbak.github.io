@@ -1,14 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import Monogram from "./Monogram.jsx";
+import Logo from "./Logo.jsx";
 import SocialMediaLinks from "./SocialMediaComponent.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useTranslation } from "../i18n/useTranslation.js";
 
-// `key` indexes into the locale files; `href` is the section anchor.
-// Anchors are written root-relative at render time so they still resolve when the
-// nav is shown on a /case-studies/* route rather than on "/".
 const navItems = [
   { key: "about", href: "#about" },
   { key: "snapshot", href: "#snapshot" },
@@ -35,13 +32,11 @@ const NavBar = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
-    // The scroll-spy only has sections to observe on the home page.
     if (!onHome) return;
     const sectionIds = navItems.map((item) => item.href.slice(1));
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        // Pick the entry with the greatest intersection ratio that's actually intersecting
         const intersecting = entries.filter((e) => e.isIntersecting);
         if (intersecting.length === 0) return;
         const best = intersecting.reduce((a, b) =>
@@ -63,7 +58,6 @@ const NavBar = () => {
     return () => observerRef.current?.disconnect();
   }, [onHome]);
 
-  // Escape closes the mobile menu, and the page behind it must not scroll while it is open.
   useEffect(() => {
     if (!isMenuOpen) return;
 
@@ -85,9 +79,11 @@ const NavBar = () => {
     <header className="site-nav">
       <div className="nav-inner">
         <a href={hrefFor("#top")} className="nav-logo" aria-label={t("nav.scrollToTop")}>
-          <Monogram className="nav-logo-mark" size={36} decorative />
+          <Logo className="nav-logo-mark" size={36} decorative />
           <span className="nav-name nav-name-large">Alperen Gokbak</span>
+
         </a>
+
         <button
           className={`nav-hamburger lg:hidden ${isMenuOpen ? "nav-hamburger-open" : ""}`}
           type="button"
@@ -100,6 +96,7 @@ const NavBar = () => {
           <span />
           <span />
         </button>
+
         <nav className="nav-links" aria-label={t("nav.primary")}>
           {navItems.map((item) => {
             const id = item.href.slice(1);
@@ -114,25 +111,16 @@ const NavBar = () => {
             );
           })}
         </nav>
-        {/* Social links intentionally omitted here: they already appear in the hero
-            and again in the footer, and three copies crowded the bar. */}
+
+        {}
         <div className="nav-actions">
-          {/* The hero's download scrolls out of sight, so the CV is otherwise
-              unreachable from anywhere below it. The bar is pinned. */}
-          <a
-            className="nav-cv"
-            href="/Alperen_Gokbak_CV.pdf"
-            download="Alperen_Gokbak_CV.pdf"
-          >
-            {t("nav.downloadCv")}
-          </a>
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
+
       </div>
 
-      {/* `inert` keeps the closed menu out of the tab order and the accessibility tree —
-          opacity/translate alone leave all ten links focusable behind the page. */}
+      {}
       <div
         id="mobile-menu"
         className={`mobile-menu ${isMenuOpen ? "mobile-menu-open" : ""}`}
@@ -146,6 +134,7 @@ const NavBar = () => {
             </a>
           ))}
         </nav>
+
         <a
           className="mobile-cv"
           href="/Alperen_Gokbak_CV.pdf"
@@ -154,13 +143,16 @@ const NavBar = () => {
         >
           {t("nav.downloadCv")}
         </a>
+
         <span className="mobile-divider" aria-hidden="true" />
         <div className="mobile-social-block" aria-label={t("nav.socialMedia")}>
           <SocialMediaLinks className="mobile-social-links" />
           <LanguageSwitcher className="language-toggle-mobile" />
           <ThemeToggle className="theme-toggle-mobile" />
         </div>
+
       </div>
+
     </header>
   );
 };

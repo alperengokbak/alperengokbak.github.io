@@ -7,24 +7,16 @@ const hamburger = () => screen.getByRole("button", { name: /toggle navigation/i 
 const mobileMenu = () => document.getElementById("mobile-menu");
 
 describe("NavBar", () => {
-  it("offers the CV from the bar, which scrolling cannot otherwise reach", () => {
+  it("keeps the CV out of the bar itself", () => {
     render(<NavBar />);
 
-    // The hero's download button scrolls out of sight; the bar is pinned. There are two
-    // copies by design — the bar's is hidden below lg, where the mobile menu carries it.
-    const [barCv] = within(document.querySelector(".nav-actions")).getAllByRole("link", {
-      name: /download cv/i,
-    });
-    expect(barCv).toHaveAttribute("href", "/Alperen_Gokbak_CV.pdf");
-    expect(barCv).toHaveAttribute("download");
+    expect(within(document.querySelector(".nav-actions")).queryByRole("link")).toBeNull();
   });
 
-  it("also offers the CV inside the mobile menu", async () => {
+  it("offers the CV inside the mobile menu", async () => {
     const user = userEvent.setup();
     render(<NavBar />);
 
-    // The closed menu is inert and aria-hidden, so its contents are correctly absent
-    // from the accessibility tree until it is opened.
     await user.click(hamburger());
 
     const menuCv = within(mobileMenu()).getByRole("link", { name: /download cv/i });
@@ -65,9 +57,6 @@ describe("NavBar", () => {
     const user = userEvent.setup();
     render(<NavBar />);
 
-    // jsdom does not implement inert's focus behaviour, so assert the attribute
-    // contract that drives it in real browsers. This is the regression that made ten
-    // invisible links tabbable when the menu was closed.
     expect(mobileMenu()).toHaveAttribute("inert");
     expect(mobileMenu()).toHaveAttribute("aria-hidden", "true");
 

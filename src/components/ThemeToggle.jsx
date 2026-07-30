@@ -8,7 +8,6 @@ export default function ThemeToggle({ className = "" }) {
   const nextTheme = theme === "dark" ? "light" : "dark";
   const label = t("theme.switchTo", { theme: t(`theme.${nextTheme}`) });
 
-  // Dark-only for now; the toggle would be the only way to reach an unshipped theme.
   if (!LIGHT_THEME_ENABLED) return null;
 
   return (
@@ -20,6 +19,7 @@ export default function ThemeToggle({ className = "" }) {
       title={label}
     >
       <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
+
     </button>
   );
 }

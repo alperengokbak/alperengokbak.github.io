@@ -2,8 +2,6 @@ import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, vi } from "vitest";
 
-// jsdom implements none of these, but the app calls all of them on mount.
-
 class MockIntersectionObserver {
   constructor(callback, options) {
     this.callback = callback;
@@ -25,7 +23,6 @@ class MockIntersectionObserver {
     this.disconnected = true;
   }
 
-  /** Test helper: drive the callback as if the given entries had crossed the threshold. */
   trigger(entries) {
     this.callback(entries, this);
   }

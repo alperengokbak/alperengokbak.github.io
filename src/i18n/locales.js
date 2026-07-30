@@ -1,13 +1,3 @@
-/**
- * UI chrome only — navigation, section headings, button labels, form fields.
- *
- * Substantive content (the hero summary, job descriptions, project blurbs, education)
- * deliberately lives in src/data/ in English and is NOT translated here. Those are
- * professional claims in Alperen's own voice; machine-translating them into the
- * language of the people he is applying to work for would do more harm than good.
- * To localise them, add per-locale variants in src/data/ and select on locale there.
- */
-
 export const LOCALES = {
   en: { label: "English", short: "EN", htmlLang: "en" },
   tr: { label: "Türkçe", short: "TR", htmlLang: "tr" },
