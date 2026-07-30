@@ -134,15 +134,12 @@
 
 /* ── Contact details ────────────────────────────────────────────────────────── */
 
+/* Two columns, not three. Four entries divide evenly into a 2x2 with no orphan, and
+   at three columns each cell was only ~190px inside the 620px shell — narrower than
+   the email address, which then had nowhere to go. */
 .contact-info {
-  @apply grid gap-4 border-t pt-5 sm:grid-cols-3;
+  @apply grid gap-x-6 gap-y-5 border-t pt-5 sm:grid-cols-2;
   border-color: rgb(var(--overlay-rgb) / 0.12);
-}
-
-/* Base is the fourth of three columns and carries the longest value, so it takes its
-   own full-width row rather than orphaning itself under Email. */
-.contact-chip--wide {
-  @apply sm:col-span-3;
 }
 
 .contact-chip {
@@ -157,6 +154,16 @@
 .contact-chip a {
   @apply break-words text-[15px] font-semibold transition hover:text-accent;
   color: var(--text-strong);
+}
+
+/**
+ * The Email entry is a <button>, so none of the `.contact-chip a` rules above reach it.
+ * Without this it kept the inherited 16px and, being an inline-flex row with the Copy
+ * badge beside it, had no way to wrap — so it ran past the edge of its column.
+ */
+.contact-chip .copy-email-btn {
+  @apply flex-wrap justify-start gap-x-2 gap-y-1 text-[15px];
+  overflow-wrap: anywhere;
 }
 
 .contact-chip p {

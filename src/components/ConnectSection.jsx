@@ -249,7 +249,7 @@ const ConnectSection = () => {
               github.com/alperengokbak
             </a>
           </div>
-          <div className="contact-chip contact-chip--wide">
+          <div className="contact-chip">
             <span>{t("contact.base")}</span>
             <p>{t("contact.baseValue")}</p>
           </div>
