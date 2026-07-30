@@ -219,9 +219,6 @@ const ConnectSection = () => {
             </p>
           )}
 
-          <p className="form-fallback">
-            {t("contact.fallback")} <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-          </p>
         </form>
 
         <div className="contact-info">

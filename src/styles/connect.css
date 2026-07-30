@@ -122,14 +122,8 @@
   color: var(--status-bad);
 }
 
-.form-status-error a,
-.form-fallback a {
+.form-status-error a {
   @apply underline underline-offset-2 hover:[color:var(--text-strong)];
-}
-
-.form-fallback {
-  @apply text-sm;
-  color: var(--text-muted);
 }
 
 /* ── Contact details ────────────────────────────────────────────────────────── */
