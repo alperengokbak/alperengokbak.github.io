@@ -1,18 +1,18 @@
-import { render, screen, waitFor } from "../test/utils.jsx";
+import { act, render, screen, waitFor } from "../test/utils.jsx";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConnectSection from "./ConnectSection.jsx";
 import { buildMailto } from "../lib/contact.js";
 
 const fill = async (user, { name = "Ada", email = "ada@example.com", subject = "", message = "Hi there" } = {}) => {
-  await user.type(screen.getByPlaceholderText("Name"), name);
-  await user.type(screen.getByPlaceholderText("Email"), email);
-  if (subject) await user.type(screen.getByPlaceholderText("Subject"), subject);
-  await user.type(screen.getByPlaceholderText(/tell me about the problem/i), message);
+  await user.type(screen.getByLabelText(/^name$/i), name);
+  await user.type(screen.getByLabelText(/^email$/i), email);
+  if (subject) await user.type(screen.getByLabelText(/^subject$/i), subject);
+  await user.type(screen.getByLabelText(/^message$/i), message);
 };
 
 // The label flips to "Sending…" mid-request, so match either state.
-const submit = () => screen.getByRole("button", { name: /send message|sending/i });
+const submit = () => screen.getByRole("button", { name: /send message|sending|delivered/i });
 
 describe("buildMailto", () => {
   it("encodes the subject and body so newlines cannot inject mail headers", () => {
@@ -44,13 +44,47 @@ describe("ConnectSection", () => {
     vi.unstubAllEnvs();
   });
 
+  it("gives every field a label that survives typing", async () => {
+    // Placeholders disappear the moment someone types, so they are not an accessible
+    // name. Each field needs a real <label> a screen reader can announce at any point.
+    const user = userEvent.setup();
+    render(<ConnectSection />);
+
+    await user.type(screen.getByLabelText(/^name$/i), "Ada");
+
+    // The label must still resolve the field after typing — a placeholder would not.
+    for (const label of [/^name$/i, /^email$/i, /^subject$/i, /^message$/i]) {
+      expect(screen.getByLabelText(label)).toBeInTheDocument();
+    }
+  });
+
+  it("reports delivery on the button itself, then returns to idle", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({ success: true }) }));
+
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    render(<ConnectSection />);
+    await fill(user);
+    await user.click(submit());
+
+    // The action keeps one verb through the flow: send -> sending -> delivered.
+    expect(await screen.findByRole("button", { name: /delivered/i })).toBeInTheDocument();
+
+    await act(async () => {
+      vi.advanceTimersByTime(2600);
+    });
+
+    expect(screen.getByRole("button", { name: /send message/i })).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
   it("keeps the inputs controlled", async () => {
     const user = userEvent.setup();
     render(<ConnectSection />);
 
-    await user.type(screen.getByPlaceholderText("Name"), "Ada");
+    await user.type(screen.getByLabelText(/^name$/i), "Ada");
 
-    expect(screen.getByPlaceholderText("Name")).toHaveValue("Ada");
+    expect(screen.getByLabelText(/^name$/i)).toHaveValue("Ada");
   });
 
   it("posts the form to Web3Forms and confirms success", async () => {
@@ -103,8 +137,8 @@ describe("ConnectSection", () => {
     await user.click(submit());
 
     await screen.findByText(/on its way/i);
-    expect(screen.getByPlaceholderText("Name")).toHaveValue("");
-    expect(screen.getByPlaceholderText(/tell me about the problem/i)).toHaveValue("");
+    expect(screen.getByLabelText(/^name$/i)).toHaveValue("");
+    expect(screen.getByLabelText(/^message$/i)).toHaveValue("");
   });
 
   it("surfaces a failure and offers the mailto fallback", async () => {

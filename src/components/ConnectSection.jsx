@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCopyToClipboard } from "../hooks/useCopyToClipboard.js";
 import { CONTACT_EMAIL, buildMailto } from "../lib/contact.js";
 import { useTranslation } from "../i18n/useTranslation.js";
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
+/** How long the button holds "Delivered" before offering to send again. */
+const DELIVERED_LABEL_MS = 2600;
 
 /**
  * Read at call time rather than module scope so the value is not frozen at import.
@@ -28,6 +31,19 @@ const ConnectSection = () => {
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState("");
   const [emailCopied, copyEmail] = useCopyToClipboard();
+
+  /**
+   * Drives the button's "Delivered" label only.
+   *
+   * Deliberately separate from `status`: the confirmation message stays on screen for
+   * as long as `status` is "success", while the button returns to its idle label so the
+   * form is obviously ready to use again. Collapsing the two would either strand the
+   * button on "Delivered" or yank the confirmation away from a screen reader mid-read.
+   */
+  const [justDelivered, setJustDelivered] = useState(false);
+  const deliveredTimer = useRef(null);
+
+  useEffect(() => () => clearTimeout(deliveredTimer.current), []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -73,6 +89,10 @@ const ConnectSection = () => {
 
       setStatus("success");
       setFormData(initialForm);
+
+      setJustDelivered(true);
+      clearTimeout(deliveredTimer.current);
+      deliveredTimer.current = setTimeout(() => setJustDelivered(false), DELIVERED_LABEL_MS);
     } catch (error) {
       setStatus("error");
       setErrorMessage(error.message || "Something went wrong.");
@@ -86,55 +106,79 @@ const ConnectSection = () => {
       <div className="section-header">
         <p className="eyebrow">{t("sections.contactEyebrow")}</p>
         <h2 className="section-title">{t("sections.contactTitle")}</h2>
-        <p className="section-blurb">
-          Have an opportunity, project idea, or just want to connect? I&apos;d love to hear from you.
-        </p>
+        <p className="section-blurb">{t("sections.contactBlurb")}</p>
       </div>
 
       <div className="connect-section">
         <form className="connect-card contact-form" onSubmit={handleSubmit}>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="contact-row">
+            <div className="contact-group">
+              <label className="contact-label" htmlFor="contact-name">
+                {t("contact.name")}
+              </label>
+              <input
+                className="contact-field"
+                id="contact-name"
+                type="text"
+                name="name"
+                autoComplete="name"
+                value={formData.name}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                required
+              />
+            </div>
+            <div className="contact-group">
+              <label className="contact-label" htmlFor="contact-email">
+                {t("contact.email")}
+              </label>
+              <input
+                className="contact-field"
+                id="contact-email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                required
+              />
+            </div>
+          </div>
+          <div className="contact-group">
+            <label className="contact-label" htmlFor="contact-subject">
+              {t("contact.subject")}
+            </label>
             <input
               className="contact-field"
+              id="contact-subject"
               type="text"
-              name="name"
-              placeholder={t("contact.name")}
-              autoComplete="name"
-              value={formData.name}
+              name="subject"
+              value={formData.subject}
               onChange={handleChange}
               disabled={isSubmitting}
-              required
             />
-            <input
-              className="contact-field"
-              type="email"
-              name="email"
-              placeholder={t("contact.email")}
-              autoComplete="email"
-              value={formData.email}
+          </div>
+          <div className="contact-group">
+            <label className="contact-label" htmlFor="contact-message">
+              {t("contact.messageLabel")}
+            </label>
+            {/* A persistent hint rather than a placeholder: it says what to write and
+                stays visible while the visitor writes it. */}
+            <p className="contact-hint" id="contact-message-hint">
+              {t("contact.message")}
+            </p>
+            <textarea
+              className="contact-field contact-textarea"
+              id="contact-message"
+              name="message"
+              aria-describedby="contact-message-hint"
+              value={formData.message}
               onChange={handleChange}
               disabled={isSubmitting}
               required
             />
           </div>
-          <input
-            className="contact-field"
-            type="text"
-            name="subject"
-            placeholder={t("contact.subject")}
-            value={formData.subject}
-            onChange={handleChange}
-            disabled={isSubmitting}
-          />
-          <textarea
-            className="contact-field min-h-[160px]"
-            name="message"
-            placeholder={t("contact.message")}
-            value={formData.message}
-            onChange={handleChange}
-            disabled={isSubmitting}
-            required
-          />
 
           {/* Honeypot: hidden from people, irresistible to bots. */}
           <input
@@ -148,8 +192,20 @@ const ConnectSection = () => {
             aria-hidden="true"
           />
 
-          <button type="submit" className="connect-button" disabled={isSubmitting}>
-            {isSubmitting ? t("contact.sending") : t("contact.send")}
+          <button
+            type="submit"
+            className="connect-button"
+            disabled={isSubmitting}
+            data-state={isSubmitting ? "sending" : justDelivered ? "delivered" : "idle"}
+          >
+            {isSubmitting
+              ? t("contact.sending")
+              : justDelivered
+                ? t("contact.delivered")
+                : t("contact.send")}
+            {/* Decorative: the state is already carried by the label above, so the rail
+                is hidden from assistive tech and disabled under reduced motion. */}
+            <span className="connect-button-rail" aria-hidden="true" />
           </button>
 
           {/* Outcome is announced, so a screen reader user is not left guessing. */}
@@ -193,7 +249,7 @@ const ConnectSection = () => {
               github.com/alperengokbak
             </a>
           </div>
-          <div className="contact-chip">
+          <div className="contact-chip contact-chip--wide">
             <span>{t("contact.base")}</span>
             <p>{t("contact.baseValue")}</p>
           </div>

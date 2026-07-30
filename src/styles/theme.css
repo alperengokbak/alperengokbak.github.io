@@ -43,6 +43,16 @@
   --accent-soft: #fed7aa;      /* 14.60:1 */
   /* Text ON the accent. White would be 2.80:1 and fail; dark is 7.05:1. */
   --accent-contrast: #0c0a09;
+  /* A darker step of the accent, not a new hue. Replaces a hover that mixed
+     --overlay-rgb at 0.9 and turned the primary CTA white. */
+  --accent-hover: #ea580c;     /*  5.55:1 for --accent-contrast on it */
+
+  /* State, not category — see the colour policy note above. Success and failure are
+     transient outcomes rather than taxonomy, so they sit outside the category hues
+     rather than competing for one. Rendering a failed send in the brand orange would
+     leave the two outcomes distinguishable only by wording. */
+  --status-ok: #4ade80;        /* 11.34:1 on ground */
+  --status-bad: #f87171;       /*  7.14:1 on ground */
 
   /* Continuous with --ground. The previous navy (#050816 -> #0f172a) left a visible
      seam where the hero met the neutral-black page below it. */
@@ -88,6 +98,11 @@
   --accent: #c2410c;           /*  4.89:1 on ground; 5.18:1 for white on accent */
   --accent-soft: #9a3412;      /*  6.89:1 — used for links and small caps text */
   --accent-contrast: #ffffff;
+  --accent-hover: #9a3412;     /*  7.31:1 for white on it */
+
+  /* Darkened for the paper ground; same two meanings as in dark. */
+  --status-ok: #15803d;        /*  4.73:1 on ground */
+  --status-bad: #b91c1c;       /*  6.10:1 on ground */
 
   --hero-gradient: linear-gradient(135deg, #f4efe6 0%, #faf8f5 45%, #efe8dd 100%);
   --hero-wash-warm: rgba(249, 115, 22, 0.14);

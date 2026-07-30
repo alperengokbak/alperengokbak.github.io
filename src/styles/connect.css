@@ -1,30 +1,111 @@
+/**
+ * Contact section.
+ *
+ * One centred column rather than a form/panel split. The old layout was
+ * `md:grid-cols-[1fr,auto]`, and `auto` sizes to the widest child — which was the email
+ * address at 18px semibold, so the address decided how much room the form got.
+ */
 .connect-section {
-  @apply grid w-full max-w-5xl gap-8 md:grid-cols-[1fr,auto];
+  @apply mx-auto flex w-full max-w-[620px] flex-col gap-6;
 }
 
 .contact-form {
-  @apply flex flex-col gap-4 text-left;
+  @apply flex flex-col gap-5 text-left;
+}
+
+/* Name and email share a row on anything wider than a phone. */
+.contact-row {
+  @apply grid gap-5 sm:grid-cols-2;
+}
+
+.contact-group {
+  @apply flex flex-col gap-2;
+}
+
+/* The same small tracked caps as .contact-chip, so the form and the contact
+   details below it read as one system rather than two. */
+.contact-label {
+  @apply font-display text-[11px] font-semibold uppercase tracking-[0.18em];
+  color: var(--text-muted);
+}
+
+/* A hint, not a placeholder: it stays put while the visitor types. */
+.contact-hint {
+  @apply -mt-1 text-sm;
+  color: var(--text-faint);
 }
 
 .contact-field {
-  @apply w-full rounded-2xl border bg-transparent px-4 py-3 outline-none transition placeholder:[color:var(--text-faint)] focus:border-accent;
+  @apply w-full rounded-2xl border bg-transparent px-4 py-3 outline-none transition;
   border-color: rgb(var(--overlay-rgb) / 0.2);
   color: var(--text-strong);
 }
 
-.connect-button {
-  @apply inline-flex items-center justify-center rounded-2xl px-6 py-3 font-semibold transition hover:[background-color:rgb(var(--overlay-rgb)/0.9)];
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+.contact-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(var(--overlay-rgb) / 0.08);
 }
 
-.connect-button:disabled {
-  @apply cursor-not-allowed opacity-60 hover:bg-accent;
+.contact-textarea {
+  @apply min-h-[150px] resize-y;
 }
 
 .contact-field:disabled {
   @apply cursor-not-allowed opacity-60;
 }
+
+/* ── Submit control ─────────────────────────────────────────────────────────── */
+
+.connect-button {
+  @apply relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-3 font-semibold transition;
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.connect-button:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.connect-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.connect-button[data-state="delivered"] {
+  background-color: var(--status-ok);
+  color: var(--ground);
+}
+
+.connect-button:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+/* Reads as a job in flight. The label already says "Sending…", so this carries no
+   information on its own and is safe to drop for reduced-motion users. */
+.connect-button-rail {
+  @apply pointer-events-none absolute bottom-0 left-0 h-[3px] w-full origin-left scale-x-0;
+  background-color: rgb(0 0 0 / 0.25);
+}
+
+.connect-button[data-state="sending"] .connect-button-rail {
+  animation: connect-rail 1.1s ease-in-out infinite;
+}
+
+@keyframes connect-rail {
+  0% { transform: scaleX(0); transform-origin: left; }
+  55% { transform: scaleX(1); transform-origin: left; }
+  56% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connect-button[data-state="sending"] .connect-button-rail {
+    animation: none;
+    transform: scaleX(0.4);
+  }
+}
+
+/* ── Status ─────────────────────────────────────────────────────────────────── */
 
 /* Reserves no space when empty, so the success line does not shift the form. */
 .form-status:empty {
@@ -32,11 +113,13 @@
 }
 
 .form-status {
-  @apply text-sm font-semibold text-emerald-400;
+  @apply text-sm font-semibold;
+  color: var(--status-ok);
 }
 
 .form-status-error {
-  @apply text-sm font-semibold text-red-400;
+  @apply text-sm font-semibold;
+  color: var(--status-bad);
 }
 
 .form-status-error a,
@@ -49,27 +132,34 @@
   color: var(--text-muted);
 }
 
+/* ── Contact details ────────────────────────────────────────────────────────── */
+
 .contact-info {
-  @apply flex h-full flex-col gap-6 rounded-3xl border bg-gradient-to-br from-[var(--ground-sunken)] to-[color-mix(in_srgb,var(--ground-sunken)_40%,transparent)] p-6;
-  border-color: rgb(var(--overlay-rgb) / 0.1);
+  @apply grid gap-4 border-t pt-5 sm:grid-cols-3;
+  border-color: rgb(var(--overlay-rgb) / 0.12);
+}
+
+/* Base is the fourth of three columns and carries the longest value, so it takes its
+   own full-width row rather than orphaning itself under Email. */
+.contact-chip--wide {
+  @apply sm:col-span-3;
 }
 
 .contact-chip {
-  @apply flex items-center gap-3 border-b pb-4 text-left last:border-none;
-  border-color: rgb(var(--overlay-rgb) / 0.05);
+  @apply flex min-w-0 flex-col gap-1 text-left;
 }
 
 .contact-chip span {
-  @apply text-sm font-semibold uppercase tracking-[0.2em];
-  color: var(--text-muted);
+  @apply font-display text-[11px] font-semibold uppercase tracking-[0.18em];
+  color: var(--text-faint);
 }
 
 .contact-chip a {
-  @apply text-lg font-semibold transition hover:text-accent;
+  @apply break-words text-[15px] font-semibold transition hover:text-accent;
   color: var(--text-strong);
 }
 
 .contact-chip p {
-  @apply text-lg;
+  @apply text-[15px];
   color: var(--text-secondary);
 }

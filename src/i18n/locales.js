@@ -60,6 +60,8 @@ export const translations = {
       blogsEyebrow: "Writing",
       blogsTitle: "Blogs",
       contactEyebrow: "Let's Connect",
+      contactBlurb:
+        "Have an opportunity, project idea, or just want to connect? I'd love to hear from you.",
       contactTitle: "Start a Conversation",
     },
     projects: {
@@ -77,9 +79,11 @@ export const translations = {
       name: "Name",
       email: "Email",
       subject: "Subject",
+      messageLabel: "Message",
       message: "Tell me about the problem you want to solve...",
       send: "Send Message",
       sending: "Sending…",
+      delivered: "Delivered",
       success: "✓ Thanks — your message is on its way. I'll reply soon.",
       errorPrefix: "Could not send that",
       emailDirectly: "Email me directly",
@@ -144,6 +148,8 @@ export const translations = {
       blogsEyebrow: "Yazılar",
       blogsTitle: "Blog",
       contactEyebrow: "Bağlantı Kuralım",
+      contactBlurb:
+        "Bir fırsat, proje fikri ya da sadece merhaba demek için mi buradasınız? Sizden haber almak isterim.",
       contactTitle: "Bir Sohbet Başlat",
     },
     projects: {
@@ -161,9 +167,11 @@ export const translations = {
       name: "Ad",
       email: "E-posta",
       subject: "Konu",
+      messageLabel: "Mesaj",
       message: "Çözmek istediğiniz problemden bahsedin...",
       send: "Mesaj Gönder",
       sending: "Gönderiliyor…",
+      delivered: "İletildi",
       success: "✓ Teşekkürler — mesajınız yola çıktı. Kısa sürede döneceğim.",
       errorPrefix: "Mesaj gönderilemedi",
       emailDirectly: "Doğrudan e-posta gönderin",
