@@ -8,8 +8,10 @@ const Education = () => {
       <div className="section-header">
         <p className="eyebrow">{t("sections.educationEyebrow")}</p>
         <h2 className="section-title">{t("sections.educationTitle")}</h2>
+        {/* TODO(i18n): hardcoded English, so it stays English in Turkish mode. Same
+            defect as the contact blurb — both want a locale key. */}
         <p className="section-blurb">
-          Where the engineering fundamentals were built — from systems and architecture coursework to a cloud-AI capstone.
+          Where the engineering fundamentals were built, and where they go next — from a cloud-AI capstone to a master&apos;s in network architecture.
         </p>
       </div>
 
