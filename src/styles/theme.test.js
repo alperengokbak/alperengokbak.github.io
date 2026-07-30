@@ -9,6 +9,16 @@ const stylesheets = () =>
     .filter((file) => file.endsWith(".css"))
     .map((file) => [file, readFileSync(resolve(STYLES_DIR, file), "utf8")]);
 
+const sourceFiles = (dir = "src", acc = []) => {
+  for (const entry of readdirSync(resolve(process.cwd(), dir), { withFileTypes: true })) {
+    const path = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) sourceFiles(path, acc);
+    else if (/\.(jsx|css)$/.test(entry.name) && !entry.name.endsWith(".test.jsx"))
+      acc.push([path, readFileSync(resolve(process.cwd(), path), "utf8")]);
+  }
+  return acc;
+};
+
 const PALETTE_CLASS =
   /\b(?:text|bg|border|from|via|to)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d{2,3}\b/g;
 
@@ -44,6 +54,14 @@ describe("the colour policy in theme.css", () => {
   it("is not undercut by hardcoded palette utilities in any stylesheet", () => {
     const offenders = stylesheets().flatMap(([file, css]) =>
       (css.match(PALETTE_CLASS) ?? []).map((match) => `${file}: ${match}`)
+    );
+
+    expect(offenders).toEqual([]);
+  });
+
+  it("is not undercut by hardcoded palette utilities in components either", () => {
+    const offenders = sourceFiles().flatMap(([file, src]) =>
+      (src.match(PALETTE_CLASS) ?? []).map((match) => `${file}: ${match}`)
     );
 
     expect(offenders).toEqual([]);

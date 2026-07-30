@@ -21,7 +21,7 @@ const SkillHighlights = () => {
           <article key={area.title} className="skill-card">
             <h3 className="skill-title">{area.title}</h3>
 
-            <p className="text-neutral-300 leading-relaxed">{area.description}</p>
+            <p className="[color:var(--text-secondary)] leading-relaxed">{area.description}</p>
 
             <div className="skill-pill-container">
               {area.stack.map((item) => (

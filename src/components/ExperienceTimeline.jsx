@@ -43,7 +43,7 @@ const ExperienceTimeline = () => {
 
               </div>
 
-              <p className="mt-4 text-left text-neutral-300 leading-relaxed">{item.summary}</p>
+              <p className="mt-4 text-left [color:var(--text-secondary)] leading-relaxed">{item.summary}</p>
 
               <ul className="timeline-list">
                 {item.highlights.map((point) => (
