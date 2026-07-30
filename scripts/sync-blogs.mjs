@@ -1,15 +1,3 @@
-/**
- * Regenerates the Blogs section from the Medium RSS feed.
- *
- *   node scripts/sync-blogs.mjs
- *
- * Writes src/data/blogs.generated.js and downloads each post's cover image into
- * src/assets/blog-covers/generated/. Covers are vendored rather than hotlinked so the
- * page keeps working under the `img-src 'self'` CSP and never calls Medium's CDN.
- *
- * Curation (topic label and accent colour) stays hand-maintained in src/data/blogs.js;
- * this script only owns the facts that change when a post is published or edited.
- */
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -32,12 +20,11 @@ const decodeEntities = (s) =>
     .replace(/&#x27;|&apos;/g, "'")
     .replace(/&nbsp;/g, " ");
 
-/** Medium appends ?source=rss-… tracking parameters; strip them for a stable, clean URL. */
 const cleanUrl = (url) => url.split("?")[0];
 
 const slugify = (url) => {
   const tail = cleanUrl(url).split("/").pop() ?? "post";
-  // Medium slugs end in a hex id; keep it, it is what makes them unique.
+
   return tail.toLowerCase().replace(/[^a-z0-9-]/g, "-").slice(0, 80);
 };
 
@@ -47,7 +34,7 @@ const summarise = (html) => {
     .replace(/<[^>]+>/g, " ");
   const text = decodeEntities(withoutTags).replace(/\s+/g, " ").trim();
   if (text.length <= 200) return text;
-  // Cut on a word boundary rather than mid-word.
+
   return `${text.slice(0, 200).replace(/\s+\S*$/, "")}…`;
 };
 
@@ -57,12 +44,6 @@ const formatDate = (pubDate) => {
   return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 };
 
-/**
- * Fetches a post's cover and re-encodes it to an 800px-wide WebP.
- *
- * Medium's own variants are PNG screenshots that run 260 kB–720 kB; re-encoding keeps
- * these at a few tens of kB, which matters because they are all rendered as ~400px cards.
- */
 async function downloadCover(imageUrl, slug) {
   const source = imageUrl.replace(/\/max\/\d+\//, "/max/1024/");
   const response = await fetch(source);

@@ -1,26 +1,15 @@
-/**
- * Downloads the woff2 files for the site's two typefaces and emits a local
- * @font-face stylesheet, so the app never calls fonts.googleapis.com at runtime.
- *
- * Re-run with: node scripts/fetch-fonts.mjs
- *
- * Only the latin and latin-ext subsets are kept — latin-ext carries the Turkish
- * characters (ğ, ş, ı, İ) needed for the Turkish locale.
- */
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const GOOGLE_CSS =
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap";
 
-// A modern desktop UA is what makes the API serve woff2 rather than legacy formats.
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
 
 const OUT_DIR = join(process.cwd(), "src/assets/fonts");
 const CSS_OUT = join(process.cwd(), "src/styles/fonts.css");
 
-// Latin covers ASCII + ö/ü; latin-ext adds the Turkish set.
 const WANTED_SUBSETS = ["U+0000-00FF", "U+0100-02BA"];
 
 const slug = (family, weight, subset) =>
