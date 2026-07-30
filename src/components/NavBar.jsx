@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import Monogram from "./Monogram.jsx";
 import SocialMediaLinks from "./SocialMediaComponent.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
@@ -84,7 +85,7 @@ const NavBar = () => {
     <header className="site-nav">
       <div className="nav-inner">
         <a href={hrefFor("#top")} className="nav-logo" aria-label={t("nav.scrollToTop")}>
-          <img src="/monogram.svg" alt="" className="nav-logo-mark" width="36" height="36" aria-hidden="true" />
+          <Monogram className="nav-logo-mark" size={36} decorative />
           <span className="nav-name nav-name-large">Alperen Gokbak</span>
         </a>
         <button
