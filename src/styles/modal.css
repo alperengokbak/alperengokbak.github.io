@@ -8,7 +8,7 @@
   max-width: min(92vw, 1400px);
   max-height: 90vh;
   border-color: rgb(var(--overlay-rgb) / 0.12);
-  background-color: var(--ground-raised);
+  background-color: var(--ground);
   box-shadow: 0 35px 90px rgb(0 0 0 / 0.5);
 }
 
@@ -52,7 +52,7 @@
 
 .project-lightbox-counter {
   @apply text-center text-xs font-semibold uppercase tracking-[0.3em] md:text-right;
-  color: var(--project-accent, var(--text-faint));
+  color: var(--text-muted);
 }
 
 .project-lightbox-arrow {
@@ -84,6 +84,7 @@
 @media (max-width: 767px) {
   .project-lightbox {
     @apply items-end p-0;
+    background-color: color-mix(in srgb, var(--ground) 93%, transparent);
   }
 
   .project-lightbox-panel {
