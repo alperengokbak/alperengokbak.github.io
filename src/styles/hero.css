@@ -115,7 +115,7 @@
 }
 
 .hero-social-links {
-  @apply mt-2 gap-5;
+  @apply mt-2 gap-1;
 }
 
 .hero-social-links .social-media-btn {

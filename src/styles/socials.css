@@ -3,7 +3,7 @@
 }
 
 .social-media-btn {
-  @apply inline-flex items-center justify-center p-1 transition duration-200;
+  @apply inline-flex min-h-[44px] min-w-[44px] items-center justify-center p-1 transition duration-200;
   color: var(--text-secondary);
 }
 
