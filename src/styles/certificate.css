@@ -24,7 +24,7 @@
 }
 
 .certificate-link {
-  @apply inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] transition hover:[color:var(--text-strong)];
+  @apply inline-flex min-h-[44px] items-center text-xs font-semibold uppercase tracking-[0.3em] transition hover:[color:var(--text-strong)];
   color: var(--accent-soft);
 }
 
