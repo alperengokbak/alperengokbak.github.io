@@ -10,8 +10,8 @@
 
 .project-card:hover {
   transform: translateY(-6px);
-  border-color: var(--project-accent, rgb(var(--overlay-rgb) / 0.25));
-  box-shadow: 0 35px 90px var(--project-accent, rgba(59, 130, 246, 0.35));
+  border-color: color-mix(in srgb, var(--project-accent, rgb(var(--overlay-rgb) / 0.25)) 70%, transparent);
+  box-shadow: 0 35px 90px color-mix(in srgb, var(--project-accent, #3b82f6) 35%, transparent);
 }
 
 .project-card-media {

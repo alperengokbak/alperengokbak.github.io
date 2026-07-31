@@ -10,8 +10,8 @@
 
 .blog-card:hover {
   transform: translateY(-6px);
-  border-color: var(--card-accent, rgb(var(--overlay-rgb) / 0.2));
-  box-shadow: 0 35px 90px var(--card-accent, rgba(59, 130, 246, 0.35));
+  border-color: color-mix(in srgb, var(--card-accent, rgb(var(--overlay-rgb) / 0.2)) 70%, transparent);
+  box-shadow: 0 35px 90px color-mix(in srgb, var(--card-accent, #3b82f6) 35%, transparent);
 }
 
 .blog-card-media {
