@@ -54,3 +54,5 @@ storybook-static
 id_rsa
 id_dsa
 *.ppk
+# Local screenshot captures from scripts/shoot.mjs
+shots/
