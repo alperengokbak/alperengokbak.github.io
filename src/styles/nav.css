@@ -128,10 +128,11 @@
 }
 
 .mobile-menu {
-  @apply pointer-events-none invisible fixed top-[72px] left-0 right-0 z-30 -translate-y-full px-6 py-6 opacity-0 transition duration-300 lg:hidden;
-  background-color: var(--ground-raised);
+  @apply pointer-events-none invisible fixed inset-x-0 top-[72px] bottom-0 z-30 flex -translate-y-2 flex-col overflow-y-auto px-6 pb-10 pt-4 opacity-0 transition duration-300 lg:hidden;
+  background-color: var(--ground);
   color: var(--text-strong);
   transition-property: opacity, transform, visibility;
+  overscroll-behavior: contain;
 }
 
 .mobile-menu-open {
@@ -139,11 +140,11 @@
 }
 
 .mobile-menu nav {
-  @apply flex flex-col gap-3 text-base;
+  @apply flex flex-col;
 }
 
 .mobile-cv {
-  @apply rounded-2xl border px-4 py-3 text-center font-semibold no-underline transition;
+  @apply mt-6 inline-flex items-center justify-center rounded-full border px-5 py-3 font-semibold no-underline transition;
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);
   color: var(--accent);
 }
@@ -154,18 +155,36 @@
 }
 
 .mobile-link {
-  @apply rounded-2xl border px-4 py-3 text-center font-medium transition hover:[background-color:rgb(var(--overlay-rgb)/0.1)];
-  border-color: rgb(var(--overlay-rgb) / 0.1);
-  color: var(--text-primary);
+  @apply relative self-start py-3 text-lg font-semibold transition duration-200;
+  color: var(--text-secondary);
+}
+
+.mobile-link::after {
+  content: "";
+  @apply absolute left-0 right-0 bottom-2 h-0.5 origin-left scale-x-0 transition duration-200 ease-out;
+  background-color: rgba(251, 146, 60, 0.9);
+}
+
+.mobile-link:hover,
+.mobile-link:focus-visible {
+  color: var(--text-strong);
+}
+
+.mobile-link-active {
+  color: var(--text-strong);
+}
+
+.mobile-link-active::after {
+  @apply scale-x-100;
 }
 
 .mobile-divider {
-  @apply mt-6 block h-px w-full;
+  @apply mt-6 block h-px w-full flex-shrink-0;
   background-color: rgb(var(--overlay-rgb) / 0.1);
 }
 
 .mobile-social-block {
-  @apply mt-6 flex items-center justify-center;
+  @apply mt-6 flex flex-shrink-0 items-center justify-center gap-2;
 }
 
 .mobile-social-links {

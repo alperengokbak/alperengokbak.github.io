@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
 import Logo from "./Logo.jsx";
 import SocialMediaLinks from "./SocialMediaComponent.jsx";
@@ -19,6 +20,8 @@ const navItems = [
   { key: "contact", href: "#contact" },
 ];
 
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 const NavBar = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
@@ -27,6 +30,8 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
   const observerRef = useRef(null);
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
@@ -62,16 +67,38 @@ const NavBar = () => {
     if (!isMenuOpen) return;
 
     const onKeyDown = (event) => {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = menuRef.current?.querySelectorAll(FOCUSABLE);
+      if (!focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
+    const hamburger = hamburgerRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
+    menuRef.current?.querySelector(FOCUSABLE)?.focus();
 
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
+      hamburger?.focus();
     };
   }, [isMenuOpen]);
 
@@ -85,6 +112,7 @@ const NavBar = () => {
         </a>
 
         <button
+          ref={hamburgerRef}
           className={`nav-hamburger lg:hidden ${isMenuOpen ? "nav-hamburger-open" : ""}`}
           type="button"
           aria-label={t("nav.toggleNavigation")}
@@ -120,38 +148,50 @@ const NavBar = () => {
 
       </div>
 
-      {}
-      <div
-        id="mobile-menu"
-        className={`mobile-menu ${isMenuOpen ? "mobile-menu-open" : ""}`}
-        inert={isMenuOpen ? undefined : ""}
-        aria-hidden={!isMenuOpen}
-      >
-        <nav aria-label={t("nav.mobile")}>
-          {navItems.map((item) => (
-            <a key={item.key} href={hrefFor(item.href)} className="mobile-link" onClick={closeMenu}>
-              {t(`nav.${item.key}`)}
-            </a>
-          ))}
-        </nav>
-
-        <a
-          className="mobile-cv"
-          href="/Alperen_Gokbak_CV.pdf"
-          download="Alperen_Gokbak_CV.pdf"
-          onClick={closeMenu}
+      {createPortal(
+        <div
+          id="mobile-menu"
+          ref={menuRef}
+          className={`mobile-menu ${isMenuOpen ? "mobile-menu-open" : ""}`}
+          inert={isMenuOpen ? undefined : ""}
+          aria-hidden={!isMenuOpen}
         >
-          {t("nav.downloadCv")}
-        </a>
+          <nav aria-label={t("nav.mobile")}>
+            {navItems.map((item) => {
+              const id = item.href.slice(1);
+              return (
+                <a
+                  key={item.key}
+                  href={hrefFor(item.href)}
+                  className={`mobile-link ${activeId === id ? "mobile-link-active" : ""}`}
+                  aria-current={activeId === id ? "true" : undefined}
+                  onClick={closeMenu}
+                >
+                  {t(`nav.${item.key}`)}
+                </a>
+              );
+            })}
+          </nav>
 
-        <span className="mobile-divider" aria-hidden="true" />
-        <div className="mobile-social-block" aria-label={t("nav.socialMedia")}>
-          <SocialMediaLinks className="mobile-social-links" />
-          <LanguageSwitcher className="language-toggle-mobile" />
-          <ThemeToggle className="theme-toggle-mobile" />
-        </div>
+          <a
+            className="mobile-cv"
+            href="/Alperen_Gokbak_CV.pdf"
+            download="Alperen_Gokbak_CV.pdf"
+            onClick={closeMenu}
+          >
+            {t("nav.downloadCv")}
+          </a>
 
-      </div>
+          <span className="mobile-divider" aria-hidden="true" />
+          <div className="mobile-social-block" aria-label={t("nav.socialMedia")}>
+            <SocialMediaLinks className="mobile-social-links" />
+            <LanguageSwitcher className="language-toggle-mobile" />
+            <ThemeToggle className="theme-toggle-mobile" />
+          </div>
+
+        </div>,
+        document.body
+      )}
 
     </header>
   );
