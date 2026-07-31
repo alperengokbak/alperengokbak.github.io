@@ -1,34 +1,94 @@
-.image-model-container {
-  @apply fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8;
+.project-lightbox {
+  @apply fixed inset-0 z-50 flex items-center justify-center gap-3 p-4 md:gap-6 md:p-8;
   background-color: var(--scrim);
 }
 
-.image-model-figure {
-  @apply relative flex items-center justify-center;
-  width: min(92vw, 1600px);
-  height: min(86vh, 1000px);
+.project-lightbox-panel {
+  @apply flex min-h-0 flex-col overflow-hidden rounded-[28px] border md:rounded-[36px];
+  max-width: min(92vw, 1400px);
+  max-height: 90vh;
+  border-color: rgb(var(--overlay-rgb) / 0.12);
+  background-color: var(--ground-raised);
+  box-shadow: 0 35px 90px rgb(0 0 0 / 0.5);
 }
 
-.image-model-img {
-  @apply rounded-lg border shadow-lg;
-  width: 100%;
-  height: 100%;
+.project-lightbox-frame {
+  @apply flex min-h-0 justify-center;
+  background-color: var(--ground-sunken);
+}
+
+.project-lightbox-img {
+  @apply block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-color: rgb(var(--overlay-rgb) / 0.15);
 }
 
-.image-model-btn {
-  @apply absolute -top-2 right-0 flex h-10 w-10 items-center justify-center rounded-full text-2xl leading-none transition md:-top-4 md:-right-4 md:h-12 md:w-12 md:text-3xl;
+.project-lightbox-caption {
+  @apply flex flex-shrink-0 flex-col gap-3 border-t p-5 md:p-6;
+  border-color: rgb(var(--overlay-rgb) / 0.1);
+  color: var(--text-secondary);
+}
 
+.project-lightbox-heading {
+  @apply flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1;
+}
+
+.project-lightbox-title {
+  @apply text-xl font-semibold md:text-2xl;
+  color: var(--text-strong);
+}
+
+.project-lightbox-meta {
+  @apply text-xs font-semibold uppercase tracking-[0.3em];
+  color: var(--text-muted);
+}
+
+.project-lightbox-actions {
+  @apply flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-3;
+}
+
+.project-lightbox-counter {
+  @apply text-center text-xs font-semibold uppercase tracking-[0.3em] md:text-right;
+  color: var(--project-accent, var(--text-faint));
+}
+
+.project-lightbox-arrow {
+  @apply hidden h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-3xl leading-none transition md:flex;
   background-color: rgb(255 255 255 / 0.12);
   color: #ffffff;
 }
 
-.image-model-btn:hover {
+.project-lightbox-arrow:hover {
   background-color: rgb(255 255 255 / 0.22);
 }
 
-.image-model-btn:focus-visible {
+.project-lightbox-close {
+  @apply absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full text-2xl leading-none transition md:right-8 md:top-8 md:h-12 md:w-12 md:text-3xl;
+  background-color: rgb(255 255 255 / 0.12);
+  color: #ffffff;
+}
+
+.project-lightbox-close:hover {
+  background-color: rgb(255 255 255 / 0.22);
+}
+
+.project-lightbox-arrow:focus-visible,
+.project-lightbox-close:focus-visible {
   @apply outline-none ring-2;
   --tw-ring-color: var(--accent);
+}
+
+@media (max-width: 767px) {
+  .project-lightbox {
+    @apply items-end p-0;
+  }
+
+  .project-lightbox-panel {
+    @apply w-full rounded-b-none;
+    max-width: 100%;
+    max-height: 92vh;
+  }
 }

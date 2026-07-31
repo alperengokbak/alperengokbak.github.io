@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ImageModal from "./ImageModal";
+import ProjectLightbox from "./ProjectLightbox";
 import { projects, projectCategories } from "../data/projects.js";
 import { Link } from "react-router-dom";
 import { caseStudyForProject } from "../data/caseStudies.js";
@@ -17,21 +17,17 @@ const accentFor = (category) => ACCENT_VAR[category] ?? "var(--cat-neutral)";
 
 export default function Project() {
   const { t } = useTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
   const [activeFilter, setActiveFilter] = useState(ALL);
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-  };
-
   const filtered = activeFilter === ALL ? projects : projects.filter((p) => p.category === activeFilter);
+
+  const closeLightbox = () => setOpenIndex(null);
+
+  const changeFilter = (next) => {
+    setOpenIndex(null);
+    setActiveFilter(next);
+  };
 
   return (
     <section className="section-shell" id="projects">
@@ -50,7 +46,7 @@ export default function Project() {
         {FILTERS.map((f) => (
           <button
             key={f}
-            onClick={() => setActiveFilter(f)}
+            onClick={() => changeFilter(f)}
             className={`filter-pill ${activeFilter === f ? "filter-pill-active" : ""}`}
             aria-pressed={activeFilter === f}
           >
@@ -60,12 +56,12 @@ export default function Project() {
       </div>
 
       <div className="project-card-grid">
-        {filtered.map((project) => (
+        {filtered.map((project, i) => (
           <article key={project.title} className="project-card" style={{ "--project-accent": accentFor(project.category) }}>
             <button
               type="button"
               className="project-card-media"
-              onClick={() => openModal(project)}
+              onClick={() => setOpenIndex(i)}
               aria-label={t("projects.openPreview", { title: project.title })}
             >
               <img src={project.imgSrc} alt={project.title} width="640" height="384" loading="lazy" />
@@ -110,11 +106,11 @@ export default function Project() {
         ))}
       </div>
 
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        imgSrc={selectedProject?.imgSrc}
-        title={selectedProject?.title}
+      <ProjectLightbox
+        projects={filtered}
+        index={openIndex}
+        onClose={closeLightbox}
+        onIndexChange={setOpenIndex}
       />
 
     </section>

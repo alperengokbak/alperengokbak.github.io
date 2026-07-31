@@ -15,7 +15,7 @@
 }
 
 .project-card-media {
-  @apply relative block h-48 w-full cursor-zoom-in overflow-hidden border-0 bg-transparent p-0 text-left;
+  @apply relative block h-48 w-full cursor-pointer overflow-hidden border-0 bg-transparent p-0 text-left;
 }
 
 .project-card-media:focus-visible {

@@ -65,7 +65,35 @@ describe("Project", () => {
     await user.click(screen.getByRole("button", { name: /open a larger preview of Twitter Clone API/i }));
 
     const dialog = screen.getByRole("dialog");
-    expect(within(dialog).getByRole("img")).toHaveAttribute("alt", "Twitter Clone API screenshot");
+    expect(within(dialog).getByRole("img")).toHaveAttribute("alt", "Twitter Clone API preview");
+  });
+
+  it("closes the lightbox when the filter changes, so the index cannot outlive its list", async () => {
+    const user = userEvent.setup();
+    renderProjects();
+
+    await user.click(screen.getByRole("button", { name: /open a larger preview of Booking Hotel/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+
+    await user.click(filter("Cloud"));
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("walks the filtered set rather than the full project list", async () => {
+    const user = userEvent.setup();
+    renderProjects();
+
+    await user.click(filter("Cloud"));
+    await user.click(screen.getByRole("button", { name: /open a larger preview of Automated Cloud Infrastructure/i }));
+
+    expect(screen.getByText("1 / 2")).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /next project/i }));
+
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).getByRole("heading")).toHaveTextContent("Azure DevOps Terraform Platform");
+    expect(screen.getByText("2 / 2")).toBeInTheDocument();
   });
 
   it("returns focus to the card that opened the lightbox", async () => {
