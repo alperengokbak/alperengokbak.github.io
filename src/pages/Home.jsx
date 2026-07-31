@@ -78,7 +78,7 @@ export default function Home() {
               {}
               <p className="sr-only">{t("hero.roles")}</p>
 
-              <p className="hero-role" aria-hidden="true">
+              <div className="hero-role" aria-hidden="true">
                 <Typewriter
                   options={{
                     strings: ["devops engineer", "solutions architect", "software engineer"],
@@ -92,7 +92,7 @@ export default function Home() {
                   }}
                 />
 
-              </p>
+              </div>
 
               <p className="hero-summary">
                 DevOps Engineer and Solutions Architect with nearly three years of experience working remotely for German
