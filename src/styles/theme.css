@@ -39,6 +39,14 @@
   --cat-cloud: #38bdf8;
   --cat-fullstack: #a78bfa;
   --cat-neutral: #a8a29e;
+
+  --topic-teal: #2dd4bf;
+  --topic-azure: #38bdf8;
+  --topic-indigo: #818cf8;
+  --topic-rose: #fb7185;
+  --topic-gold: #fbbf24;
+  --topic-orange: #f97316;
+  --topic-neutral: #a8a29e;
 }
 
 :root[data-theme="light"] {
@@ -78,4 +86,12 @@
   --cat-cloud: #0369a1;
   --cat-fullstack: #6d28d9;
   --cat-neutral: #57534e;
+
+  --topic-teal: #0f766e;
+  --topic-azure: #0369a1;
+  --topic-indigo: #4338ca;
+  --topic-rose: #be123c;
+  --topic-gold: #b45309;
+  --topic-orange: #c2410c;
+  --topic-neutral: #57534e;
 }

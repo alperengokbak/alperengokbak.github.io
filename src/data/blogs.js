@@ -2,16 +2,16 @@ import { generatedPosts } from "./blogs.generated.js";
 
 const HIDDEN = ["java-collection-framework", "creating-custom-typography-themes-in-material-ui"];
 
-const TOPIC_CATEGORY = {
-  Containers: "cloud",
-  Kubernetes: "cloud",
-  Azure: "cloud",
-  Security: "fullstack",
-  Python: "fullstack",
-  DevOps: "devops",
+const TOPIC_ACCENT = {
+  Containers: "teal",
+  Azure: "azure",
+  Kubernetes: "indigo",
+  Security: "rose",
+  Python: "gold",
+  DevOps: "orange",
 };
 
-const accentFor = (topic) => `var(--cat-${TOPIC_CATEGORY[topic] ?? "neutral"})`;
+const accentFor = (topic) => `var(--topic-${TOPIC_ACCENT[topic] ?? "neutral"})`;
 
 const CURATION = [
   { match: "writing-secure-and-efficient-dockerfiles", topic: "Containers" },

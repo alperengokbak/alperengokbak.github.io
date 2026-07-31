@@ -15,7 +15,7 @@ describe("blog curation", () => {
     for (const post of posts) {
       expect(post.topic).toBeTruthy();
 
-      expect(post.accent).toMatch(/^var\(--cat-(devops|cloud|fullstack|neutral)\)$/);
+      expect(post.accent).toMatch(/^var\(--topic-(teal|azure|indigo|rose|gold|orange|neutral)\)$/);
     }
   });
 
