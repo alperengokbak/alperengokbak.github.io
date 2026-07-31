@@ -11,7 +11,7 @@ const TOPIC_ACCENT = {
   DevOps: "orange",
 };
 
-const accentFor = (topic) => `var(--topic-${TOPIC_ACCENT[topic] ?? "neutral"})`;
+export const accentFor = (topic) => `var(--topic-${TOPIC_ACCENT[topic] ?? "neutral"})`;
 
 const CURATION = [
   { match: "writing-secure-and-efficient-dockerfiles", topic: "Containers" },
@@ -23,10 +23,24 @@ const CURATION = [
   { match: "demystifying-args-and-kwargs-in-python", topic: "Python" },
 ];
 
+const TOPIC_KEYWORDS = {
+  Kubernetes: ["kubernetes", "kubeadm", "helm", "argo"],
+  Containers: ["container", "docker", "dockerize", "podman"],
+  Azure: ["azure", "intune", "microsoft", "windows 365", "bicep", "entra"],
+  Security: ["security", "vpn", "wireguard", "tls", "firewall"],
+  Python: ["python"],
+  DevOps: ["ci cd", "cicd", "devops", "pipeline", "terraform", "ansible"],
+};
+
 const curationFor = (slug) => CURATION.find((entry) => slug.includes(entry.match));
 
-const topicFromTags = (tags) =>
-  tags[0] ? tags[0].replace(/\b\w/g, (c) => c.toUpperCase()) : "Writing";
+export const topicFromTags = (tags) => {
+  const haystack = tags.map((tag) => tag.toLowerCase());
+  const match = Object.entries(TOPIC_KEYWORDS).find(([, keywords]) =>
+    keywords.some((keyword) => haystack.some((tag) => tag.includes(keyword)))
+  );
+  return match?.[0] ?? "Writing";
+};
 
 export const posts = generatedPosts
   .filter((post) => !HIDDEN.some((slug) => post.slug.includes(slug)))
